@@ -7,4 +7,21 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main_back">#FEF2F2</color>
+    <color name="back_red">#FF796D</color>
+    <color name="back_sky">#1FC5F5</color>
+    <color name="back_orange">#FFB277</color>
+    <color name="back_purple">#7697F7</color>
+    <color name="back_filter">#58B6F3</color>
+    <color name="back_month_filter">#FCF1F1</color>
+    <color name="grey">#5F687C</color>
+    <color name="back_white_red">#FD8F85</color>
+    <color name="back_white_orange">#FAB988</color>
+    <color name="back_white_purple">#8DAAFD</color>
+    <color name="back_white_sky">#52D4FA</color>
+    <color name="back_white">#FFF7F7</color>
+    <color name="btn_red_start">#FE736C</color>
+    <color name="btn_red_end">#FF6072</color>
+    <color name="btn_red_center">#FF6570</color>
+    <color name="view_back">#3EFFFFFF</color>
 </resources>

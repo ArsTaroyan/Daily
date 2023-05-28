@@ -1,5 +1,6 @@
-package am.a_t.dailyapp
+package am.a_t.dailyapp.presentation
 
+import am.a_t.dailyapp.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 

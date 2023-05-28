@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DailyApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_new">Add New</string>
+    <string name="tasks">Tasks</string>
+    <string name="back">Back</string>
+    <string name="todos">Todos</string>
 </resources>
