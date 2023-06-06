@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_back"
+    tools:context=".presentation.ui.mainFragment.MainFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnAdd"
+        android:layout_width="@dimen/space_120"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:paddingVertical="@dimen/space_10"
+        android:shadowColor="@color/white"
+        android:shadowRadius="30"
+        android:text="@string/add_new"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_16"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnTasks"
+        android:layout_width="@dimen/space_120"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:paddingVertical="@dimen/space_10"
+        android:shadowColor="@color/white"
+        android:shadowRadius="30"
+        android:text="@string/tasks"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_16"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintTop_toTopOf="@+id/btnAdd" />
+
+    <TextView
+        android:id="@+id/filterMonth"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_70"
+        android:layout_marginTop="@dimen/space_30"
+        android:background="@drawable/back_month_filter"
+        android:elevation="@dimen/space_5"
+        android:gravity="center|start"
+        android:paddingHorizontal="@dimen/space_20"
+        android:shadowColor="@color/black"
+        android:shadowRadius="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size_16"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_10"
+        app:layout_constraintEnd_toStartOf="@+id/glEnd"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/btnAdd"
+        tools:text="%1s, %2s" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnDate"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginEnd="@dimen/space_30"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:padding="@dimen/space_10"
+        android:src="@drawable/ic_calendar"
+        android:translationZ="@dimen/space_15"
+        app:layout_constraintBottom_toBottomOf="@+id/filterMonth"
+        app:layout_constraintEnd_toEndOf="@+id/filterMonth"
+        app:layout_constraintTop_toTopOf="@+id/filterMonth" />
+
+    <View
+        android:id="@+id/backView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/back_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterMonth" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFilter"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_30"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterMonth"
+        tools:listitem="@layout/item_day_filter" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_1"
+        android:layout_marginTop="@dimen/space_30"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toStartOf="@+id/glEnd"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/rvFilter" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTodo"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_0"
+        android:layout_marginTop="@dimen/space_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/glEnd"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:listitem="@layout/item_main" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/space_20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/space_20" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
