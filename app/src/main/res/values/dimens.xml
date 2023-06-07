@@ -15,4 +15,16 @@
     <dimen name="space_40">40dp</dimen>
     <dimen name="space_1">1dp</dimen>
     <dimen name="space_3">3dp</dimen>
+
+    //Lusin
+    <dimen name="size_25">25sp</dimen>
+    <dimen name="size_18">18sp</dimen>
+    <dimen name="size_35">35sp</dimen>
+    <dimen name="size_20">20sp</dimen>
+    <dimen name="space_2">2dp</dimen>
+    <dimen name="space_60">60dp</dimen>
+    <dimen name="space_25">25dp</dimen>
+    <dimen name="space_80">80dp</dimen>
+    <dimen name="size_14">14sp</dimen>
+    <dimen name="space_12">12dp</dimen>
 </resources>
