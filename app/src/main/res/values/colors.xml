@@ -24,4 +24,13 @@
     <color name="btn_red_end">#FF6072</color>
     <color name="btn_red_center">#FF6570</color>
     <color name="view_back">#3EFFFFFF</color>
+
+    //Lusin
+    <color name="background_color">#f9efee</color>
+    <color name="dark_grey">#2d3742</color>
+    <color name="coral">#fc6675</color>
+    <color name="light_grey">#b3cad8</color>
+    <color name="purple">#688bf1</color>
+    <color name="blue">#39c0e6</color>
+    <color name="orange">#fba11a</color>
 </resources>
