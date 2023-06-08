@@ -81,48 +81,48 @@
         app:layout_constraintTop_toBottomOf="@id/firstLine" />
 
     <View
-        android:id="@+id/colorPurple"
+        android:id="@+id/colorPurpleList"
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:layout_marginStart="@dimen/space_30"
         android:background="@drawable/shape_colors"
         android:backgroundTint="@color/purple"
         app:layout_constraintBottom_toBottomOf="@id/listColor"
-        app:layout_constraintEnd_toStartOf="@id/colorCoral"
+        app:layout_constraintEnd_toStartOf="@id/colorCoralList"
         app:layout_constraintStart_toEndOf="@id/listColor"
         app:layout_constraintTop_toTopOf="@id/listColor" />
 
     <View
-        android:id="@+id/colorCoral"
+        android:id="@+id/colorCoralList"
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/shape_colors"
         android:backgroundTint="@color/coral"
         app:layout_constraintBottom_toBottomOf="@id/listColor"
-        app:layout_constraintEnd_toStartOf="@id/colorBlue"
-        app:layout_constraintStart_toEndOf="@id/colorPurple"
+        app:layout_constraintEnd_toStartOf="@id/colorBlueList"
+        app:layout_constraintStart_toEndOf="@id/colorPurpleList"
         app:layout_constraintTop_toTopOf="@id/listColor" />
 
     <View
-        android:id="@+id/colorBlue"
+        android:id="@+id/colorBlueList"
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/shape_colors"
         android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="@id/listColor"
-        app:layout_constraintEnd_toStartOf="@id/colorOrange"
-        app:layout_constraintStart_toEndOf="@id/colorCoral"
+        app:layout_constraintEnd_toStartOf="@id/colorOrangeList"
+        app:layout_constraintStart_toEndOf="@id/colorCoralList"
         app:layout_constraintTop_toTopOf="@id/listColor" />
 
     <View
-        android:id="@+id/colorOrange"
+        android:id="@+id/colorOrangeList"
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/shape_colors"
         android:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="@id/listColor"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toEndOf="@id/colorBlue"
+        app:layout_constraintStart_toEndOf="@id/colorBlueList"
         app:layout_constraintTop_toTopOf="@id/listColor" />
 
     <androidx.appcompat.widget.AppCompatTextView

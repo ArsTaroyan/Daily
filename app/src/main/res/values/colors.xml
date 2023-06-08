@@ -33,4 +33,6 @@
     <color name="purple">#688bf1</color>
     <color name="blue">#39c0e6</color>
     <color name="orange">#fba11a</color>
+    <color name="switch_color">#dddfe9</color>
+    <color name="fade_white">#80FFFFFF</color>
 </resources>
