@@ -99,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filterMonth"
-        tools:listitem="@layout/item_day_filter" />
+        tools:listitem="@layout/item_day_filter_off" />
 
     <View
         android:id="@+id/view"

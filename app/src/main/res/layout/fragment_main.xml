@@ -8,7 +8,7 @@
     tools:context=".presentation.ui.mainFragment.MainFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnLeft"
         android:layout_width="@dimen/space_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_20"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnTasks"
+        android:id="@+id/btnRight"
         android:layout_width="@dimen/space_120"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_red"
@@ -42,7 +42,7 @@
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintTop_toTopOf="@+id/btnAdd" />
+        app:layout_constraintTop_toTopOf="@+id/btnLeft" />
 
     <TextView
         android:id="@+id/filterMonth"
@@ -61,7 +61,7 @@
         android:translationZ="@dimen/space_10"
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdd"
+        app:layout_constraintTop_toBottomOf="@+id/btnLeft"
         tools:text="%1s, %2s" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -99,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filterMonth"
-        tools:listitem="@layout/item_day_filter" />
+        tools:listitem="@layout/item_day_filter_off" />
 
     <View
         android:id="@+id/view"
