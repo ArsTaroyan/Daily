@@ -30,7 +30,19 @@
     <color name="dark_grey">#2d3742</color>
     <color name="coral">#fc6675</color>
     <color name="light_grey">#b3cad8</color>
+    //Purple
     <color name="purple">#688bf1</color>
+    <color name="purple_start">#7D9BF1</color>
+    <color name="purple_end">#5A80F1</color>
+    <color name="purple_center">#6085EF</color>
+    //Blue
     <color name="blue">#39c0e6</color>
+    <color name="blue_start">#68CAE4</color>
+    <color name="blue_end">#26B6DD</color>
+    <color name="blue_center">#39c0e6</color>
+    //Orange
     <color name="orange">#fba11a</color>
+    <color name="orange_start">#F6B148</color>
+    <color name="orange_end">#FA9B0C</color>
+    <color name="orange_center">#fba11a</color>
 </resources>

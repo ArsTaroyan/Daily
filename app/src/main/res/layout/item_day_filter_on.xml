@@ -10,7 +10,7 @@
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
         android:layout_margin="@dimen/space_15"
-        android:background="@drawable/back_filter_on"
+        android:background="@drawable/btn_blue"
         android:gravity="center"
         android:shadowColor="@color/white"
         android:shadowRadius="30"
