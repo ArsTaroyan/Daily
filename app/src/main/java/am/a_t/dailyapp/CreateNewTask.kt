@@ -22,5 +22,5 @@ class CreateNewTask : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_new_task, container, false)
     }
-    
+
 }
