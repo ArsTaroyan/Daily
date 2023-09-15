@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/back_red" />
+        tools:background="@drawable/btn_red" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
