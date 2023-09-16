@@ -1,4 +1,4 @@
-package am.a_t.dailyapp.presentation.di
+package am.a_t.dailyapp.di
 
 import dagger.Module
 import dagger.hilt.InstallIn
