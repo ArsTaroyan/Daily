@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".CreateNewTask">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/backNewTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/heading"
+        app:layout_constraintStart_toStartOf="@+id/guideLineBegin"
+        app:layout_constraintTop_toTopOf="@id/heading"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_20"
+        android:text="@string/create_new_task"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/size_25"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toEndOf="@id/guideLineBegin"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/taskNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_30"
+        android:text="@string/task_name"
+        android:textColor="@color/coral"
+        android:textSize="@dimen/size_18"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/heading" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etTaskName"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@null"
+        android:ellipsize="end"
+        android:inputType="textCapSentences"
+        android:maxLines="1"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/size_35"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/taskNameTitle"
+        tools:text="Design app" />
+
+    <View
+        android:id="@+id/firstLine"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_2"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/etTaskName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/taskDescriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_20"
+        android:text="@string/description"
+        android:textColor="@color/coral"
+        android:textSize="@dimen/size_18"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/firstLine" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etDescriptionName"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@null"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/size_16"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/taskDescriptionTitle"
+        tools:text="I need to create the real estate mobile app is a user-friendly and comprehensive platform that helps you quickly and effortlessly find, buy, sell, or rent properties." />
+
+    <View
+        android:id="@+id/secondLine"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_2"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/etDescriptionName" />
+
+    <View
+        android:id="@+id/remindMeView"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/size_70"
+        android:layout_marginTop="@dimen/size_20"
+        android:background="@drawable/shape_remind_me"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/secondLine" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_20"
+        android:text="@string/remind_me"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/size_18"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/remindMeView"
+        app:layout_constraintStart_toStartOf="@id/remindMeView"
+        app:layout_constraintTop_toTopOf="@id/remindMeView" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_20"
+        android:track="@drawable/shape_switch_track"
+        app:layout_constraintBottom_toBottomOf="@id/remindMeView"
+        app:layout_constraintEnd_toEndOf="@id/remindMeView"
+        app:layout_constraintTop_toTopOf="@id/remindMeView"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <View
+        android:id="@+id/viewTime"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_80"
+        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginEnd="@dimen/space_20"
+        android:background="@drawable/btn_blue"
+        app:layout_constraintEnd_toStartOf="@id/viewDate"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/remindMeView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/icTime"
+        android:layout_width="@dimen/space_30"
+        android:layout_height="@dimen/space_30"
+        android:layout_marginStart="@dimen/space_20"
+        app:layout_constraintBottom_toBottomOf="@id/viewTime"
+        app:layout_constraintStart_toStartOf="@id/viewTime"
+        app:layout_constraintTop_toTopOf="@id/viewTime"
+        app:srcCompat="@drawable/ic_time" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/taskTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_10"
+        android:layout_marginTop="@dimen/space_20"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_16"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/icTime"
+        app:layout_constraintTop_toTopOf="@id/viewTime"
+        tools:text="14:30pm" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_5"
+        android:text="@string/task_start"
+        android:textColor="@color/fade_white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/taskTime"
+        app:layout_constraintTop_toBottomOf="@id/taskTime" />
+
+    <View
+        android:id="@+id/viewDate"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_80"
+        android:background="@drawable/btn_purple"
+        app:layout_constraintBottom_toBottomOf="@id/viewTime"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toEndOf="@id/viewTime"
+        app:layout_constraintTop_toTopOf="@id/viewTime" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/icDate"
+        android:layout_width="@dimen/space_30"
+        android:layout_height="@dimen/space_30"
+        android:layout_marginStart="@dimen/space_20"
+        app:layout_constraintBottom_toBottomOf="@id/viewDate"
+        app:layout_constraintStart_toStartOf="@id/viewDate"
+        app:layout_constraintTop_toTopOf="@id/viewDate"
+        app:srcCompat="@drawable/ic_calendar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/taskDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_10"
+        android:layout_marginTop="@dimen/space_20"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_16"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/icDate"
+        app:layout_constraintTop_toTopOf="@id/viewDate"
+        tools:text="17,May 2023" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_5"
+        android:text="@string/date"
+        android:textColor="@color/fade_white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/taskDate"
+        app:layout_constraintTop_toBottomOf="@id/taskDate" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/taskColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_10"
+        android:layout_marginTop="@dimen/space_30"
+        android:text="@string/task_ncolor"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/size_18"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/viewTime" />
+
+    <View
+        android:id="@+id/colorPurpleTask"
+        android:layout_width="@dimen/space_60"
+        android:layout_height="@dimen/space_60"
+        android:layout_marginStart="@dimen/space_30"
+        android:background="@drawable/btn_purple"
+        app:layout_constraintBottom_toBottomOf="@id/taskColor"
+        app:layout_constraintEnd_toStartOf="@id/colorCoralTask"
+        app:layout_constraintStart_toEndOf="@id/taskColor"
+        app:layout_constraintTop_toTopOf="@id/taskColor" />
+
+    <View
+        android:id="@+id/colorCoralTask"
+        android:layout_width="@dimen/space_60"
+        android:layout_height="@dimen/space_60"
+        android:background="@drawable/btn_red"
+        app:layout_constraintBottom_toBottomOf="@id/taskColor"
+        app:layout_constraintEnd_toStartOf="@id/colorBlueTask"
+        app:layout_constraintStart_toEndOf="@id/colorPurpleTask"
+        app:layout_constraintTop_toTopOf="@id/taskColor" />
+
+    <View
+        android:id="@+id/colorBlueTask"
+        android:layout_width="@dimen/space_60"
+        android:layout_height="@dimen/space_60"
+        android:background="@drawable/btn_blue"
+        app:layout_constraintBottom_toBottomOf="@id/taskColor"
+        app:layout_constraintEnd_toStartOf="@id/colorOrangeTask"
+        app:layout_constraintStart_toEndOf="@id/colorCoralTask"
+        app:layout_constraintTop_toTopOf="@id/taskColor" />
+
+    <View
+        android:id="@+id/colorOrangeTask"
+        android:layout_width="@dimen/space_60"
+        android:layout_height="@dimen/space_60"
+        android:background="@drawable/btn_orange"
+        app:layout_constraintBottom_toBottomOf="@id/taskColor"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toEndOf="@id/colorBlueTask"
+        app:layout_constraintTop_toTopOf="@id/taskColor" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnCreateTask"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_70"
+        android:layout_marginTop="@dimen/space_30"
+        android:layout_marginBottom="@dimen/space_20"
+        android:background="@drawable/btn_red"
+        android:gravity="center"
+        android:shadowColor="@color/white"
+        android:shadowRadius="70"
+        android:text="@string/create_task"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintTop_toBottomOf="@id/taskColor" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineBegin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/space_20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/space_20" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

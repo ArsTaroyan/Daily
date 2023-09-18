@@ -7,7 +7,7 @@
     android:background="@color/background_color">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/cancelNewTodo"
+        android:id="@+id/cancelNewList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/heading"
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_20"
-        android:text="@string/create_new_to_do"
+        android:text="@string/create_new_list"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_25"
         android:textStyle="bold"
@@ -29,11 +29,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/todoNameTitle"
+        android:id="@+id/ListNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_30"
-        android:text="@string/to_do_name"
+        android:text="@string/list_name"
         android:textColor="@color/coral"
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
@@ -54,7 +54,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/todoNameTitle"
+        app:layout_constraintTop_toBottomOf="@id/ListNameTitle"
         tools:text="Design app" />
 
     <View
@@ -68,12 +68,12 @@
         app:layout_constraintTop_toBottomOf="@id/etTodoName" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/todoColor"
+        android:id="@+id/listColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_10"
         android:layout_marginTop="@dimen/space_30"
-        android:text="@string/to_do_ncolor"
+        android:text="@string/list_ncolor"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
@@ -81,66 +81,65 @@
         app:layout_constraintTop_toBottomOf="@id/firstLine" />
 
     <View
-        android:id="@+id/colorPurple"
+        android:id="@+id/colorPurpleList"
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:layout_marginStart="@dimen/space_30"
         android:background="@drawable/btn_purple"
-        app:layout_constraintBottom_toBottomOf="@id/todoColor"
-        app:layout_constraintEnd_toStartOf="@id/colorCoral"
-        app:layout_constraintStart_toEndOf="@id/todoColor"
-        app:layout_constraintTop_toTopOf="@id/todoColor" />
+        app:layout_constraintBottom_toBottomOf="@id/listColor"
+        app:layout_constraintEnd_toStartOf="@id/colorCoralList"
+        app:layout_constraintStart_toEndOf="@id/listColor"
+        app:layout_constraintTop_toTopOf="@id/listColor" />
 
     <View
-        android:id="@+id/colorCoral"
+        android:id="@+id/colorCoralList"
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_red"
-        app:layout_constraintBottom_toBottomOf="@id/todoColor"
-        app:layout_constraintEnd_toStartOf="@id/colorBlue"
-        app:layout_constraintStart_toEndOf="@id/colorPurple"
-        app:layout_constraintTop_toTopOf="@id/todoColor" />
+        app:layout_constraintBottom_toBottomOf="@id/listColor"
+        app:layout_constraintEnd_toStartOf="@id/colorBlueList"
+        app:layout_constraintStart_toEndOf="@id/colorPurpleList"
+        app:layout_constraintTop_toTopOf="@id/listColor" />
 
     <View
-        android:id="@+id/colorBlue"
+        android:id="@+id/colorBlueList"
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_blue"
-        app:layout_constraintBottom_toBottomOf="@id/todoColor"
-        app:layout_constraintEnd_toStartOf="@id/colorOrange"
-        app:layout_constraintStart_toEndOf="@id/colorCoral"
-        app:layout_constraintTop_toTopOf="@id/todoColor" />
+        app:layout_constraintBottom_toBottomOf="@id/listColor"
+        app:layout_constraintEnd_toStartOf="@id/colorOrangeList"
+        app:layout_constraintStart_toEndOf="@id/colorCoralList"
+        app:layout_constraintTop_toTopOf="@id/listColor" />
 
     <View
-        android:id="@+id/colorOrange"
+        android:id="@+id/colorOrangeList"
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_orange"
-        app:layout_constraintBottom_toBottomOf="@id/todoColor"
+        app:layout_constraintBottom_toBottomOf="@id/listColor"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toEndOf="@id/colorBlue"
-        app:layout_constraintTop_toTopOf="@id/todoColor" />
+        app:layout_constraintStart_toEndOf="@id/colorBlueList"
+        app:layout_constraintTop_toTopOf="@id/listColor" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnCreateTodo"
+        android:id="@+id/btnCreateList"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_70"
         android:layout_marginTop="@dimen/space_30"
         android:layout_marginBottom="@dimen/space_20"
         android:background="@drawable/btn_red"
         android:gravity="center"
-        android:elevation="@dimen/space_5"
         android:shadowColor="@color/white"
-        android:shadowRadius="30"
-        android:text="@string/create_to_do"
+        android:shadowRadius="70"
+        android:text="@string/create_list"
         android:textColor="@color/white"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
-        android:translationZ="@dimen/space_15"
+        android:translationZ="@dimen/space_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/todoColor" />
+        app:layout_constraintTop_toBottomOf="@id/listColor" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineBegin"

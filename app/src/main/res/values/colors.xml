@@ -25,7 +25,7 @@
     <color name="btn_red_center">#FF6570</color>
     <color name="view_back">#3EFFFFFF</color>
 
-    //Lusin
+    //Lucy
     <color name="background_color">#f9efee</color>
     <color name="dark_grey">#2d3742</color>
     <color name="coral">#fc6675</color>
@@ -45,4 +45,8 @@
     <color name="orange_start">#F6B148</color>
     <color name="orange_end">#FA9B0C</color>
     <color name="orange_center">#fba11a</color>
+
+    <color name="switch_color">#dddfe9</color>
+    <color name="fade_white">#80FFFFFF</color>
+
 </resources>

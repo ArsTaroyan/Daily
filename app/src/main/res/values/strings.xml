@@ -7,7 +7,7 @@
     <string name="back">Back</string>
     <string name="todos">Todos</string>
 
-    //Lusin
+    //Lucy
     <string name="create_new_list">Create New List</string>
     <string name="list_name">List Name</string>
     <string name="list_ncolor">List \nColor</string>
@@ -16,4 +16,12 @@
     <string name="to_do_name">To-Do Name</string>
     <string name="to_do_ncolor">To-Do \nColor</string>
     <string name="create_to_do">Create To-Do</string>
+    <string name="description">Description</string>
+    <string name="task_name">Task Name</string>
+    <string name="create_new_task">Create New Task</string>
+    <string name="remind_me">Remind me</string>
+    <string name="task_start">Task Start</string>
+    <string name="date">Date</string>
+    <string name="create_task">Create Task</string>
+    <string name="task_ncolor">Task \nColor</string>
 </resources>
