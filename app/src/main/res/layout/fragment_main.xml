@@ -58,7 +58,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/size_16"
         android:textStyle="bold"
-        android:translationZ="@dimen/space_10"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/btnLeft"
@@ -104,9 +104,10 @@
     <View
         android:id="@+id/view"
         android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_1"
+        android:layout_height="@dimen/space_2"
         android:layout_marginTop="@dimen/space_30"
-        android:background="@color/grey"
+        android:background="@color/light_grey"
+        android:elevation="@dimen/space_5"
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/rvFilter" />
@@ -120,7 +121,7 @@
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        tools:listitem="@layout/item_main" />
+        tools:listitem="@layout/item_task" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glStart"

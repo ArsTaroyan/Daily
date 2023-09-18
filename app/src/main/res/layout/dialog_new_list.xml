@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_color">
+    android:background="@color/main_back">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cancelNewList"
@@ -86,6 +86,8 @@
         android:layout_height="@dimen/space_60"
         android:layout_marginStart="@dimen/space_30"
         android:background="@drawable/btn_purple"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/listColor"
         app:layout_constraintEnd_toStartOf="@id/colorCoralList"
         app:layout_constraintStart_toEndOf="@id/listColor"
@@ -96,6 +98,8 @@
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/listColor"
         app:layout_constraintEnd_toStartOf="@id/colorBlueList"
         app:layout_constraintStart_toEndOf="@id/colorPurpleList"
@@ -106,6 +110,8 @@
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_blue"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/listColor"
         app:layout_constraintEnd_toStartOf="@id/colorOrangeList"
         app:layout_constraintStart_toEndOf="@id/colorCoralList"
@@ -116,6 +122,8 @@
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_orange"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/listColor"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/colorBlueList"

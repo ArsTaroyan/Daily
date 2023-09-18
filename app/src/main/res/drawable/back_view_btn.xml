@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stroke
+        android:width="@dimen/space_2"
+        android:color="@color/white" />
+
+    <corners
+        android:topLeftRadius="@dimen/space_20"
+        android:topRightRadius="@dimen/space_20" />
+
+    <solid android:color="@color/view_back_btn" />
+
+</shape>

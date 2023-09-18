@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
-    tools:context=".CreateNewTask">
+    android:background="@color/main_back">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/backNewTask"
@@ -55,6 +54,7 @@
         android:textSize="@dimen/size_35"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideLineBegin"
         app:layout_constraintTop_toBottomOf="@id/taskNameTitle"
         tools:text="Design app" />
 
@@ -64,6 +64,7 @@
         android:layout_height="@dimen/space_2"
         android:layout_marginTop="@dimen/space_20"
         android:background="@color/light_grey"
+        android:elevation="@dimen/space_5"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
         app:layout_constraintTop_toBottomOf="@id/etTaskName" />
@@ -101,6 +102,7 @@
         android:layout_height="@dimen/space_2"
         android:layout_marginTop="@dimen/space_20"
         android:background="@color/light_grey"
+        android:elevation="@dimen/space_5"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
         app:layout_constraintTop_toBottomOf="@id/etDescriptionName" />
@@ -110,7 +112,9 @@
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/size_70"
         android:layout_marginTop="@dimen/size_20"
-        android:background="@drawable/shape_remind_me"
+        android:background="@drawable/back_month_filter"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
         app:layout_constraintTop_toBottomOf="@id/secondLine" />
@@ -119,10 +123,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_20"
+        android:elevation="@dimen/space_5"
         android:text="@string/remind_me"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/remindMeView"
         app:layout_constraintStart_toStartOf="@id/remindMeView"
         app:layout_constraintTop_toTopOf="@id/remindMeView" />
@@ -131,9 +137,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space_20"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
+        android:elevation="@dimen/space_5"
+        android:minWidth="@dimen/space_50"
+        android:minHeight="@dimen/space_50"
         android:track="@drawable/shape_switch_track"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/remindMeView"
         app:layout_constraintEnd_toEndOf="@id/remindMeView"
         app:layout_constraintTop_toTopOf="@id/remindMeView"
@@ -146,6 +154,8 @@
         android:layout_marginTop="@dimen/space_20"
         android:layout_marginEnd="@dimen/space_20"
         android:background="@drawable/btn_blue"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintEnd_toStartOf="@id/viewDate"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
         app:layout_constraintTop_toBottomOf="@id/remindMeView" />
@@ -155,6 +165,8 @@
         android:layout_width="@dimen/space_30"
         android:layout_height="@dimen/space_30"
         android:layout_marginStart="@dimen/space_20"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/viewTime"
         app:layout_constraintStart_toStartOf="@id/viewTime"
         app:layout_constraintTop_toTopOf="@id/viewTime"
@@ -166,9 +178,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_10"
         android:layout_marginTop="@dimen/space_20"
+        android:elevation="@dimen/space_5"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16"
         android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintStart_toEndOf="@id/icTime"
         app:layout_constraintTop_toTopOf="@id/viewTime"
         tools:text="14:30pm" />
@@ -177,9 +191,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_5"
+        android:elevation="@dimen/space_5"
         android:text="@string/task_start"
         android:textColor="@color/fade_white"
         android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintStart_toStartOf="@id/taskTime"
         app:layout_constraintTop_toBottomOf="@id/taskTime" />
 
@@ -188,6 +204,8 @@
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_80"
         android:background="@drawable/btn_purple"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/viewTime"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/viewTime"
@@ -198,6 +216,8 @@
         android:layout_width="@dimen/space_30"
         android:layout_height="@dimen/space_30"
         android:layout_marginStart="@dimen/space_20"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/viewDate"
         app:layout_constraintStart_toStartOf="@id/viewDate"
         app:layout_constraintTop_toTopOf="@id/viewDate"
@@ -209,9 +229,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_10"
         android:layout_marginTop="@dimen/space_20"
+        android:elevation="@dimen/space_5"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16"
         android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintStart_toEndOf="@id/icDate"
         app:layout_constraintTop_toTopOf="@id/viewDate"
         tools:text="17,May 2023" />
@@ -220,9 +242,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_5"
+        android:elevation="@dimen/space_5"
         android:text="@string/date"
         android:textColor="@color/fade_white"
         android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintStart_toStartOf="@id/taskDate"
         app:layout_constraintTop_toBottomOf="@id/taskDate" />
 
@@ -245,6 +269,8 @@
         android:layout_height="@dimen/space_60"
         android:layout_marginStart="@dimen/space_30"
         android:background="@drawable/btn_purple"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/taskColor"
         app:layout_constraintEnd_toStartOf="@id/colorCoralTask"
         app:layout_constraintStart_toEndOf="@id/taskColor"
@@ -255,6 +281,8 @@
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/taskColor"
         app:layout_constraintEnd_toStartOf="@id/colorBlueTask"
         app:layout_constraintStart_toEndOf="@id/colorPurpleTask"
@@ -265,6 +293,8 @@
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_blue"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/taskColor"
         app:layout_constraintEnd_toStartOf="@id/colorOrangeTask"
         app:layout_constraintStart_toEndOf="@id/colorCoralTask"
@@ -275,10 +305,22 @@
         android:layout_width="@dimen/space_60"
         android:layout_height="@dimen/space_60"
         android:background="@drawable/btn_orange"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/taskColor"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/colorBlueTask"
         app:layout_constraintTop_toTopOf="@id/taskColor" />
+
+    <View
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_105"
+        android:elevation="@dimen/space_5"
+        android:translationZ="@dimen/space_15"
+        android:background="@drawable/back_view_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnCreateTask"
@@ -287,6 +329,7 @@
         android:layout_marginTop="@dimen/space_30"
         android:layout_marginBottom="@dimen/space_20"
         android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
         android:gravity="center"
         android:shadowColor="@color/white"
         android:shadowRadius="70"
@@ -294,7 +337,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
-        android:translationZ="@dimen/space_20"
+        android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"

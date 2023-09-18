@@ -30,4 +30,6 @@
     <dimen name="size_70">70sp</dimen>
     <dimen name="size_60">60sp</dimen>
     <dimen name="space_100">100dp</dimen>
+    <dimen name="space_50">50dp</dimen>
+    <dimen name="space_105">105dp</dimen>
 </resources>

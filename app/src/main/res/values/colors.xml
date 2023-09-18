@@ -24,6 +24,7 @@
     <color name="btn_red_end">#FF6072</color>
     <color name="btn_red_center">#FF6570</color>
     <color name="view_back">#3EFFFFFF</color>
+    <color name="view_back_btn">#9AFFFFFF</color>
 
     //Lucy
     <color name="background_color">#f9efee</color>
