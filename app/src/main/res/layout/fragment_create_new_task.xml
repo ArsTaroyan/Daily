@@ -50,11 +50,11 @@
         android:ellipsize="end"
         android:inputType="textCapSentences"
         android:maxLines="1"
+        android:minHeight="48dp"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_35"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
         app:layout_constraintTop_toBottomOf="@id/taskNameTitle"
         tools:text="Design app" />
 
@@ -131,6 +131,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space_20"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:track="@drawable/shape_switch_track"
         app:layout_constraintBottom_toBottomOf="@id/remindMeView"
         app:layout_constraintEnd_toEndOf="@id/remindMeView"
