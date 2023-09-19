@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="am.a_t.dailyapp.presentation.ui.mainFragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_createNewTaskFragment"
+            app:destination="@id/createNewTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNewTaskFragment"
+        android:name="am.a_t.dailyapp.presentation.ui.createNewList.CreateNewTaskFragment"
+        android:label="fragment_create_new_task"
+        tools:layout="@layout/fragment_create_new_task" >
+        <action
+            android:id="@+id/action_createNewTaskFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
