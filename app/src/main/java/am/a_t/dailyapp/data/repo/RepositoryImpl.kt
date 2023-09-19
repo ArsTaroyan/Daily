@@ -8,23 +8,31 @@ import am.a_t.dailyapp.domain.repo.Repository
 import kotlinx.coroutines.flow.Flow
 
 class RepositoryImpl(private val todoDao: TodoDao, private val taskDao: TaskDao): Repository {
-    override suspend fun getAllTodos(): Flow<List<Todo>> = todoDao.getAllTodos()
+    override fun getAllTodos(): Flow<List<Todo>> = todoDao.getAllTodos()
 
     override suspend fun addTodo(todo: Todo) {
         todoDao.addTodo(todo)
     }
 
-    override suspend fun deleteTodo(todo: Todo) {
-        todoDao.deleteTodo(todo)
+    override suspend fun removeTodo(todo: Todo) {
+        todoDao.removeTodo(todo)
     }
 
-    override suspend fun getAllTasks(): Flow<List<Task>> = taskDao.getAllTasks()
+    override suspend fun updateTodo(todo: Todo) {
+        todoDao.updateTodo(todo)
+    }
+
+    override fun getAllTasks(): Flow<List<Task>> = taskDao.getAllTasks()
 
     override suspend fun addTask(task: Task) {
         taskDao.addTask(task)
     }
 
-    override suspend fun deleteTask(task: Task) {
-        taskDao.deleteTask(task)
+    override suspend fun removeTask(task: Task) {
+        taskDao.removeTask(task)
+    }
+
+    override suspend fun updateTask(task: Task) {
+        taskDao.updateTask(task)
     }
 }
