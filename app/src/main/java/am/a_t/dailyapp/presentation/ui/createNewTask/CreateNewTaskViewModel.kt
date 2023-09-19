@@ -1,4 +1,4 @@
-package am.a_t.dailyapp.presentation.ui.createNewList
+package am.a_t.dailyapp.presentation.ui.createNewTask
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
