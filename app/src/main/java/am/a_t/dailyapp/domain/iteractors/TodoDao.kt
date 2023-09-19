@@ -15,6 +15,6 @@ interface TodoDao {
     @Update
     suspend fun updateTodo(todo: Todo)
 
-    @Query("SELECT * FROM todos ORDER BY id ASC")
+    @Query("SELECT * FROM todos")
     fun getAllTodos(): Flow<List<Todo>>
 }
