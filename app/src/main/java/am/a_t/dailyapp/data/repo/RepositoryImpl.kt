@@ -5,9 +5,15 @@ import am.a_t.dailyapp.domain.iteractors.TodoDao
 import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.domain.module.Todo
 import am.a_t.dailyapp.domain.repo.Repository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class RepositoryImpl(private val todoDao: TodoDao, private val taskDao: TaskDao): Repository {
+@AndroidEntryPoint
+class RepositoryImpl @Inject constructor(
+    private val todoDao: TodoDao,
+    private val taskDao: TaskDao
+) : Repository {
     override fun getAllTodos(): Flow<List<Todo>> = todoDao.getAllTodos()
 
     override suspend fun addTodo(todo: Todo) {
