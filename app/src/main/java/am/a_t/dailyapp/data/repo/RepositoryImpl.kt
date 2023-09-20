@@ -9,7 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class RepositoryImpl @Inject constructor(
     private val todoDao: TodoDao,
     private val taskDao: TaskDao

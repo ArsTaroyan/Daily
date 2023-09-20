@@ -47,10 +47,10 @@ class Module {
 
     @Provides
     @Singleton
-    fun providesTodoViewModels(context: Context): TodoDao = getDatabase(context).todoDao()
+    fun providesTodoDao(context: Context): TodoDao = getDatabase(context).todoDao()
 
     @Provides
     @Singleton
-    fun providesTaskViewModels(context: Context): TaskDao = getDatabase(context).taskDao()
+    fun providesTaskDao(context: Context): TaskDao = getDatabase(context).taskDao()
 
 }
