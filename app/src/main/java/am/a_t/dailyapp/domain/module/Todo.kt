@@ -10,7 +10,6 @@ data class Todo(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo("todo_is_checked") val todoIsChecked: Boolean,
     @ColumnInfo("todo_title") val todoTitle: String,
-    @ColumnInfo("todo_data") val todoData: String,
-    @ColumnInfo("todo_color") val todoColor: ListColor,
-    @ColumnInfo("todo_description") val todoDescription: String
+    @ColumnInfo("todo_date") val todoDate: String,
+    @ColumnInfo("todo_color") val todoColor: ListColor
 )

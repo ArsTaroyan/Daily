@@ -6,8 +6,6 @@ import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.domain.module.Todo
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-
 
 @Database(
     entities = [
