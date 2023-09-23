@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <corners android:radius="@dimen/space_15" />
-    <stroke android:color="@color/dark_red" android:width="@dimen/space_5"/>
+    <stroke android:color="@color/dark_red" android:width="@dimen/space_3"/>
 
     <gradient
         android:angle="270"

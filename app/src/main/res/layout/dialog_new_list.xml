@@ -82,9 +82,10 @@
         app:layout_constraintTop_toBottomOf="@id/firstLine" />
 
     <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_0"
         android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/btnCreateList"
         app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/listColor"
@@ -95,7 +96,7 @@
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_30"
-            android:background="@drawable/btn_purple"
+            android:background="@drawable/radio_purple"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
             android:translationZ="@dimen/space_15" />
@@ -105,7 +106,7 @@
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_20"
-            android:background="@drawable/btn_red"
+            android:background="@drawable/radio_red"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
             android:translationZ="@dimen/space_15" />
@@ -115,7 +116,7 @@
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_20"
-            android:background="@drawable/btn_blue"
+            android:background="@drawable/radio_blue"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
             android:translationZ="@dimen/space_15" />
@@ -125,7 +126,7 @@
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_20"
-            android:background="@drawable/btn_orange"
+            android:background="@drawable/radio_orange"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
             android:translationZ="@dimen/space_15" />
