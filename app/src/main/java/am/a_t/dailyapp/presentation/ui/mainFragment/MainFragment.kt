@@ -61,28 +61,6 @@ class MainFragment : Fragment() {
                 .setView(root)
                 .show()
 
-            setSingleChoiceClickListener(
-                colorBlueList,
-                R.drawable.btn_blue_checked,
-                R.drawable.btn_blue
-            )
-            setSingleChoiceClickListener(
-                colorCoralList,
-                R.drawable.btn_red_checked,
-                R.drawable.btn_red
-            )
-            setSingleChoiceClickListener(
-                colorOrangeList,
-                R.drawable.btn_orange_checked,
-                R.drawable.btn_orange
-            )
-            setSingleChoiceClickListener(
-                colorPurpleList,
-                R.drawable.btn_purple_checked,
-                R.drawable.btn_purple
-            )
-
-            //singleChoice(myDialog)
 
             btnCreateList.setOnClickListener {
                 itemColor = ListColor.PURPLE
@@ -107,45 +85,6 @@ class MainFragment : Fragment() {
             alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         }
     }
-
-    var selectedView: View? = null
-
-    fun setSingleChoiceClickListener(view: View, drawableResource: Int, closedDrawRes: Int) {
-        view.setOnClickListener {
-            // Check if this view is already selected; if so, do nothing
-            if (view != selectedView) {
-                // Remove the background from the previously selected view
-                selectedView?.setBackgroundResource(closedDrawRes)
-
-                // Set the background for the newly selected view
-                view.setBackgroundResource(drawableResource)
-
-                // Update the selected view reference
-               // selectedView = view
-            }
-        }
-    }
-
-// Usage:
-
-
-
-//    private fun singleChoice(myDialog: DialogNewListBinding) {
-//        with(myDialog){
-//            colorBlueList.setOnClickListener {
-//                colorBlueList.setBackgroundResource(R.drawable.btn_blue_checked)
-//            }
-//            colorCoralList.setOnClickListener {
-//                colorCoralList.setBackgroundResource(R.drawable.btn_red_checked)
-//            }
-//            colorOrangeList.setOnClickListener {
-//                colorOrangeList.setBackgroundResource(R.drawable.btn_orange_checked)
-//            }
-//            colorPurpleList.setOnClickListener {
-//                colorPurpleList.setBackgroundResource(R.drawable.btn_purple_checked)
-//            }
-//        }
-//    }
 
 
     private fun initAdapter(inflater: LayoutInflater, container: ViewGroup?) {
