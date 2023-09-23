@@ -20,11 +20,11 @@
         android:layout_width="@dimen/space_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_20"
+        android:gravity="center"
         android:text="@string/create_new_list"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_25"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/guideLineBegin"
         app:layout_constraintTop_toTopOf="parent" />
@@ -81,54 +81,57 @@
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
         app:layout_constraintTop_toBottomOf="@id/firstLine" />
 
-    <View
-        android:id="@+id/colorPurpleList"
-        android:layout_width="@dimen/space_50"
-        android:layout_height="@dimen/space_50"
-        android:layout_marginStart="@dimen/space_30"
-        android:background="@drawable/btn_purple"
-        android:elevation="@dimen/space_5"
-        android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/listColor"
-        app:layout_constraintEnd_toStartOf="@id/colorCoralList"
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/btnCreateList"
+        app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/listColor"
-        app:layout_constraintTop_toTopOf="@id/listColor" />
+        app:layout_constraintTop_toBottomOf="@id/firstLine">
 
-    <View
-        android:id="@+id/colorCoralList"
-        android:layout_width="@dimen/space_50"
-        android:layout_height="@dimen/space_50"
-        android:background="@drawable/btn_red"
-        android:elevation="@dimen/space_5"
-        android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/listColor"
-        app:layout_constraintEnd_toStartOf="@id/colorBlueList"
-        app:layout_constraintStart_toEndOf="@id/colorPurpleList"
-        app:layout_constraintTop_toTopOf="@id/listColor" />
+        <RadioButton
+            android:id="@+id/colorPurpleList"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginStart="@dimen/space_30"
+            android:background="@drawable/btn_purple"
+            android:button="@android:color/transparent"
+            android:elevation="@dimen/space_5"
+            android:translationZ="@dimen/space_15" />
 
-    <View
-        android:id="@+id/colorBlueList"
-        android:layout_width="@dimen/space_50"
-        android:layout_height="@dimen/space_50"
-        android:background="@drawable/btn_blue"
-        android:elevation="@dimen/space_5"
-        android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/listColor"
-        app:layout_constraintEnd_toStartOf="@id/colorOrangeList"
-        app:layout_constraintStart_toEndOf="@id/colorCoralList"
-        app:layout_constraintTop_toTopOf="@id/listColor" />
+        <RadioButton
+            android:id="@+id/colorCoralList"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginStart="@dimen/space_20"
+            android:background="@drawable/btn_red"
+            android:button="@android:color/transparent"
+            android:elevation="@dimen/space_5"
+            android:translationZ="@dimen/space_15" />
 
-    <View
-        android:id="@+id/colorOrangeList"
-        android:layout_width="@dimen/space_50"
-        android:layout_height="@dimen/space_50"
-        android:background="@drawable/btn_orange"
-        android:elevation="@dimen/space_5"
-        android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/listColor"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toEndOf="@id/colorBlueList"
-        app:layout_constraintTop_toTopOf="@id/listColor" />
+        <RadioButton
+            android:id="@+id/colorBlueList"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginStart="@dimen/space_20"
+            android:background="@drawable/btn_blue"
+            android:button="@android:color/transparent"
+            android:elevation="@dimen/space_5"
+            android:translationZ="@dimen/space_15" />
+
+        <RadioButton
+            android:id="@+id/colorOrangeList"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginStart="@dimen/space_20"
+            android:background="@drawable/btn_orange"
+            android:button="@android:color/transparent"
+            android:elevation="@dimen/space_5"
+            android:translationZ="@dimen/space_15" />
+
+    </RadioGroup>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnCreateList"
