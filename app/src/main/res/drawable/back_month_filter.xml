@@ -5,7 +5,7 @@
     <solid android:color="@color/back_month_filter" />
 
     <stroke
-        android:width="@dimen/space_1"
+        android:width="@dimen/space_2"
         android:color="@color/white"/>
 
     <gradient

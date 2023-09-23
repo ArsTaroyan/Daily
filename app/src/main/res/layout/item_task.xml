@@ -21,8 +21,8 @@
     <View
         android:id="@+id/view"
         android:layout_width="@dimen/space_0"
-        android:layout_height="70dp"
-        android:elevation="@dimen/space_5"
+        android:layout_height="@dimen/space_70"
+        android:elevation="@dimen/space_2"
         android:translationZ="@dimen/space_5"
         app:layout_constraintBottom_toBottomOf="@+id/tvTime"
         app:layout_constraintEnd_toEndOf="parent"

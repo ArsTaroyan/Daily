@@ -3,9 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_new">Add New</string>
-    <string name="tasks">Tasks</string>
     <string name="back">Back</string>
-    <string name="todos">Todos</string>
+    <string name="type">%1s</string>
 
     //Lucy
     <string name="create_new_list">Create New List</string>
@@ -27,4 +26,5 @@
     <string name="Quiz">Are you sure you want to permanently delete this item?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
+    <string name="filter">%1s, %2s</string>
 </resources>

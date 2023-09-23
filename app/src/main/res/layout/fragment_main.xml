@@ -36,7 +36,7 @@
         android:paddingVertical="@dimen/space_10"
         android:shadowColor="@color/white"
         android:shadowRadius="30"
-        android:text="@string/tasks"
+        android:text="@string/type"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16"
         android:textStyle="bold"
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/btnLeft"
-        tools:text="%1s, %2s" />
+        tools:text="@string/filter" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnDate"
@@ -98,7 +98,7 @@
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/filterMonth"
-        tools:listitem="@layout/item_task" />
+        tools:listitem="@layout/item_todo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glStart"

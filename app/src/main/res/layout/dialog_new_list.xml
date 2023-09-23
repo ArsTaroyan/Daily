@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/main_back">
+    android:background="@drawable/back_month_filter">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cancelNewList"
@@ -45,7 +45,7 @@
         android:id="@+id/etTodoName"
         android:layout_width="@dimen/space_0"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_10"
+        android:layout_marginTop="@dimen/space_15"
         android:background="@null"
         android:ellipsize="end"
         android:inputType="textCapSentences"
@@ -62,7 +62,7 @@
         android:id="@+id/firstLine"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_2"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_5"
         android:background="@color/light_grey"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
@@ -102,7 +102,7 @@
             android:translationZ="@dimen/space_15" />
 
         <RadioButton
-            android:id="@+id/colorCoralList"
+            android:id="@+id/colorRedList"
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_20"

@@ -98,19 +98,39 @@ class TodoAdapter(
 
     private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, todo: Todo) {
         myDialog = DialogDeleteBinding.inflate(inflater, container, false)
-        alertDialog = AlertDialog.Builder(context)
-            .setView(myDialog.root)
-            .show()
+        with(myDialog) {
+            alertDialog = AlertDialog.Builder(context)
+                .setView(root)
+                .show()
 
-        myDialog.btnYesTodo.setOnClickListener {
-            viewModel.removeTodo(todo)
-            alertDialog.dismiss()
+            when (todo.todoColor) {
+                ListColor.RED -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_red)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_red)
+                }
+                ListColor.BLUE -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_blue)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_blue)
+                }
+                ListColor.ORANGE -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_orange)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_orange)
+                }
+                ListColor.PURPLE -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_purple)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_purple)
+                }
+            }
+
+            btnYesTodo.setOnClickListener {
+                viewModel.removeTodo(todo)
+                alertDialog.dismiss()
+            }
+
+            btnNoTodo.setOnClickListener {
+                alertDialog.dismiss()
+            }
         }
-
-        myDialog.btnNoTodo.setOnClickListener {
-            alertDialog.dismiss()
-        }
-
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
     }
