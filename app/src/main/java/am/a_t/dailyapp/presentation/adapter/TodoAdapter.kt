@@ -2,24 +2,28 @@ package am.a_t.dailyapp.presentation.adapter
 
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.databinding.DialogDeleteBinding
-import am.a_t.dailyapp.databinding.DialogNewListBinding
-import am.a_t.dailyapp.databinding.FragmentMainBinding
 import am.a_t.dailyapp.databinding.ItemTodoBinding
 import am.a_t.dailyapp.domain.module.Todo
 import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import am.a_t.dailyapp.utils.ListColor
 import android.app.AlertDialog
+import android.content.Context
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class TodoAdapter(private val viewModel: MainViewModel, private val click: (Todo) -> Unit) :
+class TodoAdapter(
+    private val context: Context,
+    private var inflater: LayoutInflater,
+    private var container: ViewGroup?,
+    private val viewModel: MainViewModel,
+    private val click: (Todo) -> Unit
+) :
     ListAdapter<Todo, TodoAdapter.MyViewHolder>(DiffUtilItemCallBack()) {
 
     private lateinit var myDialog: DialogDeleteBinding
@@ -73,27 +77,13 @@ class TodoAdapter(private val viewModel: MainViewModel, private val click: (Todo
                 }
                 isDelete.isChecked = todo.todoIsChecked
                 btnDelete.setOnClickListener {
-                    //initDialog()
+                    removeDialog(inflater, container, todo)
                 }
                 isDelete.setOnClickListener {
-                       viewModel.updateTodo(todo.copy(todoIsChecked = isDelete.isChecked))
+                    viewModel.updateTodo(todo.copy(todoIsChecked = isDelete.isChecked))
                 }
             }
         }
-    }
-
-    private fun initDialog(inflater: LayoutInflater, container: ViewGroup?) {
-        myDialog = DialogDeleteBinding.inflate(inflater, container, false)
-       // alertDialog = AlertDialog.Builder(requireContext())
-//            .setView(myDialog.root)
-//            .show()
-
-        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        myDialog.btnYesTodo
-
-            alertDialog.dismiss()
-
     }
 
     class DiffUtilItemCallBack : DiffUtil.ItemCallback<Todo>() {
@@ -103,6 +93,25 @@ class TodoAdapter(private val viewModel: MainViewModel, private val click: (Todo
 
         override fun areContentsTheSame(oldItem: Todo, newItem: Todo): Boolean =
             oldItem == newItem
+
+    }
+
+    private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, todo: Todo) {
+        myDialog = DialogDeleteBinding.inflate(inflater, container, false)
+        alertDialog = AlertDialog.Builder(context)
+            .setView(myDialog.root)
+            .show()
+
+        myDialog.btnYesTodo.setOnClickListener {
+            viewModel.removeTodo(todo)
+            alertDialog.dismiss()
+        }
+
+        myDialog.btnNoTodo.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
     }
 }

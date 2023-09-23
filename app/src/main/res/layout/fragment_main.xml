@@ -70,10 +70,10 @@
         android:layout_height="@dimen/space_40"
         android:layout_marginEnd="@dimen/space_30"
         android:background="@drawable/btn_red"
-        android:elevation="@dimen/space_5"
+        android:elevation="@dimen/space_10"
         android:padding="@dimen/space_10"
         android:src="@drawable/ic_calendar"
-        android:translationZ="@dimen/space_15"
+        android:translationZ="@dimen/space_20"
         app:layout_constraintBottom_toBottomOf="@+id/filterMonth"
         app:layout_constraintEnd_toEndOf="@+id/filterMonth"
         app:layout_constraintTop_toTopOf="@+id/filterMonth" />
@@ -90,37 +90,14 @@
         app:layout_constraintTop_toBottomOf="@+id/filterMonth" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvFilter"
-        android:layout_width="@dimen/space_0"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_30"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterMonth"
-        tools:listitem="@layout/item_day_filter_off" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_2"
-        android:layout_marginTop="@dimen/space_30"
-        android:background="@color/light_grey"
-        android:elevation="@dimen/space_5"
-        app:layout_constraintEnd_toStartOf="@+id/glEnd"
-        app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/rvFilter" />
-
-    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTodo"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_40"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/filterMonth"
         tools:listitem="@layout/item_task" />
 
     <androidx.constraintlayout.widget.Guideline

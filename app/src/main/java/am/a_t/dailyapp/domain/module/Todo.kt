@@ -11,5 +11,5 @@ data class Todo(
     @ColumnInfo("todo_is_checked") val todoIsChecked: Boolean,
     @ColumnInfo("todo_title") val todoTitle: String,
     @ColumnInfo("todo_date") val todoDate: String,
-    @ColumnInfo("todo_color") val todoColor: ListColor
+    @ColumnInfo("todo_color") val todoColor: ListColor?
 )

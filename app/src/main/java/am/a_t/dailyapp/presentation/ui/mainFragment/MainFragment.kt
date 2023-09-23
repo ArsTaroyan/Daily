@@ -5,6 +5,7 @@ import am.a_t.dailyapp.presentation.adapter.TodoAdapter
 import am.a_t.dailyapp.databinding.DialogNewListBinding
 import am.a_t.dailyapp.databinding.FragmentMainBinding
 import am.a_t.dailyapp.domain.module.Todo
+import am.a_t.dailyapp.extension.toast
 import am.a_t.dailyapp.utils.ListColor
 import android.app.AlertDialog
 import android.graphics.drawable.Drawable
@@ -12,6 +13,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -36,7 +38,7 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        initAdapter()
+        initAdapter(inflater, container)
         initViewModel()
         initClickListeners(inflater, container)
         return binding.root
@@ -53,33 +55,57 @@ class MainFragment : Fragment() {
 
     private fun initDialog(inflater: LayoutInflater, container: ViewGroup?) {
         myDialog = DialogNewListBinding.inflate(inflater, container, false)
-        alertDialog = AlertDialog.Builder(requireContext())
-            .setView(myDialog.root)
-            .show()
+        var itemColor: ListColor? = null
+        with(myDialog) {
+            alertDialog = AlertDialog.Builder(requireContext())
+                .setView(root)
+                .show()
 
-
-        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        setSingleChoiceClickListener(myDialog.colorBlueList, R.drawable.btn_blue_checked, R.drawable.btn_blue)
-        setSingleChoiceClickListener(myDialog.colorCoralList, R.drawable.btn_red_checked, R.drawable.btn_red)
-        setSingleChoiceClickListener(myDialog.colorOrangeList, R.drawable.btn_orange_checked, R.drawable.btn_orange)
-        setSingleChoiceClickListener(myDialog.colorPurpleList, R.drawable.btn_purple_checked, R.drawable.btn_purple)
-
-        //singleChoice(myDialog)
-
-        myDialog.btnCreateList.setOnClickListener {
-            viewModel.addTodo(
-                Todo(
-                    0,
-                    false,
-                    myDialog.etTodoName.text.toString(),
-                    "",
-                    ListColor.PURPLE
-                )
+            setSingleChoiceClickListener(
+                colorBlueList,
+                R.drawable.btn_blue_checked,
+                R.drawable.btn_blue
             )
-            alertDialog.dismiss()
-        }
+            setSingleChoiceClickListener(
+                colorCoralList,
+                R.drawable.btn_red_checked,
+                R.drawable.btn_red
+            )
+            setSingleChoiceClickListener(
+                colorOrangeList,
+                R.drawable.btn_orange_checked,
+                R.drawable.btn_orange
+            )
+            setSingleChoiceClickListener(
+                colorPurpleList,
+                R.drawable.btn_purple_checked,
+                R.drawable.btn_purple
+            )
 
+            //singleChoice(myDialog)
+
+            btnCreateList.setOnClickListener {
+                itemColor = ListColor.PURPLE
+                if (etTodoName.text.toString().isNotEmpty() && itemColor != null) {
+                    viewModel.addTodo(
+                        Todo(
+                            0,
+                            false,
+                            etTodoName.text.toString(),
+                            "",
+                            itemColor
+                        )
+                    )
+                    alertDialog.dismiss()
+                }
+            }
+
+            cancelNewList.setOnClickListener {
+                alertDialog.dismiss()
+            }
+
+            alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
     }
 
     var selectedView: View? = null
@@ -122,9 +148,9 @@ class MainFragment : Fragment() {
 //    }
 
 
-    private fun initAdapter() {
-        todoAdapter = TodoAdapter(viewModel) {
-            viewModel.removeTodo(it)
+    private fun initAdapter(inflater: LayoutInflater, container: ViewGroup?) {
+        todoAdapter = TodoAdapter(requireContext(), inflater, container, viewModel) {
+
         }
         binding.rvTodo.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTodo.adapter = todoAdapter
