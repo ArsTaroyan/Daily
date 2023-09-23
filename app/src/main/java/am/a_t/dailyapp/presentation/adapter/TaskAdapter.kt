@@ -1,20 +1,28 @@
 package am.a_t.dailyapp.presentation.adapter
 
+import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTaskBinding
 import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.StrikethroughSpan
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class TaskAdapter(private val viewModel: MainViewModel, private val click: (Task) -> Unit) :
+class TaskAdapter(
+    private val context: Context,
+    private var inflater: LayoutInflater,
+    private var container: ViewGroup?,
+    private val viewModel: MainViewModel,
+    private val click: (Task) -> Unit
+) :
     ListAdapter<Task, TaskAdapter.MyViewHolder>(DiffUtilItemCallBack()) {
+
+    private lateinit var myDialog: DialogDeleteBinding
+    private lateinit var alertDialog: AlertDialog
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
@@ -38,12 +46,30 @@ class TaskAdapter(private val viewModel: MainViewModel, private val click: (Task
                 tvDate.text = task.taskDate
                 tvTime.text = task.taskEndTime
                 btnDelete.setOnClickListener {
-                    click(task)
+                    removeDialog(inflater, container, task)
                 }
             }
         }
     }
 
+    private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, task: Task) {
+        myDialog = DialogDeleteBinding.inflate(inflater, container, false)
+        alertDialog = AlertDialog.Builder(context)
+            .setView(myDialog.root)
+            .show()
+
+        myDialog.btnYesTodo.setOnClickListener {
+            viewModel.removeTask(task)
+            alertDialog.dismiss()
+        }
+
+        myDialog.btnNoTodo.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+    }
 
     class DiffUtilItemCallBack : DiffUtil.ItemCallback<Task>() {
 

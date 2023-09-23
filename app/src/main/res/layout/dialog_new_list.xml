@@ -139,7 +139,7 @@
         android:background="@drawable/btn_red"
         android:gravity="center"
         android:shadowColor="@color/white"
-        android:shadowRadius="70"
+        android:shadowRadius="40"
         android:text="@string/create_list"
         android:textColor="@color/white"
         android:textSize="@dimen/size_20"
