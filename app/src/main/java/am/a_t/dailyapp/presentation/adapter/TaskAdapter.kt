@@ -42,6 +42,7 @@ class TaskAdapter(
     inner class MyViewHolder(val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             with(binding) {
+                tvTitle.isSelected = true
                 tvTitle.text = task.taskTitle
                 tvDate.text = task.taskDate
                 tvTime.text = task.taskEndTime

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_back"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.ui.createNewTask.CreateNewTaskFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -111,7 +111,7 @@
     <View
         android:id="@+id/remindMeView"
         android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/size_70"
+        android:layout_height="@dimen/space_70"
         android:layout_marginTop="@dimen/size_20"
         android:background="@drawable/back_month_filter"
         android:elevation="@dimen/space_5"
@@ -316,9 +316,9 @@
     <View
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_105"
+        android:background="@drawable/back_view_btn"
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
-        android:background="@drawable/back_view_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

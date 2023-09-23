@@ -84,8 +84,8 @@
     <RadioGroup
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/btnCreateList"
         app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/listColor"

@@ -47,6 +47,7 @@ class TodoAdapter(
     inner class MyViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             with(binding) {
+                tvTitle.isSelected = true
                 if (!todo.todoIsChecked) {
                     tvTitle.text = todo.todoTitle
                     tvDate.text = todo.todoDate
