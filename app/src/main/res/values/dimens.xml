@@ -32,4 +32,6 @@
     <dimen name="space_100">100dp</dimen>
     <dimen name="space_50">50dp</dimen>
     <dimen name="space_105">105dp</dimen>
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="size_17">17sp</dimen>
 </resources>

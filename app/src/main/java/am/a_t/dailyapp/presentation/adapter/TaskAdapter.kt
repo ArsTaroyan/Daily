@@ -9,6 +9,7 @@ import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
@@ -42,6 +43,7 @@ class TaskAdapter(private val viewModel: MainViewModel, private val click: (Task
             }
         }
     }
+
 
     class DiffUtilItemCallBack : DiffUtil.ItemCallback<Task>() {
 

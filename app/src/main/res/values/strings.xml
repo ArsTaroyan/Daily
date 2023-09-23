@@ -24,4 +24,7 @@
     <string name="date">Date</string>
     <string name="create_task">Create Task</string>
     <string name="task_ncolor">Task \nColor</string>
+    <string name="Quiz">Are you sure you want to permanently delete this item?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
 </resources>

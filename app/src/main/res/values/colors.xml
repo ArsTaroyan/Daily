@@ -49,5 +49,9 @@
 
     <color name="switch_color">#dddfe9</color>
     <color name="fade_white">#80FFFFFF</color>
+    <color name="dark_blue">#3F51B5</color>
+    <color name="dark_orange">#FF7409</color>
+    <color name="dark_purple">#7020FF</color>
+    <color name="dark_red">#ED363C</color>
 
 </resources>

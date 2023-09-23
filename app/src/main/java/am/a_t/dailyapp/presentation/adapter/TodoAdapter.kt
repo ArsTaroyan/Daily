@@ -1,21 +1,29 @@
 package am.a_t.dailyapp.presentation.adapter
 
 import am.a_t.dailyapp.R
+import am.a_t.dailyapp.databinding.DialogDeleteBinding
+import am.a_t.dailyapp.databinding.DialogNewListBinding
+import am.a_t.dailyapp.databinding.FragmentMainBinding
 import am.a_t.dailyapp.databinding.ItemTodoBinding
 import am.a_t.dailyapp.domain.module.Todo
 import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import am.a_t.dailyapp.utils.ListColor
+import android.app.AlertDialog
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 class TodoAdapter(private val viewModel: MainViewModel, private val click: (Todo) -> Unit) :
     ListAdapter<Todo, TodoAdapter.MyViewHolder>(DiffUtilItemCallBack()) {
+
+    private lateinit var myDialog: DialogDeleteBinding
+    private lateinit var alertDialog: AlertDialog
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
@@ -65,13 +73,27 @@ class TodoAdapter(private val viewModel: MainViewModel, private val click: (Todo
                 }
                 isDelete.isChecked = todo.todoIsChecked
                 btnDelete.setOnClickListener {
-                    click(todo)
+                    //initDialog()
                 }
                 isDelete.setOnClickListener {
                        viewModel.updateTodo(todo.copy(todoIsChecked = isDelete.isChecked))
                 }
             }
         }
+    }
+
+    private fun initDialog(inflater: LayoutInflater, container: ViewGroup?) {
+        myDialog = DialogDeleteBinding.inflate(inflater, container, false)
+       // alertDialog = AlertDialog.Builder(requireContext())
+//            .setView(myDialog.root)
+//            .show()
+
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        myDialog.btnYesTodo
+
+            alertDialog.dismiss()
+
     }
 
     class DiffUtilItemCallBack : DiffUtil.ItemCallback<Todo>() {

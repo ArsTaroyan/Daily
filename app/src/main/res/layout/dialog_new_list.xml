@@ -17,13 +17,14 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/heading"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/space_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_20"
         android:text="@string/create_new_list"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_25"
         android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/guideLineBegin"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,8 +83,8 @@
 
     <View
         android:id="@+id/colorPurpleList"
-        android:layout_width="@dimen/space_60"
-        android:layout_height="@dimen/space_60"
+        android:layout_width="@dimen/space_50"
+        android:layout_height="@dimen/space_50"
         android:layout_marginStart="@dimen/space_30"
         android:background="@drawable/btn_purple"
         android:elevation="@dimen/space_5"
@@ -95,8 +96,8 @@
 
     <View
         android:id="@+id/colorCoralList"
-        android:layout_width="@dimen/space_60"
-        android:layout_height="@dimen/space_60"
+        android:layout_width="@dimen/space_50"
+        android:layout_height="@dimen/space_50"
         android:background="@drawable/btn_red"
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
@@ -107,8 +108,8 @@
 
     <View
         android:id="@+id/colorBlueList"
-        android:layout_width="@dimen/space_60"
-        android:layout_height="@dimen/space_60"
+        android:layout_width="@dimen/space_50"
+        android:layout_height="@dimen/space_50"
         android:background="@drawable/btn_blue"
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
@@ -119,8 +120,8 @@
 
     <View
         android:id="@+id/colorOrangeList"
-        android:layout_width="@dimen/space_60"
-        android:layout_height="@dimen/space_60"
+        android:layout_width="@dimen/space_50"
+        android:layout_height="@dimen/space_50"
         android:background="@drawable/btn_orange"
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
