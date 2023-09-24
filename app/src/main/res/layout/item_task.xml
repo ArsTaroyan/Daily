@@ -7,29 +7,30 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTime"
-        android:layout_width="@dimen/space_120"
+        android:layout_width="@dimen/space_110"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_20"
-        android:layout_marginBottom="@dimen/space_20"
         android:textColor="@color/grey"
-        android:textSize="@dimen/size_16"
+        android:textSize="@dimen/size_20"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
         tools:text="@string/app_name" />
 
     <View
         android:id="@+id/view"
         android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_70"
+        android:layout_height="@dimen/space_0"
+        android:layout_marginStart="@dimen/space_20"
         android:layout_marginEnd="@dimen/space_20"
+        android:layout_marginBottom="@dimen/space_20"
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_5"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTime"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvTime"
-        app:layout_constraintTop_toTopOf="@+id/tvTime"
+        app:layout_constraintTop_toTopOf="parent"
         tools:background="@drawable/btn_red" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -37,7 +38,8 @@
         android:layout_width="@dimen/space_0"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_20"
-        android:layout_marginTop="@dimen/space_10"
+        android:layout_marginEnd="@dimen/space_15"
+        android:layout_marginTop="@dimen/space_15"
         android:elevation="@dimen/space_10"
         android:ellipsize="marquee"
         android:focusable="true"
@@ -61,7 +63,7 @@
         android:layout_width="@dimen/space_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_5"
-        android:layout_marginBottom="@dimen/space_10"
+        android:layout_marginBottom="@dimen/space_15"
         android:elevation="@dimen/space_10"
         android:ellipsize="end"
         android:gravity="start"

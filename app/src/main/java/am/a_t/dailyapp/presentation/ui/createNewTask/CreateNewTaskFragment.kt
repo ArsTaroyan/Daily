@@ -3,7 +3,6 @@ package am.a_t.dailyapp.presentation.ui.createNewTask
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.databinding.FragmentCreateNewTaskBinding
 import am.a_t.dailyapp.domain.module.Task
-import am.a_t.dailyapp.domain.module.Todo
 import am.a_t.dailyapp.utils.ListColor
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,9 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CreateNewTaskFragment : Fragment() {
     private lateinit var binding: FragmentCreateNewTaskBinding
     private val viewModel: CreateNewTaskViewModel by viewModels()

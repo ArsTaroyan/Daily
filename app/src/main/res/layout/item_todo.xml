@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_15"
         android:layout_marginTop="@dimen/space_15"
+        android:layout_marginEnd="@dimen/space_15"
         android:elevation="@dimen/space_10"
         android:ellipsize="marquee"
         android:focusable="true"

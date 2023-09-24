@@ -1,12 +1,15 @@
 package am.a_t.dailyapp.presentation.adapter
 
+import am.a_t.dailyapp.R
 import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTaskBinding
 import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
+import am.a_t.dailyapp.utils.ListColor
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -44,10 +47,31 @@ class TaskAdapter(
             with(binding) {
                 tvTitle.isSelected = true
                 tvTitle.text = task.taskTitle
-                tvDate.text = task.taskDate
-                tvTime.text = task.taskEndTime
+
+                if(tvTime.text.toString().isEmpty()) {
+                    tvTime.visibility = View.GONE
+                } else {
+                    tvTime.text = task.taskEndTime
+                    tvDate.text = task.taskDate
+                }
+
                 btnDelete.setOnClickListener {
                     removeDialog(inflater, container, task)
+                }
+
+                when (task.taskColor) {
+                    ListColor.RED -> {
+                        view.setBackgroundResource(R.drawable.btn_red)
+                    }
+                    ListColor.BLUE -> {
+                        view.setBackgroundResource(R.drawable.btn_blue)
+                    }
+                    ListColor.ORANGE -> {
+                        view.setBackgroundResource(R.drawable.btn_orange)
+                    }
+                    ListColor.PURPLE -> {
+                        view.setBackgroundResource(R.drawable.btn_purple)
+                    }
                 }
             }
         }
@@ -55,21 +79,42 @@ class TaskAdapter(
 
     private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, task: Task) {
         myDialog = DialogDeleteBinding.inflate(inflater, container, false)
-        alertDialog = AlertDialog.Builder(context)
-            .setView(myDialog.root)
-            .show()
 
-        myDialog.btnYesTodo.setOnClickListener {
-            viewModel.removeTask(task)
-            alertDialog.dismiss()
-        }
+        with(myDialog) {
+            alertDialog = AlertDialog.Builder(context)
+                .setView(root)
+                .show()
 
-        myDialog.btnNoTodo.setOnClickListener {
-            alertDialog.dismiss()
+            when (task.taskColor) {
+                ListColor.RED -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_red)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_red)
+                }
+                ListColor.BLUE -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_blue)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_blue)
+                }
+                ListColor.ORANGE -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_orange)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_orange)
+                }
+                ListColor.PURPLE -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_purple)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_purple)
+                }
+            }
+
+            btnYesTodo.setOnClickListener {
+                viewModel.removeTask(task)
+                alertDialog.dismiss()
+            }
+
+            btnNoTodo.setOnClickListener {
+                alertDialog.dismiss()
+            }
         }
 
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
     }
 
     class DiffUtilItemCallBack : DiffUtil.ItemCallback<Task>() {

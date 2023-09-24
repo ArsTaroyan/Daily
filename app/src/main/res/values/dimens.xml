@@ -8,6 +8,7 @@
     <dimen name="space_5">5dp</dimen>
     <dimen name="space_30">30dp</dimen>
     <dimen name="space_120">120dp</dimen>
+    <dimen name="space_110">110dp</dimen>
     <dimen name="space_70">70dp</dimen>
     <dimen name="space_135">135dp</dimen>
     <dimen name="space_20">20dp</dimen>
