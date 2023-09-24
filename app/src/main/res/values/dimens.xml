@@ -30,7 +30,8 @@
     <dimen name="size_60">60sp</dimen>
     <dimen name="space_100">100dp</dimen>
     <dimen name="space_50">50dp</dimen>
-    <dimen name="space_105">105dp</dimen>
+    <dimen name="space_55">55dp</dimen>
+    <dimen name="space_95">95dp</dimen>
     <dimen name="space_8">8dp</dimen>
     <dimen name="size_17">17sp</dimen>
     <dimen name="space_45">45dp</dimen>

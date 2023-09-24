@@ -1,6 +1,8 @@
 package am.a_t.dailyapp.presentation.ui.mainFragment
 
 import am.a_t.dailyapp.R
+import am.a_t.dailyapp.data.preferences.Preference
+import am.a_t.dailyapp.data.preferences.Preference.Companion.TYPE
 import am.a_t.dailyapp.databinding.DialogNewListBinding
 import am.a_t.dailyapp.databinding.FragmentMainBinding
 import am.a_t.dailyapp.domain.module.Todo
@@ -10,7 +12,6 @@ import am.a_t.dailyapp.utils.ListColor
 import am.a_t.dailyapp.utils.ListType
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,9 +21,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.lang.reflect.Type
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -30,6 +33,7 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var todoAdapter: TodoAdapter
     private lateinit var taskAdapter: TaskAdapter
+    private val preference: Preference by lazy { Preference(requireContext()) }
     private lateinit var myDialog: DialogNewListBinding
     private lateinit var alertDialog: AlertDialog
 
@@ -43,24 +47,33 @@ class MainFragment : Fragment() {
         initAdapter(inflater, container)
         initViewModel()
         initClickListeners(inflater, container)
+
         return binding.root
     }
 
-//    private fun initAdapterTask(inflater: LayoutInflater, container: ViewGroup?) {
-//        taskAdapter = TaskAdapter(requireContext(), inflater, container, viewModel) {
-//
-//        }
-//        binding.rvTodo.layoutManager = LinearLayoutManager(requireContext())
-//        binding.rvTodo.adapter = taskAdapter
-//    }
-
     private fun initView() {
-        binding.btnRight.text = ListType.TODOS.typeName
+        lifecycleScope.launch(Dispatchers.Main) {
+            if (preference.readType(TYPE).isNullOrEmpty()) {
+                binding.btnRight.text = ListType.TODOS.typeName
+                recyclerViewAdapt(ListType.TODOS)
+            } else {
+                binding.btnRight.text = preference.readType(TYPE)
+
+                when(preference.readType(TYPE)) {
+                    ListType.TODOS.typeName -> {
+                        recyclerViewAdapt(ListType.TODOS)
+                    }
+                    ListType.TASKS.typeName -> {
+                        recyclerViewAdapt(ListType.TASKS)
+                    }
+                }
+            }
+        }
     }
 
     private fun initViewModel() {
-        recyclerViewAdapt(ListType.TODOS)
         viewModel.getAllTodo()
+        viewModel.getAllTask()
 
         lifecycleScope.launch {
             viewModel.todoAllLiveData.first().collectLatest {
@@ -162,14 +175,23 @@ class MainFragment : Fragment() {
             }
 
             btnRight.setOnClickListener {
-                if (btnRight.text.toString() == ListType.TODOS.typeName) {
-                    btnRight.text = ListType.TASKS.typeName
-                    recyclerViewAdapt(ListType.TASKS)
-                } else {
-                    btnRight.text = ListType.TODOS.typeName
-                    recyclerViewAdapt(ListType.TODOS)
+                lifecycleScope.launch(Dispatchers.Main) {
+                    if (btnRight.text.toString() == ListType.TODOS.typeName) {
+                        saveType(ListType.TASKS.typeName, ListType.TASKS)
+                    } else {
+                        saveType(ListType.TODOS.typeName, ListType.TODOS)
+                    }
                 }
             }
         }
+    }
+
+    private suspend fun saveType(typeName: String, type: ListType) {
+        if (!preference.readType(TYPE).isNullOrEmpty()) {
+            preference.removeType(TYPE)
+        }
+        preference.saveType(TYPE, typeName)
+        binding.btnRight.text = typeName
+        recyclerViewAdapt(type)
     }
 }

@@ -19,7 +19,7 @@
     <string name="task_name">Task Name</string>
     <string name="create_new_task">Create New Task</string>
     <string name="remind_me">Remind me</string>
-    <string name="task_start">Task Start</string>
+    <string name="task_end">Task End</string>
     <string name="date">Date</string>
     <string name="create_task">Create Task</string>
     <string name="task_ncolor">Task \nColor</string>

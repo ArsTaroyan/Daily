@@ -9,8 +9,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/backNewTask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
         app:layout_constraintBottom_toBottomOf="@id/heading"
         app:layout_constraintStart_toStartOf="@+id/guideLineBegin"
         app:layout_constraintTop_toTopOf="@id/heading"
@@ -63,7 +63,7 @@
         android:id="@+id/firstLine"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_2"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_5"
         android:background="@color/light_grey"
         android:elevation="@dimen/space_5"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
@@ -74,7 +74,7 @@
         android:id="@+id/taskDescriptionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_30"
         android:text="@string/description"
         android:textColor="@color/coral"
         android:textSize="@dimen/size_18"
@@ -89,7 +89,7 @@
         android:layout_marginTop="@dimen/space_10"
         android:background="@null"
         android:ellipsize="end"
-        android:maxLines="4"
+        android:maxLines="3"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_16"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
@@ -101,7 +101,7 @@
         android:id="@+id/secondLine"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_2"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_5"
         android:background="@color/light_grey"
         android:elevation="@dimen/space_5"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
@@ -112,7 +112,7 @@
         android:id="@+id/remindMeView"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_70"
-        android:layout_marginTop="@dimen/size_20"
+        android:layout_marginTop="@dimen/space_30"
         android:background="@drawable/back_month_filter"
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
@@ -127,7 +127,7 @@
         android:elevation="@dimen/space_5"
         android:text="@string/remind_me"
         android:textColor="@color/dark_grey"
-        android:textSize="@dimen/size_18"
+        android:textSize="@dimen/size_20"
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/remindMeView"
@@ -135,6 +135,7 @@
         app:layout_constraintTop_toTopOf="@id/remindMeView" />
 
     <Switch
+        android:id="@+id/btnRemind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space_20"
@@ -152,7 +153,7 @@
         android:id="@+id/viewTime"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_80"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_25"
         android:layout_marginEnd="@dimen/space_20"
         android:background="@drawable/btn_blue"
         android:elevation="@dimen/space_5"
@@ -178,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_10"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_15"
         android:elevation="@dimen/space_5"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16"
@@ -189,11 +190,12 @@
         tools:text="14:30pm" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/taskEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_5"
         android:elevation="@dimen/space_5"
-        android:text="@string/task_start"
+        android:text="@string/task_end"
         android:textColor="@color/fade_white"
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
@@ -229,7 +231,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_10"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_15"
         android:elevation="@dimen/space_5"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16"
@@ -240,6 +242,7 @@
         tools:text="17,May 2023" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dateEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_5"
@@ -255,30 +258,29 @@
         android:id="@+id/taskColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_10"
-        android:layout_marginTop="@dimen/space_30"
         android:text="@string/task_ncolor"
         android:textColor="@color/dark_grey"
-        android:textSize="@dimen/size_18"
+        android:textSize="@dimen/size_20"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/viewTime"
-        app:layout_constraintBottom_toTopOf="@id/btnCreateTask"/>
+        app:layout_constraintTop_toTopOf="@+id/radioGroup" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/btnCreateTask"
-        app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/taskColor"
         app:layout_constraintTop_toBottomOf="@id/viewDate">
 
         <RadioButton
             android:id="@+id/colorPurpleTask"
-            android:layout_width="@dimen/space_50"
-            android:layout_height="@dimen/space_50"
+            android:layout_width="@dimen/space_55"
+            android:layout_height="@dimen/space_55"
             android:layout_marginStart="@dimen/space_20"
             android:background="@drawable/radio_purple"
             android:button="@android:color/transparent"
@@ -287,8 +289,8 @@
 
         <RadioButton
             android:id="@+id/colorRedTask"
-            android:layout_width="@dimen/space_50"
-            android:layout_height="@dimen/space_50"
+            android:layout_width="@dimen/space_55"
+            android:layout_height="@dimen/space_55"
             android:layout_marginStart="@dimen/space_15"
             android:background="@drawable/radio_red"
             android:button="@android:color/transparent"
@@ -297,8 +299,8 @@
 
         <RadioButton
             android:id="@+id/colorBlueTask"
-            android:layout_width="@dimen/space_50"
-            android:layout_height="@dimen/space_50"
+            android:layout_width="@dimen/space_55"
+            android:layout_height="@dimen/space_55"
             android:layout_marginStart="@dimen/space_15"
             android:background="@drawable/radio_blue"
             android:button="@android:color/transparent"
@@ -307,8 +309,8 @@
 
         <RadioButton
             android:id="@+id/colorOrangeTask"
-            android:layout_width="@dimen/space_50"
-            android:layout_height="@dimen/space_50"
+            android:layout_width="@dimen/space_55"
+            android:layout_height="@dimen/space_55"
             android:layout_marginStart="@dimen/space_15"
             android:background="@drawable/radio_orange"
             android:button="@android:color/transparent"
@@ -319,8 +321,9 @@
 
 
     <View
+        android:id="@+id/view2"
         android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_105"
+        android:layout_height="@dimen/space_95"
         android:background="@drawable/back_view_btn"
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
@@ -332,8 +335,8 @@
         android:id="@+id/btnCreateTask"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_70"
-        android:layout_marginTop="@dimen/space_30"
         android:layout_marginBottom="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_10"
         android:background="@drawable/btn_red"
         android:elevation="@dimen/space_5"
         android:gravity="center"
@@ -347,7 +350,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/taskColor" />
+        app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineBegin"

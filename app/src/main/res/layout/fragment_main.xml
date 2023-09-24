@@ -36,13 +36,13 @@
         android:paddingVertical="@dimen/space_10"
         android:shadowColor="@color/white"
         android:shadowRadius="30"
-        android:text="@string/type"
         android:textColor="@color/white"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintTop_toTopOf="@+id/btnLeft" />
+        app:layout_constraintTop_toTopOf="@+id/btnLeft"
+        tools:text="@string/type" />
 
     <TextView
         android:id="@+id/filterMonth"
