@@ -262,56 +262,61 @@
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/viewTime" />
+        app:layout_constraintTop_toBottomOf="@id/viewTime"
+        app:layout_constraintBottom_toTopOf="@id/btnCreateTask"/>
 
-    <View
-        android:id="@+id/colorPurpleTask"
-        android:layout_width="@dimen/space_60"
-        android:layout_height="@dimen/space_60"
-        android:layout_marginStart="@dimen/space_30"
-        android:background="@drawable/btn_purple"
-        android:elevation="@dimen/space_5"
-        android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/taskColor"
-        app:layout_constraintEnd_toStartOf="@id/colorCoralTask"
+    <RadioGroup
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_0"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/btnCreateTask"
+        app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
         app:layout_constraintStart_toEndOf="@id/taskColor"
-        app:layout_constraintTop_toTopOf="@id/taskColor" />
+        app:layout_constraintTop_toBottomOf="@id/viewDate">
 
-    <View
-        android:id="@+id/colorCoralTask"
-        android:layout_width="@dimen/space_60"
-        android:layout_height="@dimen/space_60"
-        android:background="@drawable/btn_red"
-        android:elevation="@dimen/space_5"
-        android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/taskColor"
-        app:layout_constraintEnd_toStartOf="@id/colorBlueTask"
-        app:layout_constraintStart_toEndOf="@id/colorPurpleTask"
-        app:layout_constraintTop_toTopOf="@id/taskColor" />
+        <RadioButton
+            android:id="@+id/colorPurpleTask"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginStart="@dimen/space_20"
+            android:background="@drawable/radio_purple"
+            android:button="@android:color/transparent"
+            android:elevation="@dimen/space_5"
+            android:translationZ="@dimen/space_15" />
 
-    <View
-        android:id="@+id/colorBlueTask"
-        android:layout_width="@dimen/space_60"
-        android:layout_height="@dimen/space_60"
-        android:background="@drawable/btn_blue"
-        android:elevation="@dimen/space_5"
-        android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/taskColor"
-        app:layout_constraintEnd_toStartOf="@id/colorOrangeTask"
-        app:layout_constraintStart_toEndOf="@id/colorCoralTask"
-        app:layout_constraintTop_toTopOf="@id/taskColor" />
+        <RadioButton
+            android:id="@+id/colorRedTask"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginStart="@dimen/space_15"
+            android:background="@drawable/radio_red"
+            android:button="@android:color/transparent"
+            android:elevation="@dimen/space_5"
+            android:translationZ="@dimen/space_15" />
 
-    <View
-        android:id="@+id/colorOrangeTask"
-        android:layout_width="@dimen/space_60"
-        android:layout_height="@dimen/space_60"
-        android:background="@drawable/btn_orange"
-        android:elevation="@dimen/space_5"
-        android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/taskColor"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toEndOf="@id/colorBlueTask"
-        app:layout_constraintTop_toTopOf="@id/taskColor" />
+        <RadioButton
+            android:id="@+id/colorBlueTask"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginStart="@dimen/space_15"
+            android:background="@drawable/radio_blue"
+            android:button="@android:color/transparent"
+            android:elevation="@dimen/space_5"
+            android:translationZ="@dimen/space_15" />
+
+        <RadioButton
+            android:id="@+id/colorOrangeTask"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginStart="@dimen/space_15"
+            android:background="@drawable/radio_orange"
+            android:button="@android:color/transparent"
+            android:elevation="@dimen/space_5"
+            android:translationZ="@dimen/space_15" />
+
+    </RadioGroup>
+
 
     <View
         android:layout_width="@dimen/space_0"

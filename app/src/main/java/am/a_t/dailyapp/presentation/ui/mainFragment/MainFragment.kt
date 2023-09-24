@@ -1,5 +1,6 @@
 package am.a_t.dailyapp.presentation.ui.mainFragment
 
+import am.a_t.dailyapp.R
 import am.a_t.dailyapp.databinding.DialogNewListBinding
 import am.a_t.dailyapp.databinding.FragmentMainBinding
 import am.a_t.dailyapp.domain.module.Todo
@@ -9,12 +10,14 @@ import am.a_t.dailyapp.utils.ListColor
 import am.a_t.dailyapp.utils.ListType
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -85,7 +88,6 @@ class MainFragment : Fragment() {
         }
     }
 
-
     private fun dialogButtonClickListeners(
         myDialog: DialogNewListBinding,
         alertDialog: AlertDialog
@@ -129,7 +131,6 @@ class MainFragment : Fragment() {
         }
     }
 
-
     private fun initAdapter(inflater: LayoutInflater, container: ViewGroup?) {
         todoAdapter = TodoAdapter(requireContext(), inflater, container, viewModel) {
 
@@ -152,7 +153,12 @@ class MainFragment : Fragment() {
     private fun initClickListeners(inflater: LayoutInflater, container: ViewGroup?) {
         with(binding) {
             btnLeft.setOnClickListener {
-                initDialog(inflater, container)
+                if (btnRight.text.toString() == ListType.TODOS.typeName) {
+                    initDialog(inflater, container)
+                } else {
+                    findNavController().navigate(R.id.action_mainFragment_to_createNewTaskFragment)
+
+                }
             }
 
             btnRight.setOnClickListener {
@@ -166,5 +172,4 @@ class MainFragment : Fragment() {
             }
         }
     }
-
 }
