@@ -11,20 +11,25 @@ import am.a_t.dailyapp.presentation.adapter.TodoAdapter
 import am.a_t.dailyapp.utils.ListColor
 import am.a_t.dailyapp.utils.ListType
 import android.app.AlertDialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -35,6 +40,7 @@ class MainFragment : Fragment() {
     private val preference: Preference by lazy { Preference(requireContext()) }
     private lateinit var myDialog: DialogNewListBinding
     private lateinit var alertDialog: AlertDialog
+    private lateinit var snackbar: Snackbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +64,7 @@ class MainFragment : Fragment() {
             } else {
                 binding.btnRight.text = preference.readType(TYPE)
 
-                when(preference.readType(TYPE)) {
+                when (preference.readType(TYPE)) {
                     ListType.TODOS.typeName -> {
                         recyclerViewAdapt(ListType.TODOS)
                     }
@@ -134,6 +140,9 @@ class MainFragment : Fragment() {
                         )
                     )
                     alertDialog.dismiss()
+                } else {
+                    etTodoName.setBackgroundResource(R.drawable.shape_border_error)
+                    createCustomSnackbar(R.layout.snackbar_warning, btnCreateList)
                 }
             }
 
@@ -141,6 +150,21 @@ class MainFragment : Fragment() {
                 alertDialog.dismiss()
             }
         }
+    }
+
+
+
+    private fun createCustomSnackbar(@LayoutRes layoutRes: Int, button: AppCompatTextView) {
+        snackbar = Snackbar.make(button, "Custom", Snackbar.LENGTH_LONG).apply {
+            setAction("Retry") {
+                dismiss()
+            }
+            view.setBackgroundColor(Color.TRANSPARENT)
+            val view = layoutInflater.inflate(layoutRes, null)
+            (this.view as Snackbar.SnackbarLayout).addView(view)
+            show()
+        }
+
     }
 
     private fun initAdapter(inflater: LayoutInflater, container: ViewGroup?) {
@@ -169,7 +193,6 @@ class MainFragment : Fragment() {
                     initDialog(inflater, container)
                 } else {
                     findNavController().navigate(R.id.action_mainFragment_to_createNewTaskFragment)
-
                 }
             }
 

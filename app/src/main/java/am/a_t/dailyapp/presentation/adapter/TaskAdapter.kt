@@ -8,12 +8,16 @@ import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import am.a_t.dailyapp.utils.ListColor
 import android.app.AlertDialog
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TaskAdapter(
     private val context: Context,
@@ -38,15 +42,18 @@ class TaskAdapter(
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
     inner class MyViewHolder(val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(task: Task) {
             with(binding) {
                 tvTitle.isSelected = true
                 tvTitle.text = task.taskTitle
+                tvDate.text = getCustomDateString()
 
                 if(tvTime.text.toString().isEmpty()) {
                     tvTime.visibility = View.GONE
@@ -75,6 +82,15 @@ class TaskAdapter(
                 }
             }
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getCustomDateString(): String {
+        val pattern = "MM-dd-yyyy"
+        val formatter = DateTimeFormatter.ofPattern(pattern)
+        val currentDateTime = LocalDateTime.now()
+        val customDateString = currentDateTime.format(formatter)
+        return customDateString
     }
 
     private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, task: Task) {
