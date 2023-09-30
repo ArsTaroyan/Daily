@@ -8,14 +8,18 @@ import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import am.a_t.dailyapp.utils.ListColor
 import android.app.AlertDialog
 import android.content.Context
+import android.os.Build
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TodoAdapter(
     private val context: Context,
@@ -40,17 +44,20 @@ class TodoAdapter(
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
     inner class MyViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(todo: Todo) {
             with(binding) {
                 tvTitle.isSelected = true
                 if (!todo.todoIsChecked) {
                     tvTitle.text = todo.todoTitle
-                    tvDate.text = todo.todoDate
+                    //tvDate.text = todo.todoDate
+                    tvDate.text = getCustomDateString()
                 } else {
                     val spannableString = SpannableString(todo.todoTitle)
                     val strikethroughSpan = StrikethroughSpan()
@@ -61,6 +68,7 @@ class TodoAdapter(
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                     tvTitle.text = spannableString
+                    tvDate.text = getCustomDateString()
                 }
                 when (todo.todoColor) {
                     ListColor.RED -> {
@@ -95,6 +103,15 @@ class TodoAdapter(
         override fun areContentsTheSame(oldItem: Todo, newItem: Todo): Boolean =
             oldItem == newItem
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getCustomDateString(): String {
+        val pattern = "MM-dd-yyyy"
+        val formatter = DateTimeFormatter.ofPattern(pattern)
+        val currentDateTime = LocalDateTime.now()
+        val customDateString = currentDateTime.format(formatter)
+        return customDateString
     }
 
     private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, todo: Todo) {

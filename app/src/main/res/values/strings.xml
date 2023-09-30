@@ -27,4 +27,6 @@
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="filter">%1s, %2s</string>
+    <string name="all_fields_must_be_filled">All fields must be filled.</string>
+    <string name="ok">OK</string>
 </resources>
