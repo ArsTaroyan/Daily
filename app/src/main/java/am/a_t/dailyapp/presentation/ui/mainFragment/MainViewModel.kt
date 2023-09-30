@@ -54,4 +54,22 @@ class MainViewModel @Inject constructor(
             repository.removeTask(task)
         }
     }
+
+    fun getTodo(id: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getTask(id)
+        }
+    }
+
+    fun updateTask(task: Task) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateTask(task)
+        }
+    }
+
+    fun getTask(id: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getTask(id)
+        }
+    }
 }

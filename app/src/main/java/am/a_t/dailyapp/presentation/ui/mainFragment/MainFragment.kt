@@ -11,24 +11,22 @@ import am.a_t.dailyapp.presentation.adapter.TodoAdapter
 import am.a_t.dailyapp.utils.ListColor
 import am.a_t.dailyapp.utils.ListType
 import android.app.AlertDialog
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 @AndroidEntryPoint
@@ -40,7 +38,7 @@ class MainFragment : Fragment() {
     private val preference: Preference by lazy { Preference(requireContext()) }
     private lateinit var myDialog: DialogNewListBinding
     private lateinit var alertDialog: AlertDialog
-    private lateinit var snackbar: Snackbar
+//    private lateinit var snackbar: Snackbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,17 +98,18 @@ class MainFragment : Fragment() {
                 .setView(root)
                 .show()
 
-            dialogButtonClickListeners(myDialog, alertDialog)
+            dialogTodoButtonClickListeners(myDialog, alertDialog)
 
             alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         }
     }
 
-    private fun dialogButtonClickListeners(
+    private fun dialogTodoButtonClickListeners(
         myDialog: DialogNewListBinding,
         alertDialog: AlertDialog
     ) {
-        var itemColor: ListColor? = null
+        var itemColor: ListColor = ListColor.RED
+
         with(myDialog) {
             colorPurpleList.setOnClickListener {
                 itemColor = ListColor.PURPLE
@@ -129,20 +128,17 @@ class MainFragment : Fragment() {
             }
 
             btnCreateList.setOnClickListener {
-                if (etTodoName.text.toString().isNotEmpty() && itemColor != null) {
+                if (etTodoName.text.toString().isNotEmpty()) {
                     viewModel.addTodo(
                         Todo(
                             0,
                             false,
                             etTodoName.text.toString(),
-                            "",
+                            getCustomDateAndTimeString(),
                             itemColor
                         )
                     )
                     alertDialog.dismiss()
-                } else {
-                    etTodoName.setBackgroundResource(R.drawable.shape_border_error)
-                    createCustomSnackbar(R.layout.snackbar_warning, btnCreateList)
                 }
             }
 
@@ -152,20 +148,25 @@ class MainFragment : Fragment() {
         }
     }
 
-
-
-    private fun createCustomSnackbar(@LayoutRes layoutRes: Int, button: AppCompatTextView) {
-        snackbar = Snackbar.make(button, "Custom", Snackbar.LENGTH_LONG).apply {
-            setAction("Retry") {
-                dismiss()
-            }
-            view.setBackgroundColor(Color.TRANSPARENT)
-            val view = layoutInflater.inflate(layoutRes, null)
-            (this.view as Snackbar.SnackbarLayout).addView(view)
-            show()
-        }
-
+    private fun getCustomDateAndTimeString(): String {
+        val pattern = "MM-dd-yyyy hh:mm:ss"
+        val formatter = DateTimeFormatter.ofPattern(pattern)
+        val currentDateTime = LocalDateTime.now()
+        return currentDateTime.format(formatter)
     }
+
+//    private fun createCustomSnackbar(@LayoutRes layoutRes: Int, button: AppCompatTextView) {
+//        snackbar = Snackbar.make(button, "Custom", Snackbar.LENGTH_LONG).apply {
+//            setAction("Retry") {
+//                dismiss()
+//            }
+//            view.setBackgroundColor(Color.TRANSPARENT)
+//            val view = layoutInflater.inflate(layoutRes, null)
+//            (this.view as Snackbar.SnackbarLayout).addView(view)
+//            show()
+//        }
+//
+//    }
 
     private fun initAdapter(inflater: LayoutInflater, container: ViewGroup?) {
         todoAdapter = TodoAdapter(requireContext(), inflater, container, viewModel) {
@@ -209,11 +210,14 @@ class MainFragment : Fragment() {
     }
 
     private suspend fun saveType(typeName: String, type: ListType) {
+
         if (!preference.readType(TYPE).isNullOrEmpty()) {
             preference.removeType(TYPE)
         }
         preference.saveType(TYPE, typeName)
         binding.btnRight.text = typeName
+
         recyclerViewAdapt(type)
+
     }
 }

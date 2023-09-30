@@ -19,10 +19,4 @@ class CreateNewTaskViewModel @Inject constructor(
             repository.addTask(task)
         }
     }
-
-    fun updateTask(task: Task) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateTask(task)
-        }
-    }
 }

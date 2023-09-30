@@ -8,6 +8,7 @@ import androidx.datastore.preferences.createDataStore
 import kotlinx.coroutines.flow.first
 
 class Preference(context: Context) {
+
     private val dataStore = context.createDataStore("DataStoreType")
 
     suspend fun saveType(key: String, value: String) {
@@ -27,4 +28,5 @@ class Preference(context: Context) {
     companion object {
         const val TYPE = "type"
     }
+
 }

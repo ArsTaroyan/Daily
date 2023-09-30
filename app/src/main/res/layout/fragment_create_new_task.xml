@@ -50,7 +50,7 @@
         android:ellipsize="end"
         android:inputType="textCapSentences"
         android:maxLines="1"
-        android:minHeight="48dp"
+        android:minHeight="@dimen/space_45"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_35"
         android:textStyle="bold"
@@ -141,6 +141,7 @@
         android:layout_marginEnd="@dimen/space_20"
         android:elevation="@dimen/space_5"
         android:minWidth="@dimen/space_50"
+        android:checked="true"
         android:minHeight="@dimen/space_50"
         android:track="@drawable/shape_switch_track"
         android:translationZ="@dimen/space_15"
@@ -278,21 +279,22 @@
         app:layout_constraintTop_toBottomOf="@id/viewDate">
 
         <RadioButton
-            android:id="@+id/colorPurpleTask"
+            android:id="@+id/colorRedTask"
             android:layout_width="@dimen/space_55"
             android:layout_height="@dimen/space_55"
-            android:layout_marginStart="@dimen/space_20"
-            android:background="@drawable/radio_purple"
+            android:layout_marginStart="@dimen/space_15"
+            android:checked="true"
+            android:background="@drawable/radio_red"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
             android:translationZ="@dimen/space_15" />
 
         <RadioButton
-            android:id="@+id/colorRedTask"
+            android:id="@+id/colorPurpleTask"
             android:layout_width="@dimen/space_55"
             android:layout_height="@dimen/space_55"
-            android:layout_marginStart="@dimen/space_15"
-            android:background="@drawable/radio_red"
+            android:layout_marginStart="@dimen/space_20"
+            android:background="@drawable/radio_purple"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
             android:translationZ="@dimen/space_15" />

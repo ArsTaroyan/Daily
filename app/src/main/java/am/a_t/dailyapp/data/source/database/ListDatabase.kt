@@ -1,11 +1,13 @@
 package am.a_t.dailyapp.data.source.database
 
+import am.a_t.dailyapp.data.source.convert.Converters
 import am.a_t.dailyapp.domain.iteractors.TaskDao
 import am.a_t.dailyapp.domain.iteractors.TodoDao
 import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.domain.module.Todo
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 @Database(
     entities = [
@@ -16,6 +18,7 @@ import androidx.room.RoomDatabase
     exportSchema = false
 )
 
+@TypeConverters(Converters::class)
 abstract class ListDatabase : RoomDatabase() {
     abstract fun todoDao(): TodoDao
     abstract fun taskDao(): TaskDao

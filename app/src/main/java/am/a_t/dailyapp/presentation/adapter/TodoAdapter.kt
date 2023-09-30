@@ -8,18 +8,14 @@ import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import am.a_t.dailyapp.utils.ListColor
 import android.app.AlertDialog
 import android.content.Context
-import android.os.Build
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class TodoAdapter(
     private val context: Context,
@@ -44,20 +40,21 @@ class TodoAdapter(
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
     inner class MyViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
-        @RequiresApi(Build.VERSION_CODES.O)
+
         fun bind(todo: Todo) {
+
             with(binding) {
+
                 tvTitle.isSelected = true
+                tvDate.text = todo.todoDate
+
                 if (!todo.todoIsChecked) {
                     tvTitle.text = todo.todoTitle
-                    //tvDate.text = todo.todoDate
-                    tvDate.text = getCustomDateString()
                 } else {
                     val spannableString = SpannableString(todo.todoTitle)
                     val strikethroughSpan = StrikethroughSpan()
@@ -68,8 +65,8 @@ class TodoAdapter(
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                     tvTitle.text = spannableString
-                    tvDate.text = getCustomDateString()
                 }
+
                 when (todo.todoColor) {
                     ListColor.RED -> {
                         view.setBackgroundResource(R.drawable.btn_red)
@@ -83,40 +80,31 @@ class TodoAdapter(
                     ListColor.PURPLE -> {
                         view.setBackgroundResource(R.drawable.btn_purple)
                     }
+                    else -> {
+                        view.setBackgroundResource(R.drawable.btn_red)
+                    }
                 }
+
                 isDelete.isChecked = todo.todoIsChecked
+
                 btnDelete.setOnClickListener {
                     removeDialog(inflater, container, todo)
                 }
+
                 isDelete.setOnClickListener {
                     viewModel.updateTodo(todo.copy(todoIsChecked = isDelete.isChecked))
                 }
+
             }
         }
     }
 
-    class DiffUtilItemCallBack : DiffUtil.ItemCallback<Todo>() {
-
-        override fun areItemsTheSame(oldItem: Todo, newItem: Todo): Boolean =
-            oldItem.id == newItem.id
-
-        override fun areContentsTheSame(oldItem: Todo, newItem: Todo): Boolean =
-            oldItem == newItem
-
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getCustomDateString(): String {
-        val pattern = "MM-dd-yyyy"
-        val formatter = DateTimeFormatter.ofPattern(pattern)
-        val currentDateTime = LocalDateTime.now()
-        val customDateString = currentDateTime.format(formatter)
-        return customDateString
-    }
-
     private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, todo: Todo) {
+
         myDialog = DialogDeleteBinding.inflate(inflater, container, false)
+
         with(myDialog) {
+
             alertDialog = AlertDialog.Builder(context)
                 .setView(root)
                 .show()
@@ -138,6 +126,10 @@ class TodoAdapter(
                     btnYesTodo.setBackgroundResource(R.drawable.btn_purple)
                     btnNoTodo.setBackgroundResource(R.drawable.btn_purple)
                 }
+                else -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_red)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_red)
+                }
             }
 
             btnYesTodo.setOnClickListener {
@@ -148,8 +140,19 @@ class TodoAdapter(
             btnNoTodo.setOnClickListener {
                 alertDialog.dismiss()
             }
+
         }
+
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    }
+
+    class DiffUtilItemCallBack : DiffUtil.ItemCallback<Todo>() {
+
+        override fun areItemsTheSame(oldItem: Todo, newItem: Todo): Boolean =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: Todo, newItem: Todo): Boolean =
+            oldItem == newItem
 
     }
 }

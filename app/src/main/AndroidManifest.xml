@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="am.a_t.dailyapp">
+
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:name=".presentation.ApplicationModule"
@@ -21,6 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".utils.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+        </receiver>
+
     </application>
 
 </manifest>

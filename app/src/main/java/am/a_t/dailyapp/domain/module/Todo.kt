@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 @Entity("todos")
 data class Todo(
     @PrimaryKey(autoGenerate = true) val id: Long,
-    @ColumnInfo("todo_is_checked") val todoIsChecked: Boolean,
-    @ColumnInfo("todo_title") val todoTitle: String,
-    @ColumnInfo("todo_date") val todoDate: String,
-    @ColumnInfo("todo_color") val todoColor: ListColor?
+    @ColumnInfo("todo_is_checked") var todoIsChecked: Boolean,
+    @ColumnInfo("todo_title") var todoTitle: String,
+    @ColumnInfo("todo_date") var todoDate: String,
+    @ColumnInfo("todo_color") var todoColor: ListColor?
 )
