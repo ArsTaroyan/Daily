@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/back_month_filter">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/cancelNewList"
+        android:id="@+id/btnCancelNewList"
         android:layout_width="@dimen/space_40"
         android:layout_height="@dimen/space_40"
         android:layout_marginStart="@dimen/space_12"
-        app:layout_constraintBottom_toBottomOf="@id/heading"
+        app:layout_constraintBottom_toBottomOf="@id/tvHeading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/heading"
+        app:layout_constraintTop_toTopOf="@id/tvHeading"
         app:srcCompat="@drawable/ic_close" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/heading"
+        android:id="@+id/tvHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_20"
@@ -26,12 +25,12 @@
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_25"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@+id/guideLineBegin"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ListNameTitle"
+        android:id="@+id/tvListNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_30"
@@ -39,48 +38,48 @@
         android:textColor="@color/coral"
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/heading" />
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/tvHeading" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etTodoName"
+        android:id="@+id/edTodoName"
         android:layout_width="@dimen/space_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_15"
         android:background="@null"
         android:ellipsize="end"
+        android:hint="@string/design_app"
         android:inputType="textCapSentences"
         android:maxLines="1"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_35"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/ListNameTitle"
-        tools:text="Design app" />
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/tvListNameTitle" />
 
     <View
-        android:id="@+id/firstLine"
+        android:id="@+id/viewFirstLine"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_2"
         android:layout_marginTop="@dimen/space_5"
         android:background="@color/light_grey"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/etTodoName" />
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/edTodoName" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/listColor"
+        android:id="@+id/tvListColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_10"
         android:layout_marginTop="@dimen/space_30"
-        android:text="@string/list_ncolor"
+        android:text="@string/list_color"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/firstLine" />
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/viewFirstLine" />
 
     <RadioGroup
         android:layout_width="@dimen/space_0"
@@ -88,12 +87,12 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/btnCreateList"
-        app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
-        app:layout_constraintStart_toEndOf="@id/listColor"
-        app:layout_constraintTop_toBottomOf="@id/firstLine">
+        app:layout_constraintEnd_toStartOf="@id/glEnd"
+        app:layout_constraintStart_toEndOf="@id/tvListColor"
+        app:layout_constraintTop_toBottomOf="@id/viewFirstLine">
 
         <RadioButton
-            android:id="@+id/colorRedList"
+            android:id="@+id/btnColorRedList"
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_15"
@@ -104,7 +103,7 @@
             android:translationZ="@dimen/space_15" />
 
         <RadioButton
-            android:id="@+id/colorPurpleList"
+            android:id="@+id/btnColorPurpleList"
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_20"
@@ -114,7 +113,7 @@
             android:translationZ="@dimen/space_15" />
 
         <RadioButton
-            android:id="@+id/colorBlueList"
+            android:id="@+id/btnColorBlueList"
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_15"
@@ -124,7 +123,7 @@
             android:translationZ="@dimen/space_15" />
 
         <RadioButton
-            android:id="@+id/colorOrangeList"
+            android:id="@+id/btnColorOrangeList"
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_15"
@@ -152,19 +151,19 @@
         android:textStyle="bold"
         android:translationZ="@dimen/space_20"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/listColor" />
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/tvListColor" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLineBegin"
+        android:id="@+id/glStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="@dimen/space_20" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLineEnd"
+        android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

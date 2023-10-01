@@ -7,22 +7,22 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTime"
-        android:layout_width="@dimen/space_110"
+        android:layout_width="@dimen/space_95"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_20"
         android:textColor="@color/grey"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTask"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/viewTask"
         tools:text="@string/app_name" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/viewTask"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
-        android:layout_marginStart="@dimen/space_20"
+        android:layout_marginStart="@dimen/space_10"
         android:layout_marginEnd="@dimen/space_20"
         android:layout_marginBottom="@dimen/space_20"
         android:elevation="@dimen/space_5"
@@ -54,8 +54,8 @@
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/btnDelete"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/viewTask"
+        app:layout_constraintTop_toTopOf="@+id/viewTask"
         tools:text="@string/app_name" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -73,7 +73,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/size_12"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTask"
         app:layout_constraintEnd_toEndOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
@@ -88,7 +88,7 @@
         android:padding="@dimen/space_5"
         android:src="@drawable/ic_delete"
         app:layout_constraintBottom_toBottomOf="@+id/tvDate"
-        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/viewTask"
         app:layout_constraintTop_toTopOf="@+id/tvTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

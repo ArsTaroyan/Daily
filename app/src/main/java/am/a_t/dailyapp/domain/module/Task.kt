@@ -13,7 +13,7 @@ data class Task(
     @ColumnInfo("task_calendar") var taskCalendar: Calendar?,
     @ColumnInfo("task_alarm") var taskIsAlarm: Boolean,
     @ColumnInfo("task_title") var taskTitle: String,
-    @ColumnInfo("task_date") var taskDate: String?,
-    @ColumnInfo("task_color") var taskColor: ListColor?,
+    @ColumnInfo("task_date") var taskDate: String,
+    @ColumnInfo("task_color") var taskColor: ListColor,
     @ColumnInfo("task_description") var taskDescription: String
 )

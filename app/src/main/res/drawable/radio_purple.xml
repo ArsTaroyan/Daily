@@ -4,4 +4,5 @@
     <item android:drawable="@drawable/btn_purple_checked" android:state_checked="true" />
 
     <item android:drawable="@drawable/btn_purple" android:state_checked="false" />
+
 </selector>

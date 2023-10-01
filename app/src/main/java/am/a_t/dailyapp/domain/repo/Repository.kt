@@ -21,8 +21,4 @@ interface Repository {
     suspend fun removeTask(task: Task)
 
     suspend fun updateTask(task: Task)
-
-    suspend fun getTask(id: Long): Task?
-
-    suspend fun getTodo(id: Long): Todo?
 }

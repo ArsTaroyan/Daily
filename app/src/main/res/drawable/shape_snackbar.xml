@@ -4,5 +4,4 @@
 
     <corners android:radius="@dimen/space_10"/>
 
-
 </shape>

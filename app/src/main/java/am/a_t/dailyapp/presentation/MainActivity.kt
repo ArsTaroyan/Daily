@@ -1,13 +1,10 @@
 package am.a_t.dailyapp.presentation
 
 import am.a_t.dailyapp.R
-import am.a_t.dailyapp.extension.convertStringToGson
-import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,8 +21,10 @@ class MainActivity : AppCompatActivity() {
         val name: CharSequence = "Task Alarm"
         val description = "Channel from Alarm Manager"
         val importance = NotificationManager.IMPORTANCE_HIGH
+
         val channel = NotificationChannel("Task", name, importance)
         channel.description = description
+
         val notificationManager = getSystemService(
             NotificationManager::class.java
         )

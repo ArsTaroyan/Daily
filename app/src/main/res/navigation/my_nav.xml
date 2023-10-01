@@ -12,6 +12,10 @@
         <action
             android:id="@+id/action_mainFragment_to_createNewTaskFragment"
             app:destination="@id/createNewTaskFragment" />
+        <argument
+            android:name="create"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/createNewTaskFragment"

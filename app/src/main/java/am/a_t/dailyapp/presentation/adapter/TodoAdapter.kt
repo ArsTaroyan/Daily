@@ -69,30 +69,30 @@ class TodoAdapter(
 
                 when (todo.todoColor) {
                     ListColor.RED -> {
-                        view.setBackgroundResource(R.drawable.btn_red)
+                        viewTodo.setBackgroundResource(R.drawable.btn_red)
                     }
                     ListColor.BLUE -> {
-                        view.setBackgroundResource(R.drawable.btn_blue)
+                        viewTodo.setBackgroundResource(R.drawable.btn_blue)
                     }
                     ListColor.ORANGE -> {
-                        view.setBackgroundResource(R.drawable.btn_orange)
+                        viewTodo.setBackgroundResource(R.drawable.btn_orange)
                     }
                     ListColor.PURPLE -> {
-                        view.setBackgroundResource(R.drawable.btn_purple)
+                        viewTodo.setBackgroundResource(R.drawable.btn_purple)
                     }
                     else -> {
-                        view.setBackgroundResource(R.drawable.btn_red)
+                        viewTodo.setBackgroundResource(R.drawable.btn_red)
                     }
                 }
 
-                isDelete.isChecked = todo.todoIsChecked
+                btnIsDelete.isChecked = todo.todoIsChecked
 
                 btnDelete.setOnClickListener {
                     removeDialog(inflater, container, todo)
                 }
 
-                isDelete.setOnClickListener {
-                    viewModel.updateTodo(todo.copy(todoIsChecked = isDelete.isChecked))
+                btnIsDelete.setOnClickListener {
+                    viewModel.updateTodo(todo.copy(todoIsChecked = btnIsDelete.isChecked))
                 }
 
             }
@@ -134,6 +134,7 @@ class TodoAdapter(
 
             btnYesTodo.setOnClickListener {
                 viewModel.removeTodo(todo)
+                click(todo)
                 alertDialog.dismiss()
             }
 

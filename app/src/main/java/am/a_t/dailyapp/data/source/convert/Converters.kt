@@ -7,8 +7,8 @@ import java.util.*
 
 class Converters {
     @TypeConverter
-    fun fromCalendar(calendar: Calendar): String = calendar.convertGsonToString()
+    fun fromCalendar(calendar: Calendar?): String = calendar.convertGsonToString()
 
     @TypeConverter
-    fun toCalendar(str: String): Calendar = str.convertStringToGson()
+    fun toCalendar(str: String): Calendar? = str.convertStringToGson()
 }

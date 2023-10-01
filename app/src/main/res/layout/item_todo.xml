@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/viewTodo"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
         android:layout_marginHorizontal="@dimen/space_20"
@@ -20,15 +20,15 @@
         tools:background="@drawable/btn_red" />
 
     <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/isDelete"
+        android:id="@+id/btnIsDelete"
         android:layout_width="@dimen/space_30"
         android:layout_height="@dimen/space_30"
         android:layout_marginStart="@dimen/space_15"
         android:button="@drawable/image_checkbox"
         android:elevation="@dimen/space_10"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewTodo"
+        app:layout_constraintStart_toStartOf="@+id/viewTodo"
+        app:layout_constraintTop_toTopOf="@+id/viewTodo" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
@@ -50,9 +50,9 @@
         android:textColor="@color/white"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/icList"
-        app:layout_constraintStart_toEndOf="@+id/isDelete"
-        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/btnList"
+        app:layout_constraintStart_toEndOf="@+id/btnIsDelete"
+        app:layout_constraintTop_toTopOf="@+id/viewTodo"
         tools:text="@string/app_name" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -70,7 +70,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/size_12"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTodo"
         app:layout_constraintEnd_toEndOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
@@ -85,11 +85,11 @@
         android:padding="@dimen/space_5"
         android:src="@drawable/ic_delete"
         app:layout_constraintBottom_toBottomOf="@+id/tvDate"
-        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/viewTodo"
         app:layout_constraintTop_toTopOf="@+id/tvTitle" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/icList"
+        android:id="@+id/btnList"
         android:layout_width="@dimen/space_45"
         android:layout_height="@dimen/space_45"
         android:layout_marginEnd="@dimen/space_15"

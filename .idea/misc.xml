@@ -29,6 +29,7 @@
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/back_yellow.xml" value="0.1415" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/btn_blue.xml" value="0.268" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/btn_blue_checked.xml" value="0.288" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/btn_green.xml" value="0.2845" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/btn_orange.xml" value="0.268" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/btn_orange_checked.xml" value="0.288" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/btn_purple.xml" value="0.268" />
@@ -39,17 +40,22 @@
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_calendar.xml" value="0.1905" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_check_box.xml" value="0.1905" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_check_box_outline.xml" value="0.268" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_checklist.xml" value="0.2845" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_close.xml" value="0.268" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_delete.xml" value="0.268" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_filter_off.xml" value="0.2845" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_launcher_background.xml" value="0.268" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/ic_time.xml" value="0.2845" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/image_checkbox.xml" value="0.1415" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/radio_blue.xml" value="0.288" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/radio_orange.xml" value="0.288" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/radio_purple.xml" value="0.288" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/radio_red.xml" value="0.288" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/shape_border_error.xml" value="0.288" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/shape_snackbar.xml" value="0.2845" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/shape_switch_thumb.xml" value="0.279" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/shape_switch_track.xml" value="0.279" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/drawable/snackbar_button.xml" value="0.2845" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout-v28/fragment_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/aaaa.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/activity_main.xml" value="0.23157894736842105" />
@@ -73,7 +79,9 @@
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/item_todo.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/new_app.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/sdfgsdgf.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/snackbar_warning.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/snackbar_success.xml" value="0.2587827808015834" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/snackbar_success_delete.xml" value="0.2790328973444312" />
+        <entry key="..\:/Users/Arsen Taroyan/Desktop/MobileApp/Daily/app/src/main/res/layout/snackbar_warning.xml" value="0.2587827808015834" />
       </map>
     </option>
   </component>

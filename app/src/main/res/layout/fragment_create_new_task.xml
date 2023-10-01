@@ -8,16 +8,16 @@
     tools:context=".presentation.ui.createNewTask.CreateNewTaskFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/backNewTask"
+        android:id="@+id/btnBackNewTask"
         android:layout_width="@dimen/space_40"
         android:layout_height="@dimen/space_40"
-        app:layout_constraintBottom_toBottomOf="@id/heading"
-        app:layout_constraintStart_toStartOf="@+id/guideLineBegin"
-        app:layout_constraintTop_toTopOf="@id/heading"
+        app:layout_constraintBottom_toBottomOf="@id/tvHeading"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toTopOf="@id/tvHeading"
         app:srcCompat="@drawable/ic_arrow_back" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/heading"
+        android:id="@+id/tvHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_20"
@@ -25,12 +25,12 @@
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_25"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toEndOf="@id/guideLineBegin"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toEndOf="@id/glStart"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/taskNameTitle"
+        android:id="@+id/tvTaskNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_30"
@@ -38,40 +38,40 @@
         android:textColor="@color/coral"
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/heading" />
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/tvHeading" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etTaskName"
+        android:id="@+id/edTaskName"
         android:layout_width="@dimen/space_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_10"
         android:background="@null"
         android:ellipsize="end"
+        android:hint="@string/design_app"
         android:inputType="textCapSentences"
         android:maxLines="1"
         android:minHeight="@dimen/space_45"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_35"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@+id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/taskNameTitle"
-        tools:text="Design app" />
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskNameTitle" />
 
     <View
-        android:id="@+id/firstLine"
+        android:id="@+id/viewFirstLine"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_2"
         android:layout_marginTop="@dimen/space_5"
         android:background="@color/light_grey"
         android:elevation="@dimen/space_5"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/etTaskName" />
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/edTaskName" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/taskDescriptionTitle"
+        android:id="@+id/tvTaskDescriptionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_30"
@@ -79,48 +79,50 @@
         android:textColor="@color/coral"
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/firstLine" />
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/viewFirstLine" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etDescriptionName"
+        android:id="@+id/edDescriptionName"
         android:layout_width="@dimen/space_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_10"
         android:background="@null"
         android:ellipsize="end"
+        android:hint="@string/your_description"
+        android:inputType="textCapSentences"
         android:maxLines="3"
         android:textColor="@color/dark_grey"
-        android:textSize="@dimen/size_16"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/taskDescriptionTitle"
-        tools:text="I need to create the real estate mobile app is a user-friendly and comprehensive platform that helps you quickly and effortlessly find, buy, sell, or rent properties." />
+        android:textSize="@dimen/size_18"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskDescriptionTitle" />
 
     <View
-        android:id="@+id/secondLine"
+        android:id="@+id/viewSecondLine"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_2"
         android:layout_marginTop="@dimen/space_5"
         android:background="@color/light_grey"
         android:elevation="@dimen/space_5"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/etDescriptionName" />
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/edDescriptionName" />
 
     <View
-        android:id="@+id/remindMeView"
+        android:id="@+id/viewRemindMe"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_70"
         android:layout_marginTop="@dimen/space_30"
         android:background="@drawable/back_month_filter"
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/secondLine" />
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/viewSecondLine" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRemindMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_20"
@@ -130,24 +132,24 @@
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/remindMeView"
-        app:layout_constraintStart_toStartOf="@id/remindMeView"
-        app:layout_constraintTop_toTopOf="@id/remindMeView" />
+        app:layout_constraintBottom_toBottomOf="@id/viewRemindMe"
+        app:layout_constraintStart_toStartOf="@id/viewRemindMe"
+        app:layout_constraintTop_toTopOf="@id/viewRemindMe" />
 
     <Switch
         android:id="@+id/btnRemind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space_20"
+        android:checked="true"
         android:elevation="@dimen/space_5"
         android:minWidth="@dimen/space_50"
-        android:checked="true"
         android:minHeight="@dimen/space_50"
         android:track="@drawable/shape_switch_track"
         android:translationZ="@dimen/space_15"
-        app:layout_constraintBottom_toBottomOf="@id/remindMeView"
-        app:layout_constraintEnd_toEndOf="@id/remindMeView"
-        app:layout_constraintTop_toTopOf="@id/remindMeView"
+        app:layout_constraintBottom_toBottomOf="@id/viewRemindMe"
+        app:layout_constraintEnd_toEndOf="@id/viewRemindMe"
+        app:layout_constraintTop_toTopOf="@id/viewRemindMe"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <View
@@ -160,8 +162,8 @@
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
         app:layout_constraintEnd_toStartOf="@id/viewDate"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toBottomOf="@id/remindMeView" />
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/viewRemindMe" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icTime"
@@ -176,7 +178,7 @@
         app:srcCompat="@drawable/ic_time" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/taskTime"
+        android:id="@+id/tvTaskTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_10"
@@ -191,7 +193,7 @@
         tools:text="14:30pm" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/taskEnd"
+        android:id="@+id/tvTaskEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_5"
@@ -200,8 +202,8 @@
         android:textColor="@color/fade_white"
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
-        app:layout_constraintStart_toStartOf="@id/taskTime"
-        app:layout_constraintTop_toBottomOf="@id/taskTime" />
+        app:layout_constraintStart_toStartOf="@id/tvTaskTime"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskTime" />
 
     <View
         android:id="@+id/viewDate"
@@ -211,7 +213,7 @@
         android:elevation="@dimen/space_5"
         android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="@id/viewTime"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toEndOf="@id/viewTime"
         app:layout_constraintTop_toTopOf="@id/viewTime" />
 
@@ -228,7 +230,7 @@
         app:srcCompat="@drawable/ic_calendar" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/taskDate"
+        android:id="@+id/tvTaskDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_10"
@@ -243,7 +245,7 @@
         tools:text="17,May 2023" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/dateEnd"
+        android:id="@+id/tvDateEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_5"
@@ -252,19 +254,19 @@
         android:textColor="@color/fade_white"
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
-        app:layout_constraintStart_toStartOf="@id/taskDate"
-        app:layout_constraintTop_toBottomOf="@id/taskDate" />
+        app:layout_constraintStart_toStartOf="@id/tvTaskDate"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskDate" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/taskColor"
+        android:id="@+id/tvTaskColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/task_ncolor"
+        android:text="@string/task_color"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
+        app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toTopOf="@+id/radioGroup" />
 
     <RadioGroup
@@ -273,24 +275,24 @@
         android:layout_height="@dimen/space_0"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintBottom_toTopOf="@+id/viewBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/taskColor"
+        app:layout_constraintStart_toEndOf="@id/tvTaskColor"
         app:layout_constraintTop_toBottomOf="@id/viewDate">
 
         <RadioButton
-            android:id="@+id/colorRedTask"
+            android:id="@+id/btnColorRedTask"
             android:layout_width="@dimen/space_55"
             android:layout_height="@dimen/space_55"
             android:layout_marginStart="@dimen/space_15"
-            android:checked="true"
             android:background="@drawable/radio_red"
             android:button="@android:color/transparent"
+            android:checked="true"
             android:elevation="@dimen/space_5"
             android:translationZ="@dimen/space_15" />
 
         <RadioButton
-            android:id="@+id/colorPurpleTask"
+            android:id="@+id/btnColorPurpleTask"
             android:layout_width="@dimen/space_55"
             android:layout_height="@dimen/space_55"
             android:layout_marginStart="@dimen/space_20"
@@ -300,7 +302,7 @@
             android:translationZ="@dimen/space_15" />
 
         <RadioButton
-            android:id="@+id/colorBlueTask"
+            android:id="@+id/btnColorBlueTask"
             android:layout_width="@dimen/space_55"
             android:layout_height="@dimen/space_55"
             android:layout_marginStart="@dimen/space_15"
@@ -310,7 +312,7 @@
             android:translationZ="@dimen/space_15" />
 
         <RadioButton
-            android:id="@+id/colorOrangeTask"
+            android:id="@+id/btnColorOrangeTask"
             android:layout_width="@dimen/space_55"
             android:layout_height="@dimen/space_55"
             android:layout_marginStart="@dimen/space_15"
@@ -323,7 +325,7 @@
 
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/viewBottom"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_95"
         android:background="@drawable/back_view_btn"
@@ -337,8 +339,8 @@
         android:id="@+id/btnCreateTask"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_70"
-        android:layout_marginBottom="@dimen/space_20"
         android:layout_marginTop="@dimen/space_10"
+        android:layout_marginBottom="@dimen/space_20"
         android:background="@drawable/btn_red"
         android:elevation="@dimen/space_5"
         android:gravity="center"
@@ -350,19 +352,19 @@
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
-        app:layout_constraintStart_toStartOf="@id/guideLineBegin"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toTopOf="@+id/viewBottom" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLineBegin"
+        android:id="@+id/glStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="@dimen/space_20" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLineEnd"
+        android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

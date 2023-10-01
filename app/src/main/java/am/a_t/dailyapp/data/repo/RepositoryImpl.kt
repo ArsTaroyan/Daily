@@ -12,6 +12,7 @@ class RepositoryImpl @Inject constructor(
     private val todoDao: TodoDao,
     private val taskDao: TaskDao
 ) : Repository {
+
     override fun getAllTodos(): Flow<List<Todo>> = todoDao.getAllTodos()
 
     override suspend fun addTodo(todo: Todo) {
@@ -25,8 +26,6 @@ class RepositoryImpl @Inject constructor(
     override suspend fun updateTodo(todo: Todo) {
         todoDao.updateTodo(todo)
     }
-
-    override suspend fun getTodo(id: Long): Todo? = todoDao.getTodo(id)
 
     override fun getAllTasks(): Flow<List<Task>> = taskDao.getAllTasks()
 
@@ -42,5 +41,4 @@ class RepositoryImpl @Inject constructor(
         taskDao.updateTask(task)
     }
 
-    override suspend fun getTask(id: Long): Task? = taskDao.getTask(id)
 }

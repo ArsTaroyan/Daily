@@ -8,7 +8,7 @@
     tools:context=".presentation.ui.mainFragment.MainFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnLeft"
+        android:id="@+id/btnAdd"
         android:layout_width="@dimen/space_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_30"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnRight"
+        android:id="@+id/btnType"
         android:layout_width="@dimen/space_120"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_red"
@@ -41,11 +41,11 @@
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintTop_toTopOf="@+id/btnLeft"
+        app:layout_constraintTop_toTopOf="@+id/btnAdd"
         tools:text="@string/type" />
 
     <TextView
-        android:id="@+id/filterMonth"
+        android:id="@+id/tvFilterDate"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_80"
         android:layout_marginTop="@dimen/space_35"
@@ -61,25 +61,39 @@
         android:translationZ="@dimen/space_15"
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/btnLeft"
+        app:layout_constraintTop_toBottomOf="@+id/btnAdd"
         tools:text="@string/filter" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnDate"
+        android:id="@+id/btnFilterDate"
         android:layout_width="@dimen/space_45"
         android:layout_height="@dimen/space_45"
-        android:layout_marginEnd="@dimen/space_30"
+        android:layout_marginEnd="@dimen/space_15"
         android:background="@drawable/btn_red"
-        android:elevation="@dimen/space_10"
+        android:elevation="@dimen/space_15"
         android:padding="@dimen/space_10"
         android:src="@drawable/ic_calendar"
-        android:translationZ="@dimen/space_20"
-        app:layout_constraintBottom_toBottomOf="@+id/filterMonth"
-        app:layout_constraintEnd_toEndOf="@+id/filterMonth"
-        app:layout_constraintTop_toTopOf="@+id/filterMonth" />
+        android:translationZ="@dimen/space_25"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCancelFilter"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancelFilter"
+        app:layout_constraintTop_toTopOf="@+id/btnCancelFilter" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnCancelFilter"
+        android:layout_width="@dimen/space_45"
+        android:layout_height="@dimen/space_45"
+        android:layout_marginEnd="@dimen/space_15"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_15"
+        android:padding="@dimen/space_10"
+        android:src="@drawable/ic_filter_off"
+        android:translationZ="@dimen/space_25"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFilterDate"
+        app:layout_constraintEnd_toEndOf="@+id/tvFilterDate"
+        app:layout_constraintTop_toTopOf="@+id/tvFilterDate" />
 
     <View
-        android:id="@+id/backView"
+        android:id="@+id/viewBack"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_0"
         android:layout_marginTop="@dimen/space_30"
@@ -87,17 +101,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterMonth" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFilterDate" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTodo"
+        android:id="@+id/rvList"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
         android:layout_marginTop="@dimen/space_15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backView"
+        app:layout_constraintTop_toTopOf="@+id/viewBack"
         tools:listitem="@layout/item_todo" />
 
     <androidx.constraintlayout.widget.Guideline

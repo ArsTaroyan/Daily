@@ -68,19 +68,16 @@ class TaskAdapter(
 
                 when (task.taskColor) {
                     ListColor.RED -> {
-                        view.setBackgroundResource(R.drawable.btn_red)
+                        viewTask.setBackgroundResource(R.drawable.btn_red)
                     }
                     ListColor.BLUE -> {
-                        view.setBackgroundResource(R.drawable.btn_blue)
+                        viewTask.setBackgroundResource(R.drawable.btn_blue)
                     }
                     ListColor.ORANGE -> {
-                        view.setBackgroundResource(R.drawable.btn_orange)
+                        viewTask.setBackgroundResource(R.drawable.btn_orange)
                     }
                     ListColor.PURPLE -> {
-                        view.setBackgroundResource(R.drawable.btn_purple)
-                    }
-                    else -> {
-                        view.setBackgroundResource(R.drawable.btn_red)
+                        viewTask.setBackgroundResource(R.drawable.btn_purple)
                     }
                 }
 
@@ -137,14 +134,11 @@ class TaskAdapter(
                     btnYesTodo.setBackgroundResource(R.drawable.btn_purple)
                     btnNoTodo.setBackgroundResource(R.drawable.btn_purple)
                 }
-                else -> {
-                    btnYesTodo.setBackgroundResource(R.drawable.btn_red)
-                    btnNoTodo.setBackgroundResource(R.drawable.btn_red)
-                }
             }
 
             btnYesTodo.setOnClickListener {
                 viewModel.removeTask(task)
+                click(task)
                 alertDialog.dismiss()
             }
 

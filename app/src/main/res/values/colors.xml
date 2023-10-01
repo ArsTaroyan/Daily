@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -9,44 +10,26 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_back">#FEF2F2</color>
     <color name="back_red">#FF796D</color>
-    <color name="back_sky">#1FC5F5</color>
-    <color name="back_orange">#FFB277</color>
-    <color name="back_purple">#7697F7</color>
-    <color name="back_filter">#58B6F3</color>
     <color name="back_month_filter">#FCF1F1</color>
     <color name="grey">#5F687C</color>
-    <color name="back_white_red">#FD8F85</color>
-    <color name="back_white_orange">#FAB988</color>
-    <color name="back_white_purple">#8DAAFD</color>
-    <color name="back_white_sky">#52D4FA</color>
     <color name="back_white">#FFF7F7</color>
-    <color name="btn_red_start">#FE736C</color>
-    <color name="btn_red_end">#FF6072</color>
-    <color name="btn_red_center">#FF6570</color>
+    <color name="red_start">#FE736C</color>
+    <color name="red_end">#FF6072</color>
+    <color name="red_center">#FF6570</color>
     <color name="view_back">#3EFFFFFF</color>
     <color name="view_back_btn">#9AFFFFFF</color>
-
-    //Lucy
-    <color name="background_color">#f9efee</color>
     <color name="dark_grey">#2d3742</color>
     <color name="coral">#fc6675</color>
     <color name="light_grey">#b3cad8</color>
-    //Purple
-    <color name="purple">#688bf1</color>
     <color name="purple_start">#7D9BF1</color>
     <color name="purple_end">#5A80F1</color>
     <color name="purple_center">#6085EF</color>
-    //Blue
-    <color name="blue">#39c0e6</color>
     <color name="blue_start">#68CAE4</color>
     <color name="blue_end">#26B6DD</color>
     <color name="blue_center">#39c0e6</color>
-    //Orange
-    <color name="orange">#fba11a</color>
     <color name="orange_start">#F6B148</color>
     <color name="orange_end">#FA9B0C</color>
     <color name="orange_center">#fba11a</color>
-
     <color name="switch_color">#dddfe9</color>
     <color name="fade_white">#80FFFFFF</color>
     <color name="dark_blue">#03B7E8</color>

@@ -6,7 +6,7 @@
 
     <stroke
         android:width="@dimen/space_2"
-        android:color="@color/white"/>
+        android:color="@color/white" />
 
     <gradient
         android:centerColor="@color/back_white"

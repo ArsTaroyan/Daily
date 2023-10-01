@@ -27,12 +27,15 @@ import java.util.*
 @AndroidEntryPoint
 class CreateNewTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
+
     private lateinit var binding: FragmentCreateNewTaskBinding
     private val viewModel: CreateNewTaskViewModel by viewModels()
     private var itemColor: ListColor = ListColor.RED
     private val calendar = Calendar.getInstance()
     private val formatterTime = SimpleDateFormat("hh:mm", Locale.US)
     private val formatterDate = SimpleDateFormat("MM-dd-yyyy", Locale.US)
+    private var isCreate = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,59 +51,76 @@ class CreateNewTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     private fun initView() {
         lifecycleScope.launch(Dispatchers.Main) {
             with(binding) {
+                tvTaskTime.text = getCustomDateString("hh:mm")
+                tvTaskDate.text = getCustomDateString("MM-dd-yyyy")
+
                 if (btnRemind.isChecked) {
-                    taskTime.text = getCustomTimeString()
-                    taskDate.text = getCustomDateString()
-
-                    viewDate.visibility = View.VISIBLE
-                    viewTime.visibility = View.VISIBLE
-
-                    icDate.visibility = View.VISIBLE
-                    icTime.visibility = View.VISIBLE
-
-                    taskDate.visibility = View.VISIBLE
-                    taskTime.visibility = View.VISIBLE
-
-                    taskEnd.visibility = View.VISIBLE
-                    dateEnd.visibility = View.VISIBLE
+                    isVisibility()
                 } else {
-                    viewDate.visibility = View.GONE
-                    viewTime.visibility = View.GONE
-
-                    icDate.visibility = View.GONE
-                    icTime.visibility = View.GONE
-
-                    taskDate.visibility = View.GONE
-                    taskTime.visibility = View.GONE
-
-                    taskEnd.visibility = View.GONE
-                    dateEnd.visibility = View.GONE
+                    isGone()
                 }
             }
+        }
+    }
+
+    private fun isGone() {
+        with(binding) {
+            viewDate.visibility = View.GONE
+            viewTime.visibility = View.GONE
+
+            icDate.visibility = View.GONE
+            icTime.visibility = View.GONE
+
+            tvTaskDate.visibility = View.GONE
+            tvTaskTime.visibility = View.GONE
+
+            tvTaskEnd.visibility = View.GONE
+            tvDateEnd.visibility = View.GONE
+        }
+    }
+
+    private fun isVisibility() {
+        with(binding) {
+            viewDate.visibility = View.VISIBLE
+            viewTime.visibility = View.VISIBLE
+
+            icDate.visibility = View.VISIBLE
+            icTime.visibility = View.VISIBLE
+
+            tvTaskDate.visibility = View.VISIBLE
+            tvTaskTime.visibility = View.VISIBLE
+
+            tvTaskEnd.visibility = View.VISIBLE
+            tvDateEnd.visibility = View.VISIBLE
         }
     }
 
 
     private fun initClickListeners() {
         with(binding) {
-            backNewTask.setOnClickListener {
+
+            btnBackNewTask.setOnClickListener {
                 findNavController().navigate(R.id.action_createNewTaskFragment_to_mainFragment)
             }
 
-            colorPurpleTask.setOnClickListener {
-                itemColor = ListColor.PURPLE
-            }
-
-            colorRedTask.setOnClickListener {
+            btnColorRedTask.setOnClickListener {
                 itemColor = ListColor.RED
+                btnCreateTask.setBackgroundResource(R.drawable.btn_red)
             }
 
-            colorBlueTask.setOnClickListener {
+            btnColorPurpleTask.setOnClickListener {
+                itemColor = ListColor.PURPLE
+                btnCreateTask.setBackgroundResource(R.drawable.btn_purple)
+            }
+
+            btnColorBlueTask.setOnClickListener {
                 itemColor = ListColor.BLUE
+                btnCreateTask.setBackgroundResource(R.drawable.btn_blue)
             }
 
-            colorOrangeTask.setOnClickListener {
+            btnColorOrangeTask.setOnClickListener {
                 itemColor = ListColor.ORANGE
+                btnCreateTask.setBackgroundResource(R.drawable.btn_orange)
             }
 
             btnRemind.setOnClickListener {
@@ -118,6 +138,7 @@ class CreateNewTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             viewTime.setOnClickListener {
                 showTimePicker()
             }
+
         }
     }
 
@@ -143,59 +164,64 @@ class CreateNewTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     private fun createTask() {
         with(binding) {
-            if (etTaskName.text.toString().isNotEmpty() &&
-                etDescriptionName.text.toString().isNotEmpty()
+            if (edTaskName.text.toString().isNotEmpty() &&
+                edDescriptionName.text.toString().isNotEmpty()
             ) {
-                if (btnRemind.isChecked && taskTime.text.toString()
-                        .isNotEmpty() && taskDate.text.toString().isNotEmpty()
-                ) {
-                    viewModel.addTask(
-                        Task(
-                            0,
-                            taskTime.text.toString(),
-                            calendar,
-                            true,
-                            etTaskName.text.toString(),
-                            taskDate.text.toString(),
-                            itemColor,
-                            etDescriptionName.text.toString()
-                        )
-                    )
-                } else if (!btnRemind.isChecked) {
-                    viewModel.addTask(
-                        Task(
-                            0,
-                            getCustomTimeString(),
-                            null,
-                            false,
-                            etTaskName.text.toString(),
-                            getCustomDateAndTimeString(),
-                            itemColor,
-                            etDescriptionName.text.toString()
-                        )
-                    )
-                }
-                findNavController().navigate(R.id.action_createNewTaskFragment_to_mainFragment)
+                addTask()
+                val create = CreateNewTaskFragmentDirections.actionCreateNewTaskFragmentToMainFragment(1)
+                findNavController().navigate(create)
+            } else {
+                val create = CreateNewTaskFragmentDirections.actionCreateNewTaskFragmentToMainFragment(2)
+                findNavController().navigate(create)
             }
         }
     }
 
-    private fun getCustomDateAndTimeString(): String {
-        val pattern = "MM-dd-yyyy hh:mm:ss"
-        val formatter = DateTimeFormatter.ofPattern(pattern)
-        val currentDateTime = LocalDateTime.now()
-        return currentDateTime.format(formatter)
+    private fun addTask() {
+        with(binding) {
+            if (btnRemind.isChecked) {
+                addTaskIsChecked()
+            } else {
+                addTaskIsNotChecked()
+            }
+        }
     }
 
-    private fun getCustomDateString(): String {
-        val pattern = "MM-dd-yyyy"
-        val formatter = DateTimeFormatter.ofPattern(pattern)
-        val currentDateTime = LocalDateTime.now()
-        return currentDateTime.format(formatter)
+    private fun addTaskIsNotChecked() {
+        with(binding) {
+            viewModel.addTask(
+                Task(
+                    0,
+                    getCustomDateString("hh:mm"),
+                    null,
+                    false,
+                    edTaskName.text.toString(),
+                    getCustomDateString("MM-dd-yyyy"),
+                    itemColor,
+                    edDescriptionName.text.toString()
+                )
+            )
+        }
     }
 
-    private fun getCustomTimeString(): String {
-        val pattern = "hh:mm"
+    private fun addTaskIsChecked() {
+        with(binding) {
+            viewModel.addTask(
+                Task(
+                    0,
+                    tvTaskTime.text.toString(),
+                    calendar,
+                    true,
+                    edTaskName.text.toString(),
+                    tvTaskDate.text.toString(),
+                    itemColor,
+                    edDescriptionName.text.toString()
+                )
+            )
+        }
+    }
+
+    private fun getCustomDateString(pattern: String): String {
         val formatter = DateTimeFormatter.ofPattern(pattern)
         val currentDateTime = LocalDateTime.now()
         return currentDateTime.format(formatter)
@@ -215,9 +241,11 @@ class CreateNewTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     }
 
     private fun displayFormattedDate(timeInMillis: Long) {
-        with(binding) {
-            taskTime.text = formatterTime.format(timeInMillis)
-            taskDate.text = formatterDate.format(timeInMillis)
+        lifecycleScope.launch {
+            with(binding) {
+                tvTaskTime.text = formatterTime.format(timeInMillis)
+                tvTaskDate.text = formatterDate.format(timeInMillis)
+            }
         }
     }
 }
