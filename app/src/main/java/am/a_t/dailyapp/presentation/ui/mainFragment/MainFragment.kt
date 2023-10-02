@@ -11,18 +11,15 @@ import am.a_t.dailyapp.presentation.adapter.TaskAdapter
 import am.a_t.dailyapp.presentation.adapter.TodoAdapter
 import am.a_t.dailyapp.utils.ListColor
 import am.a_t.dailyapp.utils.ListType
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -39,7 +36,6 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
@@ -81,9 +77,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 readTypeData()
             }
 
-            if (args.create == 2) {
-                createCustomSnackbar(R.layout.snackbar_warning)
-            } else if (args.create == 1) {
+            if (args.create == 1) {
                 createCustomSnackbar(R.layout.snackbar_success)
             }
         }
@@ -124,18 +118,21 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         lifecycleScope.launch {
             viewModel.filterTodo.collectLatest {
+                tvText(it)
                 todoAdapter.submitList(it)
             }
         }
 
         lifecycleScope.launch {
             viewModel.filterTask.collectLatest {
+                tvText(it)
                 taskAdapter.submitList(it)
             }
         }
 
         lifecycleScope.launch {
             viewModel.todoAllLiveData.first().collectLatest {
+                tvText(it)
                 listTodo = it
                 todoAdapter.submitList(it)
             }
@@ -143,6 +140,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         lifecycleScope.launch {
             viewModel.taskAllLiveData.first().collectLatest {
+                tvText(it)
                 listTask = it
                 taskAdapter.submitList(it)
             }
@@ -161,6 +159,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
 
             btnAdd.setOnClickListener {
+                cancelFilter()
                 addTaskOrTodo(inflater, container)
             }
 
@@ -199,9 +198,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
             when (preference.readType(TYPE)) {
                 ListType.TODOS.typeName -> {
+                    tvText(listTodo)
                     viewModel.getTodoFilter(listTodo, null)
                 }
                 ListType.TASKS.typeName -> {
+                    tvText(listTask)
                     viewModel.getTaskFilter(listTask, null)
                 }
             }
@@ -286,7 +287,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                         itemColor
                     )
                 )
-                binding.tvFilterDate.setText(R.string.set_filter)
                 false
             } else {
                 true
@@ -302,7 +302,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun createCustomSnackbar(@LayoutRes layoutRes: Int) {
-        snackbar = Snackbar.make(binding.viewBack, "Custom", Snackbar.LENGTH_LONG).apply {
+        snackbar = Snackbar.make(binding.root, "Custom", Snackbar.LENGTH_LONG).apply {
             setAction("Retry") {
                 dismiss()
             }
@@ -311,18 +311,19 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             (this.view as Snackbar.SnackbarLayout).addView(view)
             show()
         }
-
     }
 
     private fun recyclerViewAdapt(type: ListType) {
         if (type == ListType.TODOS) {
             binding.rvList.layoutManager = LinearLayoutManager(requireContext())
             binding.rvList.adapter = todoAdapter
+            tvText(listTodo)
             viewModel.getTodoFilter(listTodo, null)
             binding.tvFilterDate.setText(R.string.set_filter)
         } else {
             binding.rvList.layoutManager = LinearLayoutManager(requireContext())
             binding.rvList.adapter = taskAdapter
+            tvText(listTask)
             viewModel.getTaskFilter(listTask, null)
             binding.tvFilterDate.setText(R.string.set_filter)
         }
@@ -357,10 +358,22 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private suspend fun filterTaskOrTodo(listTask: List<Task>, listTodo: List<Todo>, date: String) {
         when (preference.readType(TYPE)) {
             ListType.TODOS.typeName -> {
+                tvText(listTodo)
                 viewModel.getTodoFilter(listTodo, date)
             }
             ListType.TASKS.typeName -> {
+                tvText(listTask)
                 viewModel.getTaskFilter(listTask, date)
+            }
+        }
+    }
+
+    private fun <T> tvText(list: List<T?>?) {
+        lifecycleScope.launch {
+            if (list?.isEmpty() == true) {
+                binding.tvEmpty.visibility = View.VISIBLE
+            } else {
+                binding.tvEmpty.visibility = View.GONE
             }
         }
     }

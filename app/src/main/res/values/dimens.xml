@@ -23,6 +23,7 @@
     <dimen name="space_12">12dp</dimen>
     <dimen name="space_50">50dp</dimen>
     <dimen name="space_55">55dp</dimen>
+    <dimen name="space_60">60dp</dimen>
     <dimen name="space_95">95dp</dimen>
     <dimen name="space_45">45dp</dimen>
     <dimen name="space_35">35dp</dimen>

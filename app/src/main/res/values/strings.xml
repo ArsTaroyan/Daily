@@ -30,4 +30,6 @@
     <string name="design_app">Design app</string>
     <string name="success">Success</string>
     <string name="successfully_deleted">Successfully Deleted</string>
+    <string name="you_can_t_choose_time_in_the_past">You can\'t choose time in the past</string>
+    <string name="empty_list">List Is Empty</string>
 </resources>

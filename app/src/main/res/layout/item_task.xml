@@ -7,7 +7,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTime"
-        android:layout_width="@dimen/space_95"
+        android:layout_width="@dimen/space_60"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_20"
         android:textColor="@color/grey"
@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/viewTask"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/viewTask"
-        tools:text="@string/app_name" />
+        tools:text="99:99" />
 
     <View
         android:id="@+id/viewTask"
