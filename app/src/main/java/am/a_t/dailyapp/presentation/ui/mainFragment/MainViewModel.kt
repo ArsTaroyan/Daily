@@ -74,7 +74,13 @@ class MainViewModel @Inject constructor(
                     newList.add(todos[i])
                 }
             }
-            _filterTodo.value = newList
+
+            if (newList.isEmpty()) {
+                _filterTodo.value = null
+            } else {
+                _filterTodo.value = newList
+            }
+
         }
 
     }
@@ -90,7 +96,12 @@ class MainViewModel @Inject constructor(
                     newList.add(tasks[i])
                 }
             }
-            _filterTask.value = newList
+
+            if (newList.isEmpty()) {
+                _filterTask.value = null
+            } else {
+                _filterTask.value = newList
+            }
         }
 
     }

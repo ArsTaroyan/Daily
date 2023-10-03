@@ -8,7 +8,6 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -145,12 +144,18 @@ class CreateNewTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             }
 
             btnCreateTask.setOnClickListener {
-                dateAndTimeNow()
-                if (isDateAndTimeNow) {
-                    createTask()
+
+                if (btnRemind.isChecked) {
+                    dateAndTimeNow()
+                    if (isDateAndTimeNow) {
+                        createTask()
+                    } else {
+                        createCustomSnackbar(R.layout.snackbar_warning_date)
+                    }
                 } else {
-                    createCustomSnackbar(R.layout.snackbar_warning_date)
+                    createTask()
                 }
+
             }
 
             viewDate.setOnClickListener {
