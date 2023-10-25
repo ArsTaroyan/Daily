@@ -7,8 +7,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnCancelNewList"
-        android:layout_width="@dimen/space_40"
-        android:layout_height="@dimen/space_40"
+        android:layout_width="@dimen/space_30"
+        android:layout_height="@dimen/space_30"
         android:layout_marginStart="@dimen/space_12"
         app:layout_constraintBottom_toBottomOf="@id/tvHeading"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
         android:id="@+id/tvHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_10"
         android:gravity="center"
         android:text="@string/create_new_list"
         android:textColor="@color/dark_grey"
@@ -33,7 +33,7 @@
         android:id="@+id/tvListNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_20"
         android:text="@string/list_name"
         android:textColor="@color/coral"
         android:textSize="@dimen/size_18"
@@ -76,7 +76,7 @@
         android:layout_marginTop="@dimen/space_30"
         android:text="@string/list_color"
         android:textColor="@color/dark_grey"
-        android:textSize="@dimen/size_18"
+        android:textSize="@dimen/size_20"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/viewFirstLine" />
@@ -87,7 +87,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/btnCreateList"
-        app:layout_constraintEnd_toStartOf="@id/glEnd"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvListColor"
         app:layout_constraintTop_toBottomOf="@id/viewFirstLine">
 

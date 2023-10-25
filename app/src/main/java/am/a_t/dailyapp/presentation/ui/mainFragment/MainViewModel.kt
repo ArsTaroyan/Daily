@@ -63,6 +63,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun addTask(task: Task) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addTask(task)
+        }
+    }
+
     fun getTodoFilter(todos: List<Todo>, date: String?) {
 
         if (date.isNullOrEmpty()) {

@@ -21,7 +21,7 @@
         android:id="@+id/createNewTaskFragment"
         android:name="am.a_t.dailyapp.presentation.ui.createNewTask.CreateNewTaskFragment"
         android:label="fragment_create_new_task"
-        tools:layout="@layout/fragment_create_new_task" >
+        tools:layout="@layout/dialog_create_new_task" >
         <action
             android:id="@+id/action_createNewTaskFragment_to_mainFragment"
             app:destination="@id/mainFragment"

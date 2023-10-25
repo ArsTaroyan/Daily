@@ -4,8 +4,6 @@ import am.a_t.dailyapp.R
 import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTaskBinding
 import am.a_t.dailyapp.domain.module.Task
-import am.a_t.dailyapp.extension.convertGsonToString
-import am.a_t.dailyapp.presentation.ui.createNewTask.CreateNewTaskViewModel
 import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import am.a_t.dailyapp.utils.AlarmReceiver
 import am.a_t.dailyapp.utils.ListColor
@@ -14,13 +12,11 @@ import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 
 class TaskAdapter(
     private val context: Context,
