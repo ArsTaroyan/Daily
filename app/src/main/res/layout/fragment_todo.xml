@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_back"
+    tools:context=".presentation.ui.todoFragment.TodoFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_0"
+        android:gravity="center"
+        android:text="@string/empty_list"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size_35"
+        android:textStyle="bold|italic"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBack"
+        app:layout_constraintEnd_toEndOf="@+id/rvList"
+        app:layout_constraintStart_toStartOf="@+id/rvList"
+        app:layout_constraintTop_toTopOf="@+id/rvList" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnBack"
+        android:layout_width="@dimen/space_120"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_30"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:paddingVertical="@dimen/space_10"
+        android:shadowColor="@color/white"
+        android:shadowRadius="30"
+        android:text="@string/back"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnAdd"
+        android:layout_width="@dimen/space_120"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:paddingVertical="@dimen/space_10"
+        android:shadowColor="@color/white"
+        android:shadowRadius="30"
+        android:text="@string/add_new"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+    <TextView
+        android:id="@+id/tvFilterDate"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_80"
+        android:layout_marginTop="@dimen/space_35"
+        android:background="@drawable/back_month_filter"
+        android:elevation="@dimen/space_5"
+        android:gravity="center|start"
+        android:paddingHorizontal="@dimen/space_20"
+        android:shadowColor="@color/black"
+        android:shadowRadius="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        app:layout_constraintEnd_toStartOf="@+id/glEnd"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack"
+        tools:text="@string/filter" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnFilterDate"
+        android:layout_width="@dimen/space_45"
+        android:layout_height="@dimen/space_45"
+        android:layout_marginEnd="@dimen/space_15"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_15"
+        android:padding="@dimen/space_10"
+        android:src="@drawable/ic_calendar"
+        android:translationZ="@dimen/space_25"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCancelFilter"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancelFilter"
+        app:layout_constraintTop_toTopOf="@+id/btnCancelFilter" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnCancelFilter"
+        android:layout_width="@dimen/space_45"
+        android:layout_height="@dimen/space_45"
+        android:layout_marginEnd="@dimen/space_15"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_15"
+        android:padding="@dimen/space_10"
+        android:src="@drawable/ic_filter_off"
+        android:translationZ="@dimen/space_25"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFilterDate"
+        app:layout_constraintEnd_toEndOf="@+id/tvFilterDate"
+        app:layout_constraintTop_toTopOf="@+id/tvFilterDate" />
+
+    <View
+        android:id="@+id/viewBack"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0"
+        android:layout_marginTop="@dimen/space_30"
+        android:background="@drawable/back_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFilterDate" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvList"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_0"
+        android:layout_marginTop="@dimen/space_15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewBack"
+        tools:listitem="@layout/item_task" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/space_20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/space_20" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

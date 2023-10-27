@@ -32,4 +32,6 @@
     <string name="successfully_deleted">Successfully Deleted</string>
     <string name="you_can_t_choose_time_in_the_past">You can\'t choose time in the past</string>
     <string name="empty_list">List Is Empty</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

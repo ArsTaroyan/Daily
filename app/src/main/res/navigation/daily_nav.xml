@@ -2,30 +2,31 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/my_nav"
+    android:id="@+id/daily_nav"
     app:startDestination="@id/mainFragment">
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="am.a_t.dailyapp.presentation.ui.mainFragment.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainFragment_to_createNewTaskFragment"
-            app:destination="@id/createNewTaskFragment" />
-        <argument
-            android:name="create"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:id="@+id/action_mainFragment_to_todoFragment"
+            app:destination="@id/todoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createNewTaskFragment"
-        android:name="am.a_t.dailyapp.presentation.ui.createNewTask.CreateNewTaskFragment"
-        android:label="fragment_create_new_task"
-        tools:layout="@layout/dialog_create_new_task" >
+        android:id="@+id/todoFragment"
+        android:name="am.a_t.dailyapp.presentation.ui.todoFragment.TodoFragment"
+        android:label="fragment_todo"
+        tools:layout="@layout/fragment_todo" >
         <action
-            android:id="@+id/action_createNewTaskFragment_to_mainFragment"
+            android:id="@+id/action_todoFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="listTodoId"
+            app:argType="long"
+            android:defaultValue="2L"/>
     </fragment>
 </navigation>

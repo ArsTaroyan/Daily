@@ -1,6 +1,6 @@
 package am.a_t.dailyapp.domain.module
 
-import am.a_t.dailyapp.utils.ListColor
+import am.a_t.dailyapp.domain.utils.ListColor
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

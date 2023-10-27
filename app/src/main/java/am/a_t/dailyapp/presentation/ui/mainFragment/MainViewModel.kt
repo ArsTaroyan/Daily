@@ -1,98 +1,120 @@
 package am.a_t.dailyapp.presentation.ui.mainFragment
 
+import am.a_t.dailyapp.domain.iteractors.*
+import am.a_t.dailyapp.domain.module.ListTodo
 import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.domain.module.Todo
-import am.a_t.dailyapp.domain.repo.Repository
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: Repository
+    private val addTaskUseCase: AddTaskUseCase,
+    private val addTodoUseCase: AddTodoUseCase,
+    private val addListUseCase: AddListUseCase,
+    private val getAllTasksUseCase: GetAllTasksUseCase,
+    private val getAllTodosUseCase: GetAllTodosUseCase,
+    private val getAllListsUseCase: GetAllListsUseCase,
+    private val removeTaskUseCase: RemoveTaskUseCase,
+    private val removeTodoUseCase: RemoveTodoUseCase,
+    private val removeListUseCase: RemoveListUseCase,
+    private val updateTaskUseCase: UpdateTaskUseCase,
+    private val updateTodoUseCase: UpdateTodoUseCase,
+    private val updateListUseCase: UpdateListUseCase,
+    private val getTaskUseCase: GetTaskUseCase,
+    private val getTodoUseCase: GetTodoUseCase,
+    private val getListUseCase: GetListUseCase
 ) : ViewModel() {
-    val todoAllLiveData = MutableSharedFlow<Flow<List<Todo>>>(1)
+
+    // Tasks
+
     val taskAllLiveData = MutableSharedFlow<Flow<List<Task>>>(1)
 
-    private val _filterTodo: MutableStateFlow<List<Todo?>?> = MutableStateFlow(null)
-    val filterTodo = _filterTodo.asSharedFlow()
-
-    private val _filterTask: MutableStateFlow<List<Task?>?> = MutableStateFlow(null)
-    val filterTask = _filterTask.asSharedFlow()
-
-    fun getAllTodo() {
-        viewModelScope.launch {
-            todoAllLiveData.emit(repository.getAllTodos())
-        }
-    }
+    private val _getTask: MutableStateFlow<Task?> = MutableStateFlow(null)
+    val getTask = _getTask.asSharedFlow()
 
     fun getAllTask() {
         viewModelScope.launch {
-            taskAllLiveData.emit(repository.getAllTasks())
+            taskAllLiveData.emit(getAllTasksUseCase.getAllTasks())
         }
     }
 
-    fun addTodo(todo: Todo) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.addTodo(todo)
-        }
-    }
-
-    fun updateTodo(todo: Todo) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateTodo(todo)
-        }
-    }
-
-    fun removeTodo(todo: Todo) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.removeTodo(todo)
+    fun getTask(id: Long) {
+        viewModelScope.launch {
+            _getTask.emit(getTaskUseCase.getTask(id))
         }
     }
 
     fun removeTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.removeTask(task)
+            removeTaskUseCase.removeTask(task)
         }
     }
 
     fun addTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addTask(task)
+            addTaskUseCase.addTask(task)
         }
     }
 
-    fun getTodoFilter(todos: List<Todo>, date: String?) {
-
-        if (date.isNullOrEmpty()) {
-            _filterTodo.value = todos
-        } else {
-            val newList = mutableListOf<Todo?>()
-            for (i in todos.indices) {
-                if (todos[i].todoDate == date) {
-                    newList.add(todos[i])
-                }
-            }
-
-            if (newList.isEmpty()) {
-                _filterTodo.value = null
-            } else {
-                _filterTodo.value = newList
-            }
-
+    fun updateTask(task: Task) {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateTaskUseCase.updateTask(task)
         }
-
     }
+
+    // Lists
+
+    val listAllLiveData = MutableSharedFlow<Flow<List<ListTodo>>>(1)
+
+    private val _getList: MutableStateFlow<ListTodo?> = MutableStateFlow(null)
+    val getList = _getList.asSharedFlow()
+
+    fun getAllList() {
+        viewModelScope.launch {
+            listAllLiveData.emit(getAllListsUseCase.getAllLists())
+        }
+    }
+
+    fun getList(id: Long) {
+        viewModelScope.launch {
+            _getList.emit(getListUseCase.getList(id))
+        }
+    }
+
+    fun addList(listTodo: ListTodo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            addListUseCase.addList(listTodo)
+        }
+    }
+
+    fun updateList(listTodo: ListTodo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateListUseCase.updateList(listTodo)
+        }
+    }
+
+    fun removeList(listTodo: ListTodo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            removeListUseCase.removeList(listTodo)
+        }
+    }
+
+    // Filters
+
+    private val _filterTask: MutableStateFlow<List<Task?>?> = MutableStateFlow(null)
+    val filterTask = _filterTask.asSharedFlow()
+
+    private val _filterList: MutableStateFlow<List<ListTodo?>?> = MutableStateFlow(null)
+    val filterList = _filterList.asSharedFlow()
 
     fun getTaskFilter(tasks: List<Task>, date: String?) {
-
         if (date.isNullOrEmpty()) {
             _filterTask.value = tasks
         } else {
@@ -109,12 +131,24 @@ class MainViewModel @Inject constructor(
                 _filterTask.value = newList
             }
         }
-
     }
 
-    fun updateTask(task: Task) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateTask(task)
+    fun getListTodoFilter(listTodos: List<ListTodo>, date: String?) {
+        if (date.isNullOrEmpty()) {
+            _filterList.value = listTodos
+        } else {
+            val newList = mutableListOf<ListTodo?>()
+            for (i in listTodos.indices) {
+                if (listTodos[i].listDate == date) {
+                    newList.add(listTodos[i])
+                }
+            }
+            if (newList.isEmpty()) {
+                _filterList.value = null
+            } else {
+                _filterList.value = newList
+            }
         }
     }
+
 }

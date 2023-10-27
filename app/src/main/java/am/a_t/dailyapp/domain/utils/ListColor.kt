@@ -1,4 +1,4 @@
-package am.a_t.dailyapp.utils
+package am.a_t.dailyapp.domain.utils
 
 enum class ListColor {
     RED,

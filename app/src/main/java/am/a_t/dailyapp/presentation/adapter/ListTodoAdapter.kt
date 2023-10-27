@@ -3,29 +3,28 @@ package am.a_t.dailyapp.presentation.adapter
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTodoBinding
-import am.a_t.dailyapp.domain.module.Todo
+import am.a_t.dailyapp.domain.module.ListTodo
+import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import am.a_t.dailyapp.domain.utils.ListColor
-import am.a_t.dailyapp.presentation.ui.todoFragment.TodoViewModel
 import android.app.AlertDialog
 import android.content.Context
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class TodoAdapter(
+class ListTodoAdapter(
     private val context: Context,
     private var inflater: LayoutInflater,
     private var container: ViewGroup?,
-    private val viewModel: TodoViewModel,
-    private val click: (Boolean, Todo?) -> Unit,
+    private val viewModel: MainViewModel,
+    private val click: (Boolean, ListTodo?) -> Unit,
 ) :
-    ListAdapter<Todo, TodoAdapter.MyViewHolder>(DiffUtilItemCallBackTodo()) {
+    ListAdapter<ListTodo, ListTodoAdapter.MyViewHolder>(DiffUtilItemCallBackList()) {
 
     private lateinit var myDialog: DialogDeleteBinding
     private lateinit var alertDialog: AlertDialog
@@ -47,29 +46,28 @@ class TodoAdapter(
 
     inner class MyViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(todo: Todo) {
+        fun bind(list: ListTodo) {
 
             with(binding) {
 
                 tvTitle.isSelected = true
-                tvDate.text = todo.todoDate
-                btnList.visibility = View.GONE
+                tvDate.text = list.listDate
 
-                if (!todo.todoIsChecked) {
-                    tvTitle.text = todo.todoTitle
+                if (!list.listIsChecked) {
+                    tvTitle.text = list.listTitle
                 } else {
-                    val spannableString = SpannableString(todo.todoTitle)
+                    val spannableString = SpannableString(list.listTitle)
                     val strikethroughSpan = StrikethroughSpan()
                     spannableString.setSpan(
                         strikethroughSpan,
                         0,
-                        todo.todoTitle.length,
+                        list.listTitle.length,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                     tvTitle.text = spannableString
                 }
 
-                when (todo.todoColor) {
+                when (list.listColor) {
                     ListColor.RED -> {
                         viewTodo.setBackgroundResource(R.drawable.btn_red)
                     }
@@ -87,15 +85,20 @@ class TodoAdapter(
                     }
                 }
 
-                btnIsChecked.isChecked = todo.todoIsChecked
+                btnIsChecked.isChecked = list.listIsChecked
 
                 btnDelete.setOnClickListener {
-                    removeDialog(inflater, container, todo)
+                    removeDialog(inflater, container, list)
                 }
 
                 btnIsChecked.setOnClickListener {
-                    viewModel.updateTodo(todo.copy(todoIsChecked = btnIsChecked.isChecked))
+                    viewModel.updateList(list.copy(listIsChecked = btnIsChecked.isChecked))
                 }
+
+                btnList.setOnClickListener {
+                    click(false, list)
+                }
+
 
                 btnEdit.setOnClickListener {
                 }
@@ -104,7 +107,7 @@ class TodoAdapter(
         }
     }
 
-    private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, todo: Todo) {
+    private fun removeDialog(inflater: LayoutInflater, container: ViewGroup?, list: ListTodo) {
 
         myDialog = DialogDeleteBinding.inflate(inflater, container, false)
 
@@ -114,7 +117,7 @@ class TodoAdapter(
                 .setView(root)
                 .show()
 
-            when (todo.todoColor) {
+            when (list.listColor) {
                 ListColor.RED -> {
                     btnYesTodo.setBackgroundResource(R.drawable.btn_red)
                     btnNoTodo.setBackgroundResource(R.drawable.btn_red)
@@ -138,7 +141,7 @@ class TodoAdapter(
             }
 
             btnYesTodo.setOnClickListener {
-                viewModel.removeTodo(todo)
+                viewModel.removeList(list)
                 click(true, null)
                 alertDialog.dismiss()
             }
@@ -153,12 +156,12 @@ class TodoAdapter(
     }
 }
 
-class DiffUtilItemCallBackTodo : DiffUtil.ItemCallback<Todo>() {
+class DiffUtilItemCallBackList : DiffUtil.ItemCallback<ListTodo>() {
 
-    override fun areItemsTheSame(oldItem: Todo, newItem: Todo): Boolean =
+    override fun areItemsTheSame(oldItem: ListTodo, newItem: ListTodo): Boolean =
         oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Todo, newItem: Todo): Boolean =
+    override fun areContentsTheSame(oldItem: ListTodo, newItem: ListTodo): Boolean =
         oldItem == newItem
 
 }

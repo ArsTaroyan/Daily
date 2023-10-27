@@ -20,7 +20,7 @@
         tools:background="@drawable/btn_red" />
 
     <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/btnIsDelete"
+        android:id="@+id/btnIsChecked"
         android:layout_width="@dimen/space_30"
         android:layout_height="@dimen/space_30"
         android:layout_marginStart="@dimen/space_15"
@@ -51,7 +51,7 @@
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/btnList"
-        app:layout_constraintStart_toEndOf="@+id/btnIsDelete"
+        app:layout_constraintStart_toEndOf="@+id/btnIsChecked"
         app:layout_constraintTop_toTopOf="@+id/viewTodo"
         tools:text="@string/app_name" />
 
@@ -92,12 +92,24 @@
         android:id="@+id/btnList"
         android:layout_width="@dimen/space_45"
         android:layout_height="@dimen/space_45"
-        android:layout_marginEnd="@dimen/space_15"
         android:elevation="@dimen/space_10"
         android:padding="@dimen/space_5"
         android:src="@drawable/ic_checklist"
+        android:layout_marginEnd="@dimen/space_5"
         app:layout_constraintBottom_toBottomOf="@+id/tvDate"
-        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintEnd_toStartOf="@+id/btnEdit"
         app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnEdit"
+        android:layout_width="@dimen/space_45"
+        android:layout_height="@dimen/space_45"
+        android:elevation="@dimen/space_10"
+        android:padding="@dimen/space_5"
+        android:src="@drawable/ic_edit"
+        android:layout_marginEnd="@dimen/space_5"
+        app:layout_constraintBottom_toBottomOf="@+id/btnList"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintTop_toTopOf="@+id/btnList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

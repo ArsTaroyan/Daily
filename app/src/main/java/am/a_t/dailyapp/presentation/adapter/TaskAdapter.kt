@@ -5,8 +5,8 @@ import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTaskBinding
 import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
-import am.a_t.dailyapp.utils.AlarmReceiver
-import am.a_t.dailyapp.utils.ListColor
+import am.a_t.dailyapp.domain.utils.AlarmReceiver
+import am.a_t.dailyapp.domain.utils.ListColor
 import android.app.AlarmManager
 import android.app.AlertDialog
 import android.app.PendingIntent
@@ -23,9 +23,9 @@ class TaskAdapter(
     private var inflater: LayoutInflater,
     private var container: ViewGroup?,
     private val viewModel: MainViewModel,
-    private val click: (Task) -> Unit
+    private val click: (Boolean, Task?) -> Unit
 ) :
-    ListAdapter<Task, TaskAdapter.MyViewHolder>(DiffUtilItemCallBack()) {
+    ListAdapter<Task, TaskAdapter.MyViewHolder>(DiffUtilItemCallBackTask()) {
 
     private lateinit var myDialog: DialogDeleteBinding
     private lateinit var alertDialog: AlertDialog
@@ -134,7 +134,7 @@ class TaskAdapter(
 
             btnYesTodo.setOnClickListener {
                 viewModel.removeTask(task)
-                click(task)
+                click(true, null)
                 alertDialog.dismiss()
             }
 
@@ -147,14 +147,14 @@ class TaskAdapter(
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
     }
+}
 
-    class DiffUtilItemCallBack : DiffUtil.ItemCallback<Task>() {
+class DiffUtilItemCallBackTask : DiffUtil.ItemCallback<Task>() {
 
-        override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean =
-            oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean =
+        oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean =
-            oldItem == newItem
+    override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean =
+        oldItem == newItem
 
-    }
 }

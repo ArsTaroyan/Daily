@@ -1,4 +1,4 @@
-package am.a_t.dailyapp.utils
+package am.a_t.dailyapp.domain.utils
 
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.presentation.MainActivity
