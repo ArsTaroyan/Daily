@@ -11,6 +11,6 @@ data class ListTodo(
     @ColumnInfo("list_is_checked") var listIsChecked: Boolean,
     @ColumnInfo("list_title") var listTitle: String,
     @ColumnInfo("list_date") var listDate: String,
-    @ColumnInfo("list_color") var listColor: ListColor?,
+    @ColumnInfo("list_color") var listColor: ListColor,
     @ColumnInfo(name = "list_todo") val listTodo: ArrayList<Todo>?
 )

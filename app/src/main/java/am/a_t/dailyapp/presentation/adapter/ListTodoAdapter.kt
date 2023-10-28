@@ -22,7 +22,7 @@ class ListTodoAdapter(
     private var inflater: LayoutInflater,
     private var container: ViewGroup?,
     private val viewModel: MainViewModel,
-    private val click: (Boolean, ListTodo?) -> Unit,
+    private val click: (Boolean, Boolean, ListTodo?) -> Unit,
 ) :
     ListAdapter<ListTodo, ListTodoAdapter.MyViewHolder>(DiffUtilItemCallBackList()) {
 
@@ -96,11 +96,12 @@ class ListTodoAdapter(
                 }
 
                 btnList.setOnClickListener {
-                    click(false, list)
+                    click(false, false, list)
                 }
 
 
                 btnEdit.setOnClickListener {
+                    click(true, false, list)
                 }
 
             }
@@ -142,7 +143,7 @@ class ListTodoAdapter(
 
             btnYesTodo.setOnClickListener {
                 viewModel.removeList(list)
-                click(true, null)
+                click(false, true, null)
                 alertDialog.dismiss()
             }
 

@@ -12,5 +12,5 @@ data class Todo(
     @ColumnInfo("todo_is_checked") var todoIsChecked: Boolean,
     @ColumnInfo("todo_title") var todoTitle: String,
     @ColumnInfo("todo_date") var todoDate: String,
-    @ColumnInfo("todo_color") var todoColor: ListColor?
+    @ColumnInfo("todo_color") var todoColor: ListColor
 )

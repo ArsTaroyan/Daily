@@ -77,6 +77,10 @@ class TaskAdapter(
                     }
                 }
 
+                btnEdit.setOnClickListener {
+                    click(false, task)
+                }
+
             }
 
             if (task.taskIsAlarm) {

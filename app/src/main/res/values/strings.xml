@@ -2,6 +2,9 @@
     <string name="app_name">DailyApp</string>
     <string name="add_new">Add New</string>
     <string name="back">Back</string>
+    <string name="edit_todo">Edit Todo</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="edit_list">Edit List</string>
     <string name="type">%1s</string>
     <string name="create_new_list">Create New List</string>
     <string name="list_name">List Name</string>

@@ -38,7 +38,7 @@
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
-        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintEnd_toEndOf="@+id/glEnd"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -56,7 +56,7 @@
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
         android:translationZ="@dimen/space_15"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
         app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
     <TextView

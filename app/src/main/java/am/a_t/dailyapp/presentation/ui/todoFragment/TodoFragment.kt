@@ -41,6 +41,7 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var todoAdapter: TodoAdapter
     private lateinit var alertDialog: AlertDialog
     private lateinit var myDialogTodo: DialogNewListBinding
+    private var isEdit = false
     private var isCreate = false
     private var isFilter = false
     private var todoList = emptyList<Todo>()
@@ -90,7 +91,8 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 if (isDelete) {
                     createCustomSnackBar(R.layout.snackbar_success_delete)
                 } else {
-
+                    isEdit = true
+                    initDialogListTodo(inflater, container, it)
                 }
             }
         binding.rvList.layoutManager = LinearLayoutManager(requireContext())
@@ -122,8 +124,8 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         }
     }
 
-    private fun getCustomDateString(pattern: String): String {
-        val formatter = DateTimeFormatter.ofPattern(pattern)
+    private fun getCustomDateString(): String {
+        val formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy")
         val currentDateTime = LocalDateTime.now()
         return currentDateTime.format(formatter)
     }
@@ -145,7 +147,7 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
 
             btnAdd.setOnClickListener {
-                initDialogListTodo(inflater, container)
+                initDialogListTodo(inflater, container, null)
             }
         }
     }
@@ -190,14 +192,40 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     // Dialog ListTodos
 
-    private fun initDialogListTodo(inflater: LayoutInflater, container: ViewGroup?) {
+    private fun initDialogListTodo(inflater: LayoutInflater, container: ViewGroup?, todo: Todo?) {
         myDialogTodo = DialogNewListBinding.inflate(inflater, container, false)
         with(myDialogTodo) {
             alertDialog = AlertDialog.Builder(requireContext())
                 .setView(root)
                 .show()
 
-            dialogTodoButtonClickListeners(myDialogTodo, alertDialog)
+            if (todo != null) {
+                edTodoName.setText(todo.todoTitle)
+                itemColor = todo.todoColor
+
+                when(itemColor) {
+                    ListColor.RED -> {
+                        btnColorRedList.isChecked = true
+                        btnCreateList.setBackgroundResource(R.drawable.btn_red)
+                    }
+                    ListColor.PURPLE -> {
+                        btnColorPurpleList.isChecked = true
+                        btnCreateList.setBackgroundResource(R.drawable.btn_purple)
+                    }
+                    ListColor.BLUE -> {
+                        btnColorBlueList.isChecked = true
+                        btnCreateList.setBackgroundResource(R.drawable.btn_blue)
+                    }
+                    ListColor.ORANGE -> {
+                        btnColorOrangeList.isChecked = true
+                        btnCreateList.setBackgroundResource(R.drawable.btn_orange)
+                    }
+                }
+
+                btnCreateList.setText(R.string.edit_todo)
+            }
+
+            dialogTodoButtonClickListeners(myDialogTodo, alertDialog, todo)
 
             alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         }
@@ -205,9 +233,15 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private fun dialogTodoButtonClickListeners(
         myDialog: DialogNewListBinding,
-        alertDialog: AlertDialog
+        alertDialog: AlertDialog,
+        todo: Todo?
     ) {
         with(myDialog) {
+
+            if (todo == null) {
+                itemColor = ListColor.RED
+                btnColorRedList.isChecked = true
+            }
 
             btnColorRedList.setOnClickListener {
                 itemColor = ListColor.RED
@@ -230,7 +264,11 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
 
             btnCreateList.setOnClickListener {
-                addTodo()
+                if (!isEdit) {
+                    addTodo()
+                } else {
+                    updateTodo(todo)
+                }
 
                 if (isCreate) {
                     createCustomSnackBar(R.layout.snackbar_warning)
@@ -254,7 +292,7 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                         args.listTodoId,
                         false,
                         edTodoName.text.toString(),
-                        getCustomDateString("MM-dd-yyyy"),
+                        getCustomDateString(),
                         itemColor
                     )
                 )
@@ -263,6 +301,31 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             } else {
                 true
             }
+            alertDialog.dismiss()
+        }
+    }
+
+    private fun updateTodo(todo: Todo?) {
+        with(myDialogTodo) {
+            isCreate = if (edTodoName.text.toString().isNotEmpty()) {
+                todo?.copy(
+                    list_id = args.listTodoId,
+                    todoDate = getCustomDateString(),
+                    todoTitle = edTodoName.text.toString(),
+                    todoColor = itemColor
+                )?.let {
+                    mViewModel.updateTodo(
+                        it
+                    )
+                }
+                cancelFilter()
+                false
+            } else {
+                true
+            }
+
+            isEdit = false
+
             alertDialog.dismiss()
         }
     }

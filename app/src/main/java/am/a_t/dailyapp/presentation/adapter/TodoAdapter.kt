@@ -82,9 +82,6 @@ class TodoAdapter(
                     ListColor.PURPLE -> {
                         viewTodo.setBackgroundResource(R.drawable.btn_purple)
                     }
-                    else -> {
-                        viewTodo.setBackgroundResource(R.drawable.btn_red)
-                    }
                 }
 
                 btnIsChecked.isChecked = todo.todoIsChecked
@@ -98,6 +95,7 @@ class TodoAdapter(
                 }
 
                 btnEdit.setOnClickListener {
+                    click(false, todo)
                 }
 
             }
