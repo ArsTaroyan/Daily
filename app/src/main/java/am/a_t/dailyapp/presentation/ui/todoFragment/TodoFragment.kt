@@ -43,6 +43,7 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var myDialogTodo: DialogNewListBinding
     private var isEdit = false
     private var isCreate = false
+    private var isUpdate = false
     private var isFilter = false
     private var todoList = emptyList<Todo>()
     private var filterFromDate: String? = null
@@ -195,9 +196,10 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun initDialogListTodo(inflater: LayoutInflater, container: ViewGroup?, todo: Todo?) {
         myDialogTodo = DialogNewListBinding.inflate(inflater, container, false)
         with(myDialogTodo) {
-            alertDialog = AlertDialog.Builder(requireContext())
-                .setView(root)
-                .show()
+            alertDialog = AlertDialog.Builder(requireContext()).apply {
+                setView(root)
+                setCancelable(false)
+            }.show()
 
             if (todo != null) {
                 edTodoName.setText(todo.todoTitle)
@@ -270,10 +272,16 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                     updateTodo(todo)
                 }
 
-                if (isCreate) {
-                    createCustomSnackBar(R.layout.snackbar_warning)
+                if (isUpdate) {
+                    createCustomSnackBar(R.layout.snackbar_success_edit)
+                    isUpdate = false
                 } else {
-                    createCustomSnackBar(R.layout.snackbar_success)
+                    if (isCreate) {
+                        createCustomSnackBar(R.layout.snackbar_warning)
+                        isCreate = false
+                    } else {
+                        createCustomSnackBar(R.layout.snackbar_success)
+                    }
                 }
             }
 
@@ -307,7 +315,7 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private fun updateTodo(todo: Todo?) {
         with(myDialogTodo) {
-            isCreate = if (edTodoName.text.toString().isNotEmpty()) {
+            isUpdate = if (edTodoName.text.toString().isNotEmpty()) {
                 todo?.copy(
                     list_id = args.listTodoId,
                     todoDate = getCustomDateString(),
@@ -319,9 +327,9 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                     )
                 }
                 cancelFilter()
-                false
-            } else {
                 true
+            } else {
+                false
             }
 
             isEdit = false

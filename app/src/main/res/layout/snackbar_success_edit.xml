@@ -12,7 +12,7 @@
         android:padding="@dimen/space_20"
         android:shadowColor="@color/white"
         android:shadowRadius="50"
-        android:text="@string/you_can_t_choose_time_in_the_past"
+        android:text="@string/success_update"
         android:textColor="@color/white"
         android:textSize="@dimen/size_20"
         app:layout_constraintBottom_toBottomOf="parent"

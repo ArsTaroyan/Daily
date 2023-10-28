@@ -4,9 +4,9 @@ import am.a_t.dailyapp.R
 import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTaskBinding
 import am.a_t.dailyapp.domain.module.Task
-import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import am.a_t.dailyapp.domain.utils.AlarmReceiver
 import am.a_t.dailyapp.domain.utils.ListColor
+import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import android.app.AlarmManager
 import android.app.AlertDialog
 import android.app.PendingIntent
@@ -26,7 +26,6 @@ class TaskAdapter(
     private val click: (Boolean, Task?) -> Unit
 ) :
     ListAdapter<Task, TaskAdapter.MyViewHolder>(DiffUtilItemCallBackTask()) {
-
     private lateinit var myDialog: DialogDeleteBinding
     private lateinit var alertDialog: AlertDialog
     private var alarmManager: AlarmManager? = null
@@ -96,7 +95,12 @@ class TaskAdapter(
             intent.putExtra("title", task.taskTitle)
             intent.putExtra("description", task.taskDescription)
             intent.putExtra("id", task.id)
-            PendingIntent.getBroadcast(context, task.id.toInt(), intent, PendingIntent.FLAG_IMMUTABLE)
+            PendingIntent.getBroadcast(
+                context,
+                task.id.toInt(),
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
         }
         task.taskCalendar?.timeInMillis?.let {
             alarmManager?.setExact(
