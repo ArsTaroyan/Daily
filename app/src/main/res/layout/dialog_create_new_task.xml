@@ -98,6 +98,110 @@
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/tvTaskDescriptionTitle" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnStopThirtyMinute"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_60"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:shadowColor="@color/white"
+        android:shadowRadius="70"
+        android:text="@string/_30_m"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/btnStopTwentyMinute"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/edDescriptionName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnStopTwentyMinute"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_60"
+        android:layout_marginHorizontal="@dimen/space_20"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:shadowColor="@color/white"
+        android:shadowRadius="70"
+        android:text="@string/_20_m"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStopThirtyMinute"
+        app:layout_constraintEnd_toStartOf="@id/btnStopTenMinute"
+        app:layout_constraintStart_toEndOf="@+id/btnStopThirtyMinute"
+        app:layout_constraintTop_toTopOf="@+id/btnStopThirtyMinute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnStopTenMinute"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_60"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:shadowColor="@color/white"
+        android:shadowRadius="70"
+        android:text="@string/_10_m"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStopTwentyMinute"
+        app:layout_constraintEnd_toStartOf="@+id/glEnd"
+        app:layout_constraintStart_toEndOf="@+id/btnStopTwentyMinute"
+        app:layout_constraintTop_toTopOf="@+id/btnStopTwentyMinute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnDelete"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_60"
+        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginEnd="@dimen/space_25"
+        android:layout_marginBottom="@dimen/space_10"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:shadowColor="@color/white"
+        android:shadowRadius="70"
+        android:text="@string/delete"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnEdit"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/btnStopThirtyMinute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnEdit"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_60"
+        android:background="@drawable/btn_red"
+        android:elevation="@dimen/space_5"
+        android:gravity="center"
+        android:shadowColor="@color/white"
+        android:shadowRadius="70"
+        android:text="@string/edit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:translationZ="@dimen/space_15"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDelete"
+        app:layout_constraintEnd_toStartOf="@+id/glEnd"
+        app:layout_constraintStart_toEndOf="@+id/btnDelete"
+        app:layout_constraintTop_toTopOf="@+id/btnDelete" />
+
     <View
         android:id="@+id/viewSecondLine"
         android:layout_width="@dimen/space_0"
@@ -220,7 +324,7 @@
             android:button="@android:color/transparent"
             android:checked="true"
             android:elevation="@dimen/space_5"
-            android:translationZ="@dimen/space_15" />
+            android:translationZ="@dimen/space_10" />
 
         <RadioButton
             android:id="@+id/btnColorPurpleTask"
@@ -230,7 +334,7 @@
             android:background="@drawable/radio_purple"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
-            android:translationZ="@dimen/space_15" />
+            android:translationZ="@dimen/space_10" />
 
         <RadioButton
             android:id="@+id/btnColorBlueTask"
@@ -240,7 +344,7 @@
             android:background="@drawable/radio_blue"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
-            android:translationZ="@dimen/space_15" />
+            android:translationZ="@dimen/space_10" />
 
         <RadioButton
             android:id="@+id/btnColorOrangeTask"
@@ -250,7 +354,7 @@
             android:background="@drawable/radio_orange"
             android:button="@android:color/transparent"
             android:elevation="@dimen/space_5"
-            android:translationZ="@dimen/space_15" />
+            android:translationZ="@dimen/space_10" />
 
     </RadioGroup>
 

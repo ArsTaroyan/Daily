@@ -1,11 +1,15 @@
 package am.a_t.dailyapp.presentation.adapter
 
 import am.a_t.dailyapp.R
+import am.a_t.dailyapp.data.preferences.Preference
+import am.a_t.dailyapp.data.preferences.Preference.Companion.AL_INTENT
+import am.a_t.dailyapp.data.preferences.Preference.Companion.AL_MANAGER
 import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTaskBinding
 import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.domain.utils.AlarmReceiver
 import am.a_t.dailyapp.domain.utils.ListColor
+import am.a_t.dailyapp.extension.convertGsonToString
 import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import android.app.AlarmManager
 import android.app.AlertDialog
@@ -17,6 +21,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class TaskAdapter(
     private val context: Context,
@@ -26,6 +32,8 @@ class TaskAdapter(
     private val click: (Boolean, Task?) -> Unit
 ) :
     ListAdapter<Task, TaskAdapter.MyViewHolder>(DiffUtilItemCallBackTask()) {
+    private val preference: Preference by lazy { Preference(context) }
+
     private lateinit var myDialog: DialogDeleteBinding
     private lateinit var alertDialog: AlertDialog
     private var alarmManager: AlarmManager? = null
@@ -84,7 +92,15 @@ class TaskAdapter(
 
             if (task.taskIsAlarm) {
                 initAlarm(task)
+                saveAlarm()
                 viewModel.updateTask(task.copy(taskIsAlarm = false))
+            }
+        }
+
+        private fun saveAlarm() {
+            GlobalScope.launch {
+                preference.saveType(AL_MANAGER, alarmManager.convertGsonToString())
+                preference.saveType(AL_INTENT, alarmIntent.convertGsonToString())
             }
         }
     }
@@ -95,6 +111,7 @@ class TaskAdapter(
             intent.putExtra("title", task.taskTitle)
             intent.putExtra("description", task.taskDescription)
             intent.putExtra("id", task.id)
+            intent.putExtra("task", task.convertGsonToString())
             PendingIntent.getBroadcast(
                 context,
                 task.id.toInt(),
@@ -143,6 +160,7 @@ class TaskAdapter(
             btnYesTodo.setOnClickListener {
                 viewModel.removeTask(task)
                 click(true, null)
+                alarmManager?.cancel(alarmIntent)
                 alertDialog.dismiss()
             }
 

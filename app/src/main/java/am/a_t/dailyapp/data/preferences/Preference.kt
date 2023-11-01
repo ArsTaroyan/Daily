@@ -27,6 +27,9 @@ class Preference(context: Context) {
 
     companion object {
         const val TYPE = "type"
+        const val TYPE_ALARM = "type_alarm"
+        const val AL_MANAGER = "al_manager"
+        const val AL_INTENT = "al_intent"
     }
 
 }
