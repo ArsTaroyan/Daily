@@ -2,8 +2,6 @@ package am.a_t.dailyapp.presentation.adapter
 
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.data.preferences.Preference
-import am.a_t.dailyapp.data.preferences.Preference.Companion.AL_INTENT
-import am.a_t.dailyapp.data.preferences.Preference.Companion.AL_MANAGER
 import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTaskBinding
 import am.a_t.dailyapp.domain.module.Task
@@ -21,8 +19,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class TaskAdapter(
     private val context: Context,
@@ -82,6 +78,9 @@ class TaskAdapter(
                     ListColor.PURPLE -> {
                         viewTask.setBackgroundResource(R.drawable.btn_purple)
                     }
+                    ListColor.GREY -> {
+                        viewTask.setBackgroundResource(R.drawable.btn_grey)
+                    }
                 }
 
                 btnEdit.setOnClickListener {
@@ -92,15 +91,7 @@ class TaskAdapter(
 
             if (task.taskIsAlarm) {
                 initAlarm(task)
-                saveAlarm()
                 viewModel.updateTask(task.copy(taskIsAlarm = false))
-            }
-        }
-
-        private fun saveAlarm() {
-            GlobalScope.launch {
-                preference.saveType(AL_MANAGER, alarmManager.convertGsonToString())
-                preference.saveType(AL_INTENT, alarmIntent.convertGsonToString())
             }
         }
     }
@@ -154,6 +145,10 @@ class TaskAdapter(
                 ListColor.PURPLE -> {
                     btnYesTodo.setBackgroundResource(R.drawable.btn_purple)
                     btnNoTodo.setBackgroundResource(R.drawable.btn_purple)
+                }
+                ListColor.GREY -> {
+                    btnYesTodo.setBackgroundResource(R.drawable.btn_grey)
+                    btnNoTodo.setBackgroundResource(R.drawable.btn_grey)
                 }
             }
 

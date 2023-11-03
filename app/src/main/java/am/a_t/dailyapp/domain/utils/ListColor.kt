@@ -4,5 +4,6 @@ enum class ListColor {
     RED,
     PURPLE,
     BLUE,
-    ORANGE
+    ORANGE,
+    GREY
 }

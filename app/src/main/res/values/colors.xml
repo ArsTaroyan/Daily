@@ -16,6 +16,9 @@
     <color name="red_start">#FE736C</color>
     <color name="red_end">#FF6072</color>
     <color name="red_center">#FF6570</color>
+    <color name="grey_start">#8F8F8F</color>
+    <color name="grey_end">#656565</color>
+    <color name="grey_center">#787878</color>
     <color name="view_back">#3EFFFFFF</color>
     <color name="view_back_btn">#9AFFFFFF</color>
     <color name="dark_grey">#2d3742</color>

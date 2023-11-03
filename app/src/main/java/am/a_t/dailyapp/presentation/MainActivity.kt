@@ -2,14 +2,10 @@ package am.a_t.dailyapp.presentation
 
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.data.preferences.Preference
-import am.a_t.dailyapp.data.preferences.Preference.Companion.TYPE_ALARM
-import am.a_t.dailyapp.domain.utils.AlarmReceiver
 import am.a_t.dailyapp.domain.utils.ListType
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint

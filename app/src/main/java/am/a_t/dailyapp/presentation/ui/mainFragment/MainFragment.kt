@@ -2,8 +2,6 @@ package am.a_t.dailyapp.presentation.ui.mainFragment
 
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.data.preferences.Preference
-import am.a_t.dailyapp.data.preferences.Preference.Companion.AL_INTENT
-import am.a_t.dailyapp.data.preferences.Preference.Companion.AL_MANAGER
 import am.a_t.dailyapp.data.preferences.Preference.Companion.TYPE
 import am.a_t.dailyapp.data.preferences.Preference.Companion.TYPE_ALARM
 import am.a_t.dailyapp.databinding.DialogCreateNewTaskBinding
@@ -11,12 +9,16 @@ import am.a_t.dailyapp.databinding.DialogNewListBinding
 import am.a_t.dailyapp.databinding.FragmentMainBinding
 import am.a_t.dailyapp.domain.module.ListTodo
 import am.a_t.dailyapp.domain.module.Task
+import am.a_t.dailyapp.domain.utils.AlarmReceiver
 import am.a_t.dailyapp.domain.utils.ListColor
 import am.a_t.dailyapp.domain.utils.ListType
+import am.a_t.dailyapp.extension.convertGsonToString
 import am.a_t.dailyapp.extension.convertStringToGson
 import am.a_t.dailyapp.presentation.adapter.ListTodoAdapter
 import am.a_t.dailyapp.presentation.adapter.TaskAdapter
 import android.app.*
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.SystemClock
@@ -47,15 +49,15 @@ import java.util.*
 class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
 
-    private lateinit var binding: FragmentMainBinding
-    private val viewModel: MainViewModel by viewModels()
-    private val preference: Preference by lazy { Preference(requireContext()) }
     private lateinit var snackBar: Snackbar
     private lateinit var alertDialog: AlertDialog
-    private lateinit var listTodoAdapter: ListTodoAdapter
     private lateinit var taskAdapter: TaskAdapter
+    private lateinit var binding: FragmentMainBinding
+    private val viewModel: MainViewModel by viewModels()
+    private lateinit var listTodoAdapter: ListTodoAdapter
     private lateinit var myDialogTodo: DialogNewListBinding
     private lateinit var myDialogTask: DialogCreateNewTaskBinding
+    private val preference: Preference by lazy { Preference(requireContext()) }
     private var isEdit = false
     private var isCreate = false
     private var isUpdate = false
@@ -77,6 +79,8 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     private var mYear = getCustomDateString("yyyy").toInt()
     private val formatterTime = SimpleDateFormat("HH:mm", Locale.US)
     private val formatterDate = SimpleDateFormat("MM-dd-yyyy", Locale.US)
+    private var alarmManager: AlarmManager? = null
+    private lateinit var alarmIntent: PendingIntent
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -349,7 +353,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 setCancelable(false)
             }.show()
 
-            readTaskAlarm(myDialogTask)
+            readTaskAlarm(myDialogTask, task)
 
             if (task != null) {
                 edTaskName.setText(task.taskTitle)
@@ -388,19 +392,19 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         }
     }
 
-    private fun readTaskAlarm(myDialogTask: DialogCreateNewTaskBinding) {
+    private fun readTaskAlarm(myDialogTask: DialogCreateNewTaskBinding, task: Task?) {
         lifecycleScope.launch {
             if (preference.readType(TYPE_ALARM)?.isNotEmpty() == true) {
                 taskDialogGone(myDialogTask)
                 taskDialogVisibility(myDialogTask)
-                setBtnColors(myDialogTask)
+                setBtnColors(myDialogTask, task)
             }
         }
     }
 
-    private fun setBtnColors(myDialogTask: DialogCreateNewTaskBinding) {
+    private fun setBtnColors(myDialogTask: DialogCreateNewTaskBinding, task: Task?) {
         with(myDialogTask) {
-            when (itemColor) {
+            when (task?.taskColor) {
                 ListColor.RED -> {
                     btnStopThirtyMinute.setBackgroundResource(R.drawable.btn_red)
                     btnStopTwentyMinute.setBackgroundResource(R.drawable.btn_red)
@@ -428,6 +432,13 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                     btnStopTenMinute.setBackgroundResource(R.drawable.btn_orange)
                     btnDelete.setBackgroundResource(R.drawable.btn_orange)
                     btnEdit.setBackgroundResource(R.drawable.btn_orange)
+                }
+                else -> {
+                    btnStopThirtyMinute.setBackgroundResource(R.drawable.btn_grey)
+                    btnStopTwentyMinute.setBackgroundResource(R.drawable.btn_grey)
+                    btnStopTenMinute.setBackgroundResource(R.drawable.btn_grey)
+                    btnDelete.setBackgroundResource(R.drawable.btn_grey)
+                    btnEdit.setBackgroundResource(R.drawable.btn_grey)
                 }
             }
         }
@@ -492,6 +503,8 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     ) {
         with(myDialog) {
 
+            getAlarm(task)
+
             if (task == null) {
                 itemColor = ListColor.RED
                 btnColorRedTask.isChecked = true
@@ -499,9 +512,10 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
             btnEdit.setOnClickListener {
                 isEdit = true
+                isDateOrTime = false
                 taskDialogGoneVisibility(myDialogTask)
                 taskDialogVisibilityGone(myDialogTask)
-                removeTaskCoroutines()
+                removeTaskCoroutines(task)
             }
 
             btnDelete.setOnClickListener {
@@ -510,17 +524,17 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             }
 
             btnStopThirtyMinute.setOnClickListener {
-                getAlarmForThirty()
+                getAlarmForThirty(task)
                 alertDialog.dismiss()
             }
 
             btnStopTwentyMinute.setOnClickListener {
-                getAlarmForTwenty()
+                getAlarmForTwenty(task)
                 alertDialog.dismiss()
             }
 
             btnStopTenMinute.setOnClickListener {
-                getAlarmForTen()
+                getAlarmForTen(task)
                 alertDialog.dismiss()
             }
 
@@ -551,7 +565,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                     if (!isEdit) {
                         addTask(myDialogTask, itemColor)
                     } else {
-                        updateTask(myDialogTask, itemColor, task)
+                        updateTask(myDialogTask, itemColor, task, true)
                     }
 
                     if (isUpdate) {
@@ -580,63 +594,72 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             }
 
             btnBackNewTask.setOnClickListener {
-                removeTaskCoroutines()
+                removeTaskCoroutines(task)
                 alertDialog.dismiss()
             }
         }
     }
 
-    private fun getAlarmForTen() {
-//        lifecycleScope.launch {
-//            preference.readType(AL_MANAGER)?.convertStringToGson<AlarmManager>()?.set(
-//                AlarmManager.RTC_WAKEUP,
-//                SystemClock.elapsedRealtime() + 60 * 1000,
-//                preference.readType(AL_INTENT)?.convertStringToGson()
-//            )
-//
-//            removeTask()
-//        }
+    private fun getAlarm(task: Task?) {
+        alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->
+            intent.putExtra("title", task?.taskTitle)
+            intent.putExtra("description", task?.taskDescription)
+            intent.putExtra("id", task?.id)
+            intent.putExtra("task", task.convertGsonToString())
+            PendingIntent.getBroadcast(
+                context,
+                task?.id?.toInt() ?: -1,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        }
     }
 
-    private fun getAlarmForTwenty() {
-//        lifecycleScope.launch {
-//            preference.readType(AL_MANAGER)?.convertStringToGson<AlarmManager>()?.set(
-//                AlarmManager.RTC_WAKEUP,
-//                SystemClock.elapsedRealtime() + 60 * 1000,
-//                preference.readType(AL_INTENT)?.convertStringToGson()
-//            )
-//
-//            removeTask()
-//        }
+    private fun getAlarmForTen(task: Task?) {
+        alarmManager?.set(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            SystemClock.elapsedRealtime() + 60 * 1000 * 10,
+            alarmIntent
+        )
+        removeTaskCoroutines(task)
     }
 
-    private fun getAlarmForThirty() {
-//        lifecycleScope.launch {
-//            preference.readType(AL_MANAGER)?.convertStringToGson<AlarmManager>()?.set(
-//                AlarmManager.RTC_WAKEUP,
-//                SystemClock.elapsedRealtime() + 60 * 1000,
-//                preference.readType(AL_INTENT)?.convertStringToGson()
-//            )
-//
-//            removeTask()
-//        }
+    private fun getAlarmForTwenty(task: Task?) {
+        alarmManager?.set(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            SystemClock.elapsedRealtime() + 60 * 1000 * 20,
+            alarmIntent
+        )
+        removeTaskCoroutines(task)
+    }
+
+    private fun getAlarmForThirty(task: Task?) {
+        alarmManager?.set(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            SystemClock.elapsedRealtime() + 60 * 1000 * 30,
+            alarmIntent
+        )
+        removeTaskCoroutines(task)
     }
 
     private suspend fun removeTask() {
         preference.removeType(TYPE_ALARM)
-        preference.removeType(AL_MANAGER)
-        preference.removeType(AL_INTENT)
     }
 
-    private fun removeTaskCoroutines() {
+    private fun removeTaskCoroutines(task: Task?) {
         lifecycleScope.launch {
+            if (task?.taskColor != ListColor.GREY && !isEdit) {
+                updateTask(myDialogTask, ListColor.GREY, task, false)
+            }
             removeTask()
         }
     }
 
     private fun deleteTask() {
         lifecycleScope.launch {
-            preference.readType(TYPE_ALARM)?.let { task -> viewModel.removeTask(task.convertStringToGson()) }
+            preference.readType(TYPE_ALARM)
+                ?.let { task -> viewModel.removeTask(task.convertStringToGson()) }
             removeTask()
         }
     }
@@ -670,23 +693,34 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     private fun updateTask(
         myDialogTask: DialogCreateNewTaskBinding,
         itemColor: ListColor,
-        task: Task?
+        task: Task?,
+        isAlarm: Boolean
     ) {
         with(myDialogTask) {
-            isUpdate = if (edTaskName.text.toString().isNotEmpty()
-            ) {
-                task?.copy(
-                    taskEndTime = tvTaskTime.text.toString(),
-                    taskCalendar = calendar,
-                    taskIsAlarm = true,
-                    taskTitle = edTaskName.text.toString(),
-                    taskDate = tvTaskDate.text.toString(),
-                    taskColor = itemColor,
-                    taskDescription = edDescriptionName.text.toString()
-                )?.let {
-                    viewModel.updateTask(
-                        it
-                    )
+            isUpdate = if (edTaskName.text.toString().isNotEmpty()) {
+                if (isAlarm) {
+                    task?.copy(
+                        taskEndTime = tvTaskTime.text.toString(),
+                        taskCalendar = calendar,
+                        taskIsAlarm = isAlarm,
+                        taskTitle = edTaskName.text.toString(),
+                        taskDate = tvTaskDate.text.toString(),
+                        taskColor = itemColor,
+                        taskDescription = edDescriptionName.text.toString()
+                    )?.let {
+                        viewModel.updateTask(
+                            it
+                        )
+                    }
+                } else {
+                    task?.copy(
+                        taskIsAlarm = isAlarm,
+                        taskColor = itemColor
+                    )?.let {
+                        viewModel.updateTask(
+                            it
+                        )
+                    }
                 }
                 cancelFilter()
                 true
