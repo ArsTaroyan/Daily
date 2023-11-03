@@ -433,13 +433,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                     btnDelete.setBackgroundResource(R.drawable.btn_orange)
                     btnEdit.setBackgroundResource(R.drawable.btn_orange)
                 }
-                else -> {
-                    btnStopThirtyMinute.setBackgroundResource(R.drawable.btn_grey)
-                    btnStopTwentyMinute.setBackgroundResource(R.drawable.btn_grey)
-                    btnStopTenMinute.setBackgroundResource(R.drawable.btn_grey)
-                    btnDelete.setBackgroundResource(R.drawable.btn_grey)
-                    btnEdit.setBackgroundResource(R.drawable.btn_grey)
-                }
             }
         }
     }
