@@ -496,16 +496,18 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     ) {
         with(myDialog) {
 
-            getAlarm(task)
 
             if (task == null) {
                 itemColor = ListColor.RED
                 btnColorRedTask.isChecked = true
             }
 
+            getAlarm(task)
+
             btnEdit.setOnClickListener {
                 isEdit = true
                 isDateOrTime = false
+                getDateAndTimeNow()
                 taskDialogGoneVisibility(myDialogTask)
                 taskDialogVisibilityGone(myDialogTask)
                 removeTaskCoroutines(task)

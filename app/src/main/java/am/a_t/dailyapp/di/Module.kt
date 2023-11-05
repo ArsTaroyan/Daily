@@ -2,14 +2,12 @@ package am.a_t.dailyapp.di
 
 import am.a_t.dailyapp.data.repo.RepositoryImpl
 import am.a_t.dailyapp.data.source.dao.ListTodoDao
-import am.a_t.dailyapp.data.source.database.ListDatabase
 import am.a_t.dailyapp.data.source.dao.TaskDao
 import am.a_t.dailyapp.data.source.dao.TodoDao
+import am.a_t.dailyapp.data.source.database.ListDatabase
 import am.a_t.dailyapp.domain.iteractors.*
 import am.a_t.dailyapp.domain.repo.Repository
 import am.a_t.dailyapp.domain.use_case.*
-import am.a_t.dailyapp.domain.utils.AlarmReceiver
-import android.content.BroadcastReceiver
 import android.content.Context
 import androidx.room.Room
 import dagger.Module
@@ -18,7 +16,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
-import kotlin.coroutines.CoroutineContext
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -31,7 +28,11 @@ class Module {
     @Provides
     @Singleton
     fun providesRepository(context: Context): Repository =
-        RepositoryImpl(getDatabase(context).todoDao(), getDatabase(context).taskDao(), getDatabase(context).listTodoDao())
+        RepositoryImpl(
+            getDatabase(context).todoDao(),
+            getDatabase(context).taskDao(),
+            getDatabase(context).listTodoDao()
+        )
 
     @Volatile
     private var mINSTANCE: ListDatabase? = null

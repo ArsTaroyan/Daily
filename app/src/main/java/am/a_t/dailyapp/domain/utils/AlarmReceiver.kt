@@ -3,17 +3,15 @@ package am.a_t.dailyapp.domain.utils
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.data.preferences.Preference
 import am.a_t.dailyapp.data.preferences.Preference.Companion.TYPE_ALARM
-import am.a_t.dailyapp.domain.module.Task
-import am.a_t.dailyapp.extension.convertStringToGson
 import am.a_t.dailyapp.presentation.MainActivity
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
