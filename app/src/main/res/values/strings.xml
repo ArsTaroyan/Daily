@@ -38,7 +38,7 @@
     <string name="success_update">Successfully Update</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
-    <string name="_30_m">30 M</string>
-    <string name="_20_m">20 M</string>
-    <string name="_10_m">10 M</string>
+    <string name="_30_m">30 min</string>
+    <string name="_20_m">20 min</string>
+    <string name="_10_m">10 min</string>
 </resources>
