@@ -82,12 +82,6 @@ class Module {
         return UpdateTodoUseCaseImpl(repository)
     }
 
-    @Provides
-    @Singleton
-    fun providesGetTodoUseCase(repository: Repository): GetTodoUseCase {
-        return GetTodoUseCaseImpl(repository)
-    }
-
 
     // Tasks
 
@@ -117,12 +111,6 @@ class Module {
     @Singleton
     fun providesUpdateTaskUseCase(repository: Repository): UpdateTaskUseCase {
         return UpdateTaskUseCaseImpl(repository)
-    }
-
-    @Provides
-    @Singleton
-    fun providesGetTaskUseCase(repository: Repository): GetTaskUseCase {
-        return GetTaskUseCaseImpl(repository)
     }
 
     // Lists

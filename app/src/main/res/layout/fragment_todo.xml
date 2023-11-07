@@ -8,21 +8,6 @@
     tools:context=".presentation.ui.todoFragment.TodoFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvEmpty"
-        android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_0"
-        android:gravity="center"
-        android:text="@string/empty_list"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_35"
-        android:textStyle="bold|italic"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/viewBack"
-        app:layout_constraintEnd_toEndOf="@+id/rvList"
-        app:layout_constraintStart_toStartOf="@+id/rvList"
-        app:layout_constraintTop_toTopOf="@+id/rvList" />
-
-    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnBack"
         android:layout_width="@dimen/space_120"
         android:layout_height="wrap_content"
@@ -106,11 +91,30 @@
         app:layout_constraintEnd_toEndOf="@+id/tvFilterDate"
         app:layout_constraintTop_toTopOf="@+id/tvFilterDate" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvListName"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_0"
+        android:gravity="center|start"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="55"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:layout_marginVertical="@dimen/space_10"
+        app:layout_constraintBottom_toTopOf="@+id/viewBack"
+        app:layout_constraintEnd_toStartOf="@+id/glEnd"
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/tvFilterDate"
+        tools:text="@string/add_new"/>
+
     <View
         android:id="@+id/viewBack"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_0"
-        android:layout_marginTop="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_80"
         android:background="@drawable/back_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/viewBack"
-        tools:listitem="@layout/item_task" />
+        tools:listitem="@layout/item_todo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glStart"

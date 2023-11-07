@@ -89,75 +89,14 @@
         android:layout_marginTop="@dimen/space_10"
         android:background="@null"
         android:ellipsize="end"
-        android:hint="@string/your_description"
-        android:inputType="textCapSentences"
-        android:maxLines="3"
+        android:hint="@string/design_app"
+        android:maxLines="4"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_18"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/tvTaskDescriptionTitle" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnStopThirtyMinute"
-        android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_60"
-        android:layout_marginTop="@dimen/space_20"
-        android:background="@drawable/btn_red"
-        android:elevation="@dimen/space_5"
-        android:gravity="center"
-        android:shadowColor="@color/white"
-        android:shadowRadius="70"
-        android:text="@string/_30_m"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_20"
-        android:textStyle="bold"
-        android:translationZ="@dimen/space_15"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@id/btnStopTwentyMinute"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/edDescriptionName" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnStopTwentyMinute"
-        android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_60"
-        android:layout_marginHorizontal="@dimen/space_20"
-        android:background="@drawable/btn_red"
-        android:elevation="@dimen/space_5"
-        android:gravity="center"
-        android:shadowColor="@color/white"
-        android:shadowRadius="70"
-        android:text="@string/_20_m"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_20"
-        android:textStyle="bold"
-        android:translationZ="@dimen/space_15"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/btnStopThirtyMinute"
-        app:layout_constraintEnd_toStartOf="@id/btnStopTenMinute"
-        app:layout_constraintStart_toEndOf="@+id/btnStopThirtyMinute"
-        app:layout_constraintTop_toTopOf="@+id/btnStopThirtyMinute" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnStopTenMinute"
-        android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_60"
-        android:background="@drawable/btn_red"
-        android:elevation="@dimen/space_5"
-        android:gravity="center"
-        android:shadowColor="@color/white"
-        android:shadowRadius="70"
-        android:text="@string/_10_m"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_20"
-        android:textStyle="bold"
-        android:translationZ="@dimen/space_15"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/btnStopTwentyMinute"
-        app:layout_constraintEnd_toStartOf="@+id/glEnd"
-        app:layout_constraintStart_toEndOf="@+id/btnStopTwentyMinute"
-        app:layout_constraintTop_toTopOf="@+id/btnStopTwentyMinute" />
+        app:layout_constraintTop_toBottomOf="@id/tvTaskDescriptionTitle"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnDelete"
@@ -180,7 +119,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnEdit"
         app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/btnStopThirtyMinute" />
+        app:layout_constraintTop_toBottomOf="@+id/viewSecondLine" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnEdit"

@@ -35,10 +35,6 @@
     <string name="successfully_deleted">Successfully Deleted</string>
     <string name="you_can_t_choose_time_in_the_past">You can\'t choose time in the past</string>
     <string name="empty_list">List Is Empty</string>
-    <string name="success_update">Successfully Update</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
-    <string name="_30_m">30 min</string>
-    <string name="_20_m">20 min</string>
-    <string name="_10_m">10 min</string>
 </resources>

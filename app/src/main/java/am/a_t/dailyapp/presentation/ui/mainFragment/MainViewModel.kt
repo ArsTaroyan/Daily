@@ -16,38 +16,22 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val addTaskUseCase: AddTaskUseCase,
-    private val addTodoUseCase: AddTodoUseCase,
     private val addListUseCase: AddListUseCase,
     private val getAllTasksUseCase: GetAllTasksUseCase,
-    private val getAllTodosUseCase: GetAllTodosUseCase,
     private val getAllListsUseCase: GetAllListsUseCase,
     private val removeTaskUseCase: RemoveTaskUseCase,
-    private val removeTodoUseCase: RemoveTodoUseCase,
     private val removeListUseCase: RemoveListUseCase,
     private val updateTaskUseCase: UpdateTaskUseCase,
-    private val updateTodoUseCase: UpdateTodoUseCase,
-    private val updateListUseCase: UpdateListUseCase,
-    private val getTaskUseCase: GetTaskUseCase,
-    private val getTodoUseCase: GetTodoUseCase,
-    private val getListUseCase: GetListUseCase
+    private val updateListUseCase: UpdateListUseCase
 ) : ViewModel() {
 
     // Tasks
 
     val taskAllLiveData = MutableSharedFlow<Flow<List<Task>>>(1)
 
-    private val _getTask: MutableStateFlow<Task?> = MutableStateFlow(null)
-    val getTask = _getTask.asSharedFlow()
-
     fun getAllTask() {
         viewModelScope.launch {
             taskAllLiveData.emit(getAllTasksUseCase.getAllTasks())
-        }
-    }
-
-    fun getTask(id: Long) {
-        viewModelScope.launch {
-            _getTask.emit(getTaskUseCase.getTask(id))
         }
     }
 
@@ -73,18 +57,9 @@ class MainViewModel @Inject constructor(
 
     val listAllLiveData = MutableSharedFlow<Flow<List<ListTodo>>>(1)
 
-    private val _getList: MutableStateFlow<ListTodo?> = MutableStateFlow(null)
-    val getList = _getList.asSharedFlow()
-
     fun getAllList() {
         viewModelScope.launch {
             listAllLiveData.emit(getAllListsUseCase.getAllLists())
-        }
-    }
-
-    fun getList(id: Long) {
-        viewModelScope.launch {
-            _getList.emit(getListUseCase.getList(id))
         }
     }
 

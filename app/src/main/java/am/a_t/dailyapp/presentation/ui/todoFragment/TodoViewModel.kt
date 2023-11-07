@@ -1,6 +1,8 @@
 package am.a_t.dailyapp.presentation.ui.todoFragment
 
 import am.a_t.dailyapp.domain.iteractors.*
+import am.a_t.dailyapp.domain.module.ListTodo
+import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.domain.module.Todo
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,25 +21,16 @@ class TodoViewModel @Inject constructor(
     private val getAllTodosUseCase: GetAllTodosUseCase,
     private val removeTodoUseCase: RemoveTodoUseCase,
     private val updateTodoUseCase: UpdateTodoUseCase,
-    private val getTodoUseCase: GetTodoUseCase
+    private val getListUseCase: GetListUseCase
 ) : ViewModel(){
 
     // Todos
 
     val todoAllLiveData = MutableSharedFlow<Flow<List<Todo>>>(1)
 
-    private val _getTodo: MutableStateFlow<Todo?> = MutableStateFlow(null)
-    val getTodo = _getTodo.asSharedFlow()
-
     fun getAllTodo(id: Long) {
         viewModelScope.launch {
             todoAllLiveData.emit(getAllTodosUseCase.getAllTodos(id))
-        }
-    }
-
-    fun getTodo(id: Long) {
-        viewModelScope.launch {
-            _getTodo.emit(getTodoUseCase.getTodo(id))
         }
     }
 
@@ -56,6 +49,17 @@ class TodoViewModel @Inject constructor(
     fun removeTodo(todo: Todo) {
         viewModelScope.launch(Dispatchers.IO) {
             removeTodoUseCase.removeTodo(todo)
+        }
+    }
+
+    // List
+
+    private val _getList: MutableStateFlow<ListTodo?> = MutableStateFlow(null)
+    val getList = _getList.asSharedFlow()
+
+    fun getList(id: Long) {
+        viewModelScope.launch {
+            _getList.emit(getListUseCase.getList(id))
         }
     }
 

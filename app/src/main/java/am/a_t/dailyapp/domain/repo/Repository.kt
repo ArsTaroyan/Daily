@@ -12,8 +12,6 @@ interface Repository{
 
     fun getAllTodos(id: Long): Flow<List<Todo>>
 
-    suspend fun getTodo(id: Long): Todo?
-
     suspend fun addTodo(todo: Todo)
 
     suspend fun removeTodo(todo: Todo)
@@ -23,8 +21,6 @@ interface Repository{
     // Tasks
 
     fun getAllTasks(): Flow<List<Task>>
-
-    suspend fun getTask(id: Long): Task?
 
     suspend fun addTask(task: Task)
 

@@ -8,21 +8,6 @@
     tools:context=".presentation.ui.mainFragment.MainFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvEmpty"
-        android:layout_width="@dimen/space_0"
-        android:layout_height="@dimen/space_0"
-        android:gravity="center"
-        android:text="@string/empty_list"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_35"
-        android:textStyle="bold|italic"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/viewBack"
-        app:layout_constraintEnd_toEndOf="@+id/rvList"
-        app:layout_constraintStart_toStartOf="@+id/rvList"
-        app:layout_constraintTop_toTopOf="@+id/rvList" />
-
-    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnAdd"
         android:layout_width="@dimen/space_120"
         android:layout_height="wrap_content"

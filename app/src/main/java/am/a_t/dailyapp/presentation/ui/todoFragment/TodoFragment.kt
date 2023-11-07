@@ -1,10 +1,5 @@
 package am.a_t.dailyapp.presentation.ui.todoFragment
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.databinding.DialogNewListBinding
 import am.a_t.dailyapp.databinding.FragmentTodoBinding
@@ -14,8 +9,13 @@ import am.a_t.dailyapp.presentation.adapter.TodoAdapter
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.graphics.Color
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -36,7 +36,7 @@ import java.util.*
 class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private val args by navArgs<TodoFragmentArgs>()
     private lateinit var binding: FragmentTodoBinding
-    private val mViewModel: TodoViewModel by viewModels()
+    private val viewModel: TodoViewModel by viewModels()
     private lateinit var snackBar: Snackbar
     private lateinit var todoAdapter: TodoAdapter
     private lateinit var alertDialog: AlertDialog
@@ -71,24 +71,25 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         lifecycleScope.launch(Dispatchers.Main) {
             with(binding) {
                 tvFilterDate.setText(R.string.set_filter)
+                viewModel.getList(args.listTodoId)
             }
         }
     }
 
     private fun cancelFilter() {
-        mViewModel.getTodoFilter(todoList, null)
+        viewModel.getTodoFilter(todoList, null)
     }
 
     private fun filterTaskOrListTodo(date: String) {
         filterFromDate = date
-        mViewModel.getTodoFilter(todoList, date)
+        viewModel.getTodoFilter(todoList, date)
     }
 
     // init Adapter
 
     private fun initAdapter(inflater: LayoutInflater, container: ViewGroup?) {
         todoAdapter =
-            TodoAdapter(requireContext(), inflater, container, mViewModel) { isDelete, it ->
+            TodoAdapter(requireContext(), inflater, container, viewModel) { isDelete, it ->
                 if (isDelete) {
                     createCustomSnackBar(R.layout.snackbar_success_delete)
                 } else {
@@ -98,28 +99,34 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
         binding.rvList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvList.adapter = todoAdapter
-        mViewModel.getTodoFilter(todoList, null)
+        viewModel.getTodoFilter(todoList, null)
         binding.tvFilterDate.setText(R.string.set_filter)
     }
 
     // init ViewModel
 
     private fun initViewModel() {
-        mViewModel.getAllTodo(args.listTodoId)
+        viewModel.getAllTodo(args.listTodoId)
 
         lifecycleScope.launch {
-            mViewModel.filterTodo.collectLatest {
+            viewModel.getList.collect {
+                binding.tvListName.text = it?.listTitle
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.filterTodo.collectLatest {
                 todoAdapter.submitList(it)
             }
         }
 
         lifecycleScope.launch {
-            mViewModel.todoAllLiveData.first().collectLatest {
+            viewModel.todoAllLiveData.first().collectLatest {
                 todoList = it
                 if (!isFilter) {
                     todoAdapter.submitList(it)
                 } else {
-                    mViewModel.getTodoFilter(it, filterFromDate)
+                    viewModel.getTodoFilter(it, filterFromDate)
                 }
             }
         }
@@ -205,7 +212,7 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 edTodoName.setText(todo.todoTitle)
                 itemColor = todo.todoColor
 
-                when(itemColor) {
+                when (itemColor) {
                     ListColor.RED -> {
                         btnColorRedList.isChecked = true
                         btnCreateList.setBackgroundResource(R.drawable.btn_red)
@@ -272,16 +279,11 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                     updateTodo(todo)
                 }
 
-                if (isUpdate) {
-                    createCustomSnackBar(R.layout.snackbar_success_edit)
-                    isUpdate = false
+                if (isCreate) {
+                    createCustomSnackBar(R.layout.snackbar_warning)
+                    isCreate = false
                 } else {
-                    if (isCreate) {
-                        createCustomSnackBar(R.layout.snackbar_warning)
-                        isCreate = false
-                    } else {
-                        createCustomSnackBar(R.layout.snackbar_success)
-                    }
+                    createCustomSnackBar(R.layout.snackbar_success)
                 }
             }
 
@@ -294,7 +296,7 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun addTodo() {
         with(myDialogTodo) {
             isCreate = if (edTodoName.text.toString().isNotEmpty()) {
-                mViewModel.addTodo(
+                viewModel.addTodo(
                     Todo(
                         0,
                         args.listTodoId,
@@ -322,7 +324,7 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                     todoTitle = edTodoName.text.toString(),
                     todoColor = itemColor
                 )?.let {
-                    mViewModel.updateTodo(
+                    viewModel.updateTodo(
                         it
                     )
                 }

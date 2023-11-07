@@ -9,19 +9,17 @@ import am.a_t.dailyapp.databinding.DialogNewListBinding
 import am.a_t.dailyapp.databinding.FragmentMainBinding
 import am.a_t.dailyapp.domain.module.ListTodo
 import am.a_t.dailyapp.domain.module.Task
-import am.a_t.dailyapp.domain.utils.AlarmReceiver
 import am.a_t.dailyapp.domain.utils.ListColor
 import am.a_t.dailyapp.domain.utils.ListType
 import am.a_t.dailyapp.extension.convertGsonToString
 import am.a_t.dailyapp.extension.convertStringToGson
 import am.a_t.dailyapp.presentation.adapter.ListTodoAdapter
 import am.a_t.dailyapp.presentation.adapter.TaskAdapter
-import android.app.*
-import android.content.Context
-import android.content.Intent
+import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.graphics.Color
 import android.os.Bundle
-import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,7 +58,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     private val preference: Preference by lazy { Preference(requireContext()) }
     private var isEdit = false
     private var isCreate = false
-    private var isUpdate = false
     private var isFilter = false
     private var isDateSuccess = false
     private var isDateNotPast = false
@@ -79,8 +76,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     private var mYear = getCustomDateString("yyyy").toInt()
     private val formatterTime = SimpleDateFormat("HH:mm", Locale.US)
     private val formatterDate = SimpleDateFormat("MM-dd-yyyy", Locale.US)
-    private var alarmManager: AlarmManager? = null
-    private lateinit var alarmIntent: PendingIntent
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -353,9 +348,8 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 setCancelable(false)
             }.show()
 
-            readTaskAlarm(myDialogTask, task)
-
             if (task != null) {
+                readTaskAlarm(myDialogTask, task)
                 edTaskName.setText(task.taskTitle)
                 edDescriptionName.setText(task.taskDescription)
                 tvTaskTime.text = task.taskEndTime
@@ -382,9 +376,9 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 }
 
                 btnCreateTask.setText(R.string.edit_task)
-            } else {
-                dialogView(myDialogTask)
             }
+
+            dialogView(myDialogTask)
 
             dialogTaskButtonClickListeners(myDialogTask, alertDialog, task)
 
@@ -394,11 +388,9 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     private fun readTaskAlarm(myDialogTask: DialogCreateNewTaskBinding, task: Task?) {
         lifecycleScope.launch {
-            if (preference.readType(TYPE_ALARM)?.isNotEmpty() == true) {
-                taskDialogGone(myDialogTask)
-                taskDialogVisibility(myDialogTask)
-                setBtnColors(myDialogTask, task)
-            }
+            taskDialogGone(myDialogTask)
+            taskDialogVisibility(myDialogTask)
+            setBtnColors(myDialogTask, task)
         }
     }
 
@@ -406,30 +398,18 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         with(myDialogTask) {
             when (task?.taskColor) {
                 ListColor.RED -> {
-                    btnStopThirtyMinute.setBackgroundResource(R.drawable.btn_red)
-                    btnStopTwentyMinute.setBackgroundResource(R.drawable.btn_red)
-                    btnStopTenMinute.setBackgroundResource(R.drawable.btn_red)
                     btnDelete.setBackgroundResource(R.drawable.btn_red)
                     btnEdit.setBackgroundResource(R.drawable.btn_red)
                 }
                 ListColor.PURPLE -> {
-                    btnStopThirtyMinute.setBackgroundResource(R.drawable.btn_purple)
-                    btnStopTwentyMinute.setBackgroundResource(R.drawable.btn_purple)
-                    btnStopTenMinute.setBackgroundResource(R.drawable.btn_purple)
                     btnDelete.setBackgroundResource(R.drawable.btn_purple)
                     btnEdit.setBackgroundResource(R.drawable.btn_purple)
                 }
                 ListColor.BLUE -> {
-                    btnStopThirtyMinute.setBackgroundResource(R.drawable.btn_blue)
-                    btnStopTwentyMinute.setBackgroundResource(R.drawable.btn_blue)
-                    btnStopTenMinute.setBackgroundResource(R.drawable.btn_blue)
                     btnDelete.setBackgroundResource(R.drawable.btn_blue)
                     btnEdit.setBackgroundResource(R.drawable.btn_blue)
                 }
                 ListColor.ORANGE -> {
-                    btnStopThirtyMinute.setBackgroundResource(R.drawable.btn_orange)
-                    btnStopTwentyMinute.setBackgroundResource(R.drawable.btn_orange)
-                    btnStopTenMinute.setBackgroundResource(R.drawable.btn_orange)
                     btnDelete.setBackgroundResource(R.drawable.btn_orange)
                     btnEdit.setBackgroundResource(R.drawable.btn_orange)
                 }
@@ -471,9 +451,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     private fun taskDialogVisibility(myDialogTask: DialogCreateNewTaskBinding) {
         with(myDialogTask) {
-            btnStopThirtyMinute.visibility = View.VISIBLE
-            btnStopTwentyMinute.visibility = View.VISIBLE
-            btnStopTenMinute.visibility = View.VISIBLE
             btnDelete.visibility = View.VISIBLE
             btnEdit.visibility = View.VISIBLE
         }
@@ -481,9 +458,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     private fun taskDialogVisibilityGone(myDialogTask: DialogCreateNewTaskBinding) {
         with(myDialogTask) {
-            btnStopThirtyMinute.visibility = View.GONE
-            btnStopTwentyMinute.visibility = View.GONE
-            btnStopTenMinute.visibility = View.GONE
             btnDelete.visibility = View.GONE
             btnEdit.visibility = View.GONE
         }
@@ -502,7 +476,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 btnColorRedTask.isChecked = true
             }
 
-            getAlarm(task)
 
             btnEdit.setOnClickListener {
                 isEdit = true
@@ -515,21 +488,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
             btnDelete.setOnClickListener {
                 deleteTask()
-                alertDialog.dismiss()
-            }
-
-            btnStopThirtyMinute.setOnClickListener {
-                getAlarmForThirty(task)
-                alertDialog.dismiss()
-            }
-
-            btnStopTwentyMinute.setOnClickListener {
-                getAlarmForTwenty(task)
-                alertDialog.dismiss()
-            }
-
-            btnStopTenMinute.setOnClickListener {
-                getAlarmForTen(task)
                 alertDialog.dismiss()
             }
 
@@ -563,17 +521,13 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                         updateTask(myDialogTask, itemColor, task, true)
                     }
 
-                    if (isUpdate) {
-                        createCustomSnackBar(R.layout.snackbar_success_edit)
-                        isUpdate = false
+                    if (isCreate) {
+                        createCustomSnackBar(R.layout.snackbar_warning)
+                        isCreate = false
                     } else {
-                        if (isCreate) {
-                            createCustomSnackBar(R.layout.snackbar_warning)
-                            isCreate = false
-                        } else {
-                            createCustomSnackBar(R.layout.snackbar_success)
-                        }
+                        createCustomSnackBar(R.layout.snackbar_success)
                     }
+
                 } else {
                     warningDateAndTime(myDialogTask)
                 }
@@ -593,49 +547,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 alertDialog.dismiss()
             }
         }
-    }
-
-    private fun getAlarm(task: Task?) {
-        alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->
-            intent.putExtra("title", task?.taskTitle)
-            intent.putExtra("description", task?.taskDescription)
-            intent.putExtra("id", task?.id)
-            intent.putExtra("task", task.convertGsonToString())
-            PendingIntent.getBroadcast(
-                context,
-                task?.id?.toInt() ?: -1,
-                intent,
-                PendingIntent.FLAG_IMMUTABLE
-            )
-        }
-    }
-
-    private fun getAlarmForTen(task: Task?) {
-        alarmManager?.set(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime() + 60 * 1000 * 10,
-            alarmIntent
-        )
-        removeTaskCoroutines(task)
-    }
-
-    private fun getAlarmForTwenty(task: Task?) {
-        alarmManager?.set(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime() + 60 * 1000 * 20,
-            alarmIntent
-        )
-        removeTaskCoroutines(task)
-    }
-
-    private fun getAlarmForThirty(task: Task?) {
-        alarmManager?.set(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime() + 60 * 1000 * 30,
-            alarmIntent
-        )
-        removeTaskCoroutines(task)
     }
 
     private suspend fun removeTask() {
@@ -692,7 +603,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         isAlarm: Boolean
     ) {
         with(myDialogTask) {
-            isUpdate = if (edTaskName.text.toString().isNotEmpty()) {
+            if (edTaskName.text.toString().isNotEmpty()) {
                 if (isAlarm) {
                     task?.copy(
                         taskEndTime = tvTaskTime.text.toString(),
@@ -706,6 +617,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                         viewModel.updateTask(
                             it
                         )
+                        updateLocalTask(it)
                     }
                 } else {
                     task?.copy(
@@ -715,17 +627,22 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                         viewModel.updateTask(
                             it
                         )
+                        updateLocalTask(it)
                     }
                 }
                 cancelFilter()
-                true
-            } else {
-                false
             }
 
             isEdit = false
 
             alertDialog.dismiss()
+        }
+    }
+
+    private fun updateLocalTask(task: Task?) {
+        lifecycleScope.launch {
+            removeTask()
+            preference.saveType(TYPE_ALARM, task.convertGsonToString())
         }
     }
 
@@ -825,16 +742,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                     }
                 }
 
-                if (isUpdate) {
-                    createCustomSnackBar(R.layout.snackbar_success_edit)
-                    isUpdate = false
+                if (isCreate) {
+                    createCustomSnackBar(R.layout.snackbar_warning)
+                    isCreate = false
                 } else {
-                    if (isCreate) {
-                        createCustomSnackBar(R.layout.snackbar_warning)
-                        isCreate = false
-                    } else {
-                        createCustomSnackBar(R.layout.snackbar_success)
-                    }
+                    createCustomSnackBar(R.layout.snackbar_success)
                 }
             }
 
@@ -868,7 +780,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     private fun updateListTodo(listTodo: ListTodo?) {
         with(myDialogTodo) {
-            isUpdate = if (edTodoName.text.toString().isNotEmpty()) {
+            if (edTodoName.text.toString().isNotEmpty()) {
                 listTodo?.copy(
                     listTitle = edTodoName.text.toString(),
                     listDate = getCustomDateString("MM-dd-yyyy"),
@@ -880,9 +792,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                     )
                 }
                 cancelFilter()
-                true
-            } else {
-                false
             }
 
             isEdit = false

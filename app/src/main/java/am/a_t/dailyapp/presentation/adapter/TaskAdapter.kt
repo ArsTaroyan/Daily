@@ -28,7 +28,6 @@ class TaskAdapter(
     private val click: (Boolean, Task?) -> Unit
 ) :
     ListAdapter<Task, TaskAdapter.MyViewHolder>(DiffUtilItemCallBackTask()) {
-    private val preference: Preference by lazy { Preference(context) }
 
     private lateinit var myDialog: DialogDeleteBinding
     private lateinit var alertDialog: AlertDialog
