@@ -2,8 +2,9 @@ package am.a_t.dailyapp.presentation.ui.mainFragment
 
 import am.a_t.dailyapp.R
 import am.a_t.dailyapp.data.preferences.Preference
+import am.a_t.dailyapp.data.preferences.Preference.Companion.TASK
+import am.a_t.dailyapp.data.preferences.Preference.Companion.TASK_ID
 import am.a_t.dailyapp.data.preferences.Preference.Companion.TYPE
-import am.a_t.dailyapp.data.preferences.Preference.Companion.TYPE_ALARM
 import am.a_t.dailyapp.databinding.DialogCreateNewTaskBinding
 import am.a_t.dailyapp.databinding.DialogNewListBinding
 import am.a_t.dailyapp.databinding.FragmentMainBinding
@@ -47,34 +48,35 @@ import java.util.*
 class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
 
-    private lateinit var snackBar: Snackbar
-    private lateinit var alertDialog: AlertDialog
-    private lateinit var taskAdapter: TaskAdapter
-    private lateinit var binding: FragmentMainBinding
-    private val viewModel: MainViewModel by viewModels()
-    private lateinit var listTodoAdapter: ListTodoAdapter
-    private lateinit var myDialogTodo: DialogNewListBinding
-    private lateinit var myDialogTask: DialogCreateNewTaskBinding
-    private val preference: Preference by lazy { Preference(requireContext()) }
     private var isEdit = false
     private var isCreate = false
     private var isFilter = false
+    private var isAlarmEdit = true
     private var isDateSuccess = false
     private var isDateNotPast = false
     private var isTimeNotPast = false
     private var isDateAndTimeNow = false
+    private lateinit var snackBar: Snackbar
+    private var listTask = emptyList<Task>()
     private var isDateOrTime: Boolean = true
     private var filterFromDate: String? = null
-    private var listTask = emptyList<Task>()
     private var listTodo = emptyList<ListTodo>()
     private val calendar = Calendar.getInstance()
+    private lateinit var alertDialog: AlertDialog
+    private lateinit var taskAdapter: TaskAdapter
     private var itemColor: ListColor = ListColor.RED
+    private lateinit var binding: FragmentMainBinding
+    private val viewModel: MainViewModel by viewModels()
+    private lateinit var listTodoAdapter: ListTodoAdapter
+    private lateinit var myDialogTodo: DialogNewListBinding
     private var mDay = getCustomDateString("dd").toInt()
     private var mHour = getCustomDateString("HH").toInt()
     private var mMonth = getCustomDateString("MM").toInt()
+    private lateinit var myDialogTask: DialogCreateNewTaskBinding
     private var mMinute = getCustomDateString("mm").toInt()
     private var mYear = getCustomDateString("yyyy").toInt()
     private val formatterTime = SimpleDateFormat("HH:mm", Locale.US)
+    private val preference: Preference by lazy { Preference(requireContext()) }
     private val formatterDate = SimpleDateFormat("MM-dd-yyyy", Locale.US)
 
     override fun onCreateView(
@@ -83,9 +85,9 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        initView(inflater, container)
+        initView()
         initAdapter(inflater, container)
-        initViewModel()
+        initViewModel(inflater, container)
         initClickListeners(inflater, container)
 
         return binding.root
@@ -93,19 +95,16 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     // init View
 
-    private fun initView(inflater: LayoutInflater, container: ViewGroup?) {
+    private fun initView() {
         lifecycleScope.launch(Dispatchers.Main) {
             with(binding) {
                 tvFilterDate.setText(R.string.set_filter)
                 readTypeData()
             }
 
-            if (preference.readType(TYPE_ALARM)?.isNotEmpty() == true) {
-                initDialogTask(
-                    inflater,
-                    container,
-                    preference.readType(TYPE_ALARM)?.convertStringToGson()
-                )
+            if (!preference.readType(TASK_ID).isNullOrEmpty()) {
+                preference.readType(TASK_ID)?.convertStringToGson<Long>()
+                    ?.let { viewModel.getTask(it) }
             }
         }
     }
@@ -262,9 +261,21 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     // init ViewModel
 
-    private fun initViewModel() {
+    private fun initViewModel(inflater: LayoutInflater, container: ViewGroup?) {
         viewModel.getAllList()
         viewModel.getAllTask()
+
+        lifecycleScope.launch {
+            viewModel.getTask.collect {
+                if (it != null) {
+                    initDialogTask(
+                        inflater,
+                        container,
+                        it
+                    )
+                }
+            }
+        }
 
         lifecycleScope.launch {
             viewModel.filterList.collectLatest {
@@ -348,8 +359,9 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 setCancelable(false)
             }.show()
 
+            readTaskAlarm(myDialogTask, task)
+
             if (task != null) {
-                readTaskAlarm(myDialogTask, task)
                 edTaskName.setText(task.taskTitle)
                 edDescriptionName.setText(task.taskDescription)
                 tvTaskTime.text = task.taskEndTime
@@ -373,6 +385,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                         btnColorOrangeTask.isChecked = true
                         btnCreateTask.setBackgroundResource(R.drawable.btn_orange)
                     }
+                    else -> {
+                        itemColor = ListColor.RED
+                        btnColorRedTask.isChecked = true
+                        btnCreateTask.setBackgroundResource(R.drawable.btn_red)
+                    }
                 }
 
                 btnCreateTask.setText(R.string.edit_task)
@@ -388,9 +405,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     private fun readTaskAlarm(myDialogTask: DialogCreateNewTaskBinding, task: Task?) {
         lifecycleScope.launch {
-            taskDialogGone(myDialogTask)
-            taskDialogVisibility(myDialogTask)
-            setBtnColors(myDialogTask, task)
+            if (!preference.readType(TASK_ID).isNullOrEmpty()) {
+                taskDialogGone(myDialogTask)
+                taskDialogVisibility(myDialogTask)
+                setBtnColors(myDialogTask, task)
+            }
         }
     }
 
@@ -412,6 +431,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 ListColor.ORANGE -> {
                     btnDelete.setBackgroundResource(R.drawable.btn_orange)
                     btnEdit.setBackgroundResource(R.drawable.btn_orange)
+                }
+                else -> {
+                    itemColor = ListColor.RED
+                    btnDelete.setBackgroundResource(R.drawable.btn_red)
+                    btnEdit.setBackgroundResource(R.drawable.btn_red)
                 }
             }
         }
@@ -451,6 +475,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     private fun taskDialogVisibility(myDialogTask: DialogCreateNewTaskBinding) {
         with(myDialogTask) {
+            if (edDescriptionName.text.isNullOrEmpty()) {
+                edDescriptionName.visibility = View.GONE
+                tvTaskDescriptionTitle.visibility = View.GONE
+                viewSecondLine.visibility = View.GONE
+            }
             btnDelete.visibility = View.VISIBLE
             btnEdit.visibility = View.VISIBLE
         }
@@ -458,6 +487,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
     private fun taskDialogVisibilityGone(myDialogTask: DialogCreateNewTaskBinding) {
         with(myDialogTask) {
+            if (edDescriptionName.text.isNullOrEmpty()) {
+                edDescriptionName.visibility = View.VISIBLE
+                tvTaskDescriptionTitle.visibility = View.VISIBLE
+                viewSecondLine.visibility = View.VISIBLE
+            }
             btnDelete.visibility = View.GONE
             btnEdit.visibility = View.GONE
         }
@@ -479,6 +513,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
             btnEdit.setOnClickListener {
                 isEdit = true
+                isAlarmEdit = true
                 isDateOrTime = false
                 getDateAndTimeNow()
                 taskDialogGoneVisibility(myDialogTask)
@@ -487,7 +522,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             }
 
             btnDelete.setOnClickListener {
-                deleteTask()
+                deleteTask(task)
                 alertDialog.dismiss()
             }
 
@@ -543,14 +578,30 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             }
 
             btnBackNewTask.setOnClickListener {
-                removeTaskCoroutines(task)
+                removeAlarmTaskCoroutines(task)
                 alertDialog.dismiss()
             }
         }
     }
 
+    private fun removeAlarmTaskCoroutines(task: Task?) {
+        lifecycleScope.launch {
+            if (task?.taskColor != ListColor.GREY && isAlarmEdit) {
+                updateTask(myDialogTask, ListColor.GREY, task, false)
+                isAlarmEdit = false
+            }
+            removeTask()
+        }
+    }
+
     private suspend fun removeTask() {
-        preference.removeType(TYPE_ALARM)
+        if (!preference.readType(TASK_ID).isNullOrEmpty()) {
+            preference.removeType(TASK_ID)
+        }
+
+        if (!preference.readType(TASK).isNullOrEmpty()) {
+            preference.removeType(TASK)
+        }
     }
 
     private fun removeTaskCoroutines(task: Task?) {
@@ -562,10 +613,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         }
     }
 
-    private fun deleteTask() {
+
+
+    private fun deleteTask(task: Task?) {
         lifecycleScope.launch {
-            preference.readType(TYPE_ALARM)
-                ?.let { task -> viewModel.removeTask(task.convertStringToGson()) }
+            task?.let { viewModel.removeTask(it) }
             removeTask()
         }
     }
@@ -617,7 +669,7 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                         viewModel.updateTask(
                             it
                         )
-                        updateLocalTask(it)
+                        updateAlarm(it)
                     }
                 } else {
                     task?.copy(
@@ -627,7 +679,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                         viewModel.updateTask(
                             it
                         )
-                        updateLocalTask(it)
                     }
                 }
                 cancelFilter()
@@ -639,10 +690,9 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         }
     }
 
-    private fun updateLocalTask(task: Task?) {
+    private fun updateAlarm(task: Task?) {
         lifecycleScope.launch {
-            removeTask()
-            preference.saveType(TYPE_ALARM, task.convertGsonToString())
+            preference.saveType(TASK, task.convertGsonToString())
         }
     }
 
@@ -688,6 +738,11 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                     ListColor.ORANGE -> {
                         btnColorOrangeList.isChecked = true
                         btnCreateList.setBackgroundResource(R.drawable.btn_orange)
+                    }
+                    else -> {
+                        itemColor = ListColor.RED
+                        btnColorRedList.isChecked = true
+                        btnCreateList.setBackgroundResource(R.drawable.btn_red)
                     }
                 }
 

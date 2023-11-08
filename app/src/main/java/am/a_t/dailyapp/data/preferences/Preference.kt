@@ -27,7 +27,8 @@ class Preference(context: Context) {
 
     companion object {
         const val TYPE = "type"
-        const val TYPE_ALARM = "type_alarm"
+        const val TASK_ID = "task_id"
+        const val TASK = "task"
     }
 
 }

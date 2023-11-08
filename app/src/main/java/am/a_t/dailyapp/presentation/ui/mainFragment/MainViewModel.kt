@@ -3,8 +3,6 @@ package am.a_t.dailyapp.presentation.ui.mainFragment
 import am.a_t.dailyapp.domain.iteractors.*
 import am.a_t.dailyapp.domain.module.ListTodo
 import am.a_t.dailyapp.domain.module.Task
-import am.a_t.dailyapp.domain.module.Todo
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,12 +20,22 @@ class MainViewModel @Inject constructor(
     private val removeTaskUseCase: RemoveTaskUseCase,
     private val removeListUseCase: RemoveListUseCase,
     private val updateTaskUseCase: UpdateTaskUseCase,
-    private val updateListUseCase: UpdateListUseCase
+    private val updateListUseCase: UpdateListUseCase,
+    private val getTaskUseCase: GetTaskUseCase
 ) : ViewModel() {
 
     // Tasks
 
     val taskAllLiveData = MutableSharedFlow<Flow<List<Task>>>(1)
+
+    private val _getTask: MutableStateFlow<Task?> = MutableStateFlow(null)
+    val getTask = _getTask.asSharedFlow()
+
+    fun getTask(id: Long) {
+        viewModelScope.launch {
+            _getTask.emit(getTaskUseCase.getTask(id))
+        }
+    }
 
     fun getAllTask() {
         viewModelScope.launch {

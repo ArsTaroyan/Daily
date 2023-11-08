@@ -34,21 +34,21 @@ import java.util.*
 
 @AndroidEntryPoint
 class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
-    private val args by navArgs<TodoFragmentArgs>()
-    private lateinit var binding: FragmentTodoBinding
-    private val viewModel: TodoViewModel by viewModels()
-    private lateinit var snackBar: Snackbar
-    private lateinit var todoAdapter: TodoAdapter
-    private lateinit var alertDialog: AlertDialog
-    private lateinit var myDialogTodo: DialogNewListBinding
     private var isEdit = false
     private var isCreate = false
     private var isUpdate = false
     private var isFilter = false
+    private lateinit var snackBar: Snackbar
     private var todoList = emptyList<Todo>()
     private var filterFromDate: String? = null
     private val calendar = Calendar.getInstance()
+    private lateinit var todoAdapter: TodoAdapter
+    private lateinit var alertDialog: AlertDialog
+    private val args by navArgs<TodoFragmentArgs>()
     private var itemColor: ListColor = ListColor.RED
+    private lateinit var binding: FragmentTodoBinding
+    private val viewModel: TodoViewModel by viewModels()
+    private lateinit var myDialogTodo: DialogNewListBinding
     private val formatterDate = SimpleDateFormat("MM-dd-yyyy", Locale.US)
 
     override fun onCreateView(
@@ -228,6 +228,11 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                     ListColor.ORANGE -> {
                         btnColorOrangeList.isChecked = true
                         btnCreateList.setBackgroundResource(R.drawable.btn_orange)
+                    }
+                    else -> {
+                        itemColor = ListColor.RED
+                        btnColorRedList.isChecked = true
+                        btnCreateList.setBackgroundResource(R.drawable.btn_red)
                     }
                 }
 

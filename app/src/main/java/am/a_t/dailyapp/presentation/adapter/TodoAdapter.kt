@@ -45,7 +45,8 @@ class TodoAdapter(
         holder.bind(getItem(position))
     }
 
-    inner class MyViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(private val binding: ItemTodoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(todo: Todo) {
 
@@ -81,6 +82,9 @@ class TodoAdapter(
                     }
                     ListColor.PURPLE -> {
                         viewTodo.setBackgroundResource(R.drawable.btn_purple)
+                    }
+                    else -> {
+                        viewTodo.setBackgroundResource(R.drawable.btn_red)
                     }
                 }
 

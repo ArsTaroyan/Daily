@@ -22,6 +22,8 @@ interface Repository{
 
     fun getAllTasks(): Flow<List<Task>>
 
+    suspend fun getTask(id: Long): Task?
+
     suspend fun addTask(task: Task)
 
     suspend fun removeTask(task: Task)

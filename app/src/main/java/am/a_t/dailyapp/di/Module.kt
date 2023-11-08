@@ -113,6 +113,12 @@ class Module {
         return UpdateTaskUseCaseImpl(repository)
     }
 
+    @Provides
+    @Singleton
+    fun providesGetTaskUseCase(repository: Repository): GetTaskUseCase {
+        return GetTaskUseCaseImpl(repository)
+    }
+
     // Lists
 
     @Provides

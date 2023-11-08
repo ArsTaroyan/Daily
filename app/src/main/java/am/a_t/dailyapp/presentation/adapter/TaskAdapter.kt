@@ -1,19 +1,18 @@
 package am.a_t.dailyapp.presentation.adapter
 
 import am.a_t.dailyapp.R
-import am.a_t.dailyapp.data.preferences.Preference
 import am.a_t.dailyapp.databinding.DialogDeleteBinding
 import am.a_t.dailyapp.databinding.ItemTaskBinding
 import am.a_t.dailyapp.domain.module.Task
 import am.a_t.dailyapp.domain.utils.AlarmReceiver
 import am.a_t.dailyapp.domain.utils.ListColor
-import am.a_t.dailyapp.extension.convertGsonToString
 import am.a_t.dailyapp.presentation.ui.mainFragment.MainViewModel
 import android.app.AlarmManager
 import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -49,7 +48,8 @@ class TaskAdapter(
         holder.bind(getItem(position))
     }
 
-    inner class MyViewHolder(val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(private val binding: ItemTaskBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(task: Task) {
 
@@ -101,7 +101,6 @@ class TaskAdapter(
             intent.putExtra("title", task.taskTitle)
             intent.putExtra("description", task.taskDescription)
             intent.putExtra("id", task.id)
-            intent.putExtra("task", task.convertGsonToString())
             PendingIntent.getBroadcast(
                 context,
                 task.id.toInt(),
