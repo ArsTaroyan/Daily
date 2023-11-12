@@ -208,9 +208,15 @@ class TodoFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 setCancelable(false)
             }.show()
 
+            tvHeading.setText(R.string.create_new_todo)
+            tvListNameTitle.setText(R.string.todo_name)
+            tvListColor.setText(R.string.todo_color)
+            btnCreateList.setText(R.string.create_todo)
+
             if (todo != null) {
                 edTodoName.setText(todo.todoTitle)
                 itemColor = todo.todoColor
+
 
                 when (itemColor) {
                     ListColor.RED -> {

@@ -37,4 +37,8 @@
     <string name="empty_list">List Is Empty</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="create_new_todo">Create New ToDo</string>
+    <string name="todo_name">ToDo Name</string>
+    <string name="todo_color">ToDo \nColor</string>
+    <string name="create_todo">Create ToDo</string>
 </resources>
