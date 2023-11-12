@@ -94,7 +94,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/tvTaskDescriptionTitle"/>
+        app:layout_constraintTop_toBottomOf="@id/tvTaskDescriptionTitle" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnDelete"
@@ -152,12 +152,12 @@
 
     <View
         android:id="@+id/viewTime"
+        style="@style/containerShadow"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_60"
         android:layout_marginTop="@dimen/space_25"
         android:layout_marginEnd="@dimen/space_20"
         android:background="@drawable/btn_blue"
-        style="@style/containerShadow"
         app:layout_constraintEnd_toStartOf="@id/viewDate"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/edDescriptionName" />
@@ -191,10 +191,10 @@
 
     <View
         android:id="@+id/viewDate"
+        style="@style/containerShadow"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
         android:background="@drawable/btn_purple"
-        style="@style/containerShadow"
         app:layout_constraintBottom_toBottomOf="@id/viewTime"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toEndOf="@id/viewTime"
@@ -252,23 +252,22 @@
 
         <RadioButton
             android:id="@+id/btnColorRedTask"
+            style="@style/containerShadow"
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_15"
             android:background="@drawable/radio_red"
             android:button="@android:color/transparent"
-            android:checked="true"
-            style="@style/containerShadow" />
+            android:checked="true" />
 
         <RadioButton
             android:id="@+id/btnColorPurpleTask"
+            style="@style/containerShadow"
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_20"
             android:background="@drawable/radio_purple"
-            android:button="@android:color/transparent"
-            style="@style/containerShadow"
-            />
+            android:button="@android:color/transparent" />
 
         <RadioButton
             android:id="@+id/btnColorBlueTask"
@@ -282,22 +281,22 @@
 
         <RadioButton
             android:id="@+id/btnColorOrangeTask"
+            style="@style/containerShadow"
             android:layout_width="@dimen/space_50"
             android:layout_height="@dimen/space_50"
             android:layout_marginStart="@dimen/space_15"
             android:background="@drawable/radio_orange"
-            android:button="@android:color/transparent"
-            style="@style/containerShadow" />
+            android:button="@android:color/transparent" />
 
     </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnCreateTask"
+        style="@style/containerTextShadow"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_60"
         android:layout_marginBottom="@dimen/space_10"
         android:background="@drawable/btn_red"
-        style="@style/containerTextShadow"
         android:gravity="center"
         android:text="@string/create_task"
         android:textColor="@color/white"

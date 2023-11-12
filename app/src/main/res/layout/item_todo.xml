@@ -7,11 +7,11 @@
 
     <View
         android:id="@+id/viewTodo"
+        style="@style/containerShadow"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
         android:layout_marginHorizontal="@dimen/space_20"
         android:layout_marginBottom="@dimen/space_20"
-        style="@style/containerShadow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,10 +91,10 @@
         android:id="@+id/btnList"
         android:layout_width="@dimen/space_45"
         android:layout_height="@dimen/space_45"
+        android:layout_marginEnd="@dimen/space_5"
         android:elevation="@dimen/space_10"
         android:padding="@dimen/space_5"
         android:src="@drawable/ic_checklist"
-        android:layout_marginEnd="@dimen/space_5"
         app:layout_constraintBottom_toBottomOf="@+id/tvDate"
         app:layout_constraintEnd_toStartOf="@+id/btnEdit"
         app:layout_constraintTop_toTopOf="@+id/tvTitle" />
@@ -103,10 +103,10 @@
         android:id="@+id/btnEdit"
         android:layout_width="@dimen/space_45"
         android:layout_height="@dimen/space_45"
+        android:layout_marginEnd="@dimen/space_5"
         android:elevation="@dimen/space_10"
         android:padding="@dimen/space_5"
         android:src="@drawable/ic_edit"
-        android:layout_marginEnd="@dimen/space_5"
         app:layout_constraintBottom_toBottomOf="@+id/btnList"
         app:layout_constraintEnd_toStartOf="@+id/btnDelete"
         app:layout_constraintTop_toTopOf="@+id/btnList" />

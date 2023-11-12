@@ -614,7 +614,6 @@ class MainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     }
 
 
-
     private fun deleteTask(task: Task?) {
         lifecycleScope.launch {
             task?.let { viewModel.removeTask(it) }

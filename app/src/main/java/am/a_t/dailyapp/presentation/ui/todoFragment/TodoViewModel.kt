@@ -22,7 +22,7 @@ class TodoViewModel @Inject constructor(
     private val removeTodoUseCase: RemoveTodoUseCase,
     private val updateTodoUseCase: UpdateTodoUseCase,
     private val getListUseCase: GetListUseCase
-) : ViewModel(){
+) : ViewModel() {
 
     // Todos
 

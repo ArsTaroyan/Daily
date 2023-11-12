@@ -20,12 +20,12 @@
 
     <View
         android:id="@+id/viewTask"
+        style="@style/containerShadow"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_0"
         android:layout_marginStart="@dimen/space_10"
         android:layout_marginEnd="@dimen/space_20"
         android:layout_marginBottom="@dimen/space_20"
-        style="@style/containerShadow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvTime"

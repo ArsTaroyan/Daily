@@ -44,7 +44,8 @@ class ListTodoAdapter(
         holder.bind(getItem(position))
     }
 
-    inner class MyViewHolder(private val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(private val binding: ItemTodoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(list: ListTodo) {
 

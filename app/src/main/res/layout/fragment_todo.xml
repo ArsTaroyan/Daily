@@ -9,6 +9,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnBack"
+        style="@style/containerTextShadow"
         android:layout_width="@dimen/space_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_30"
@@ -19,7 +20,6 @@
         android:textColor="@color/white"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
-        style="@style/containerTextShadow"
         app:layout_constraintEnd_toEndOf="@+id/glEnd"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,6 +40,7 @@
 
     <TextView
         android:id="@+id/tvFilterDate"
+        style="@style/containerShadow"
         android:layout_width="@dimen/space_0"
         android:layout_height="@dimen/space_80"
         android:layout_marginTop="@dimen/space_35"
@@ -49,7 +50,6 @@
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/size_18"
         android:textStyle="bold"
-        style="@style/containerShadow"
         app:layout_constraintEnd_toStartOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/btnBack"
