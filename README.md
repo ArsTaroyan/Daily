@@ -1,5 +1,11 @@
 # Daily
 
+![NPM Version](https://img.shields.io/npm/v/kotlin?style=flat-square&label=kotlin)
+![GitHub followers](https://img.shields.io/github/followers/ArsTaroyan?style=flat-square&logo=github)
+![Static Badge](https://img.shields.io/badge/android--stiudio-gray?style=flat-square&logo=android&labelColor=grey&color=dark--green) 
+[![API](https://img.shields.io/badge/Min%20SDK-26%20[Android%207.0]-blue.svg?style=flat-square)](https://github.com/AndroidSDKSources/android-sdk-sources-list) 
+[![Target SDK](https://img.shields.io/badge/Target%20SDK-33%20[Android%2014]-blue.svg?style=flat-square)](https://developer.android.com/about/versions/13)
+
 Daily is an Android application designed to help users plan and manage their daily tasks and events. The app is written entirely in Kotlin using Android Studio and follows Clean Architecture principles.
 
 ## Key Features
