@@ -62,3 +62,5 @@ The project follows Clean Architecture principles, ensuring modularity and testa
 The application contains 2 screens: one for the task list and another for reminders. The design is built using XML layout.
 
 ![Daily photo](https://github.com/ArsTaroyan/Daily/assets/96776103/ad363adf-7ab5-4e77-9ea9-e1eb93e4a432)
+
+[Daily_video](https://github.com/ArsTaroyan/Daily/assets/96776103/4bd227d4-ddcd-47cf-a687-1564791ccc34)
